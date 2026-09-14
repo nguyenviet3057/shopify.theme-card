@@ -1,0 +1,373 @@
+<style>
+.testimonial-stats {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: #ffffff;
+}
+
+.testimonial-stats-header{
+max-width: 400px;
+margin: auto;
+}
+
+.testimonial-stats__subheading {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #F7F1E4;
+  margin: 0 0 1.5rem;
+}
+
+.testimonial-stats__quote {
+  position: relative;
+  margin: 0 0 1rem;
+  font-family: var(--font-h3--family) !important;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #f7f1e4;
+}
+
+.testimonial-stats__quote-mark {
+  font-size: 40px;
+  line-height: 0;
+  color: #f7f1e426;
+  margin-right: 2px;
+  vertical-align: -6px;
+}
+
+.testimonial-stats__attribution {
+  font-size: 13px;
+  color: #f7f1e4a6;
+  margin: 0 0 2.5rem;
+  text-align: end;
+}
+
+.testimonial-stats__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.testimonial-stats__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial-stats__stat-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.testimonial-stats__star {
+  flex-shrink: 0;
+}
+
+.testimonial-stats__stat-label {
+  margin: 0.5rem 0 0;
+  font-size: 12px;
+  color: #a89f92;
+}
+
+.testimonial-stats__count{
+  font-size: 44px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.testimonial-stats__divider {
+  width: 1px;
+  height: 40px;
+  background: #4a4238;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .testimonial-stats__quote {
+    font-size: 19px;
+  }
+
+  .testimonial-stats__row {
+    gap: 1.25rem;
+    flex-direction: column;
+  }
+
+  .testimonial-stats__stat-value {
+    font-size: 26px;
+  }
+
+  .testimonial-stats__divider {
+    height: 0px;
+  }
+}
+</style>
+
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ section.settings.section_width }} spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-padding', settings: section.settings %}"
+>
+  <div class="testimonial-stats" id="testimonial-stats-{{ section.id }}">
+<div class="testimonial-stats-header">
+    {% if section.settings.subheading != blank %}
+      <p class="testimonial-stats__subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.settings.quote != blank %}
+      <blockquote class="testimonial-stats__quote">
+        <span class="testimonial-stats__quote-mark" aria-hidden="true">&#8220;</span>{{ section.settings.quote }}
+      </blockquote>
+    {% endif %}
+
+    {% if section.settings.attribution != blank %}
+      <p class="testimonial-stats__attribution">&mdash; {{ section.settings.attribution }}</p>
+    {% endif %}
+
+</div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="testimonial-stats__row">
+        {% for block in section.blocks %}
+          {% if block.type == 'stat' %}
+            <div class="testimonial-stats__stat" {{ block.shopify_attributes }}>
+              <div class="testimonial-stats__stat-value">
+                <h3 class="testimonial-stats__count" data-count-target="{{ block.settings.value }}">0</h3>
+                {% if block.settings.show_star %}
+                  <svg class="testimonial-stats__star" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                    <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.6 6.1 20.6l1.3-6.6-4.9-4.6 6.6-.8z" fill="#f2c94c" stroke="#f2c94c"/>
+                  </svg>
+                {% endif %}
+              </div>
+              {% if block.settings.label != blank %}
+                <p class="testimonial-stats__stat-label">{{ block.settings.label }}</p>
+              {% endif %}
+            </div>
+
+            {% unless forloop.last %}
+              <div class="testimonial-stats__divider" aria-hidden="true"></div>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var sections = document.querySelectorAll('.testimonial-stats');
+  if (!sections.length) return;
+
+  var DURATION = 1500; // ms
+
+  function parseTarget(raw) {
+    // pulls out prefix (non-numeric), the number itself, and suffix (non-numeric)
+    // handles cases like "4.5", "165+", "98%", "$1,200"
+    var match = raw.match(/^([^\d]*)([\d,]*\.?\d+)([^\d]*)$/);
+    if (!match) {
+      return { prefix: '', number: 0, suffix: raw, decimals: 0 };
+    }
+    var prefix = match[1] || '';
+    var numberStr = match[2].replace(/,/g, '');
+    var suffix = match[3] || '';
+    var decimals = numberStr.indexOf('.') > -1 ? numberStr.split('.')[1].length : 0;
+    return {
+      prefix: prefix,
+      number: parseFloat(numberStr),
+      suffix: suffix,
+      decimals: decimals
+    };
+  }
+
+  function animateCount(el) {
+    if (el.dataset.counted === 'true') return;
+    el.dataset.counted = 'true';
+
+    var target = parseTarget(el.dataset.countTarget || el.textContent);
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / DURATION, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target.number * eased;
+
+      el.textContent = target.prefix + current.toFixed(target.decimals) + target.suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target.prefix + target.number.toFixed(target.decimals) + target.suffix;
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var counts = entry.target.querySelectorAll('.testimonial-stats__count');
+          counts.forEach(animateCount);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  sections.forEach(function (section) {
+    observer.observe(section);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Testimonial with stats",
+  "tag": "section",
+  "class": "shopify-section--testimonial-stats",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Quote content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "What players say"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote text",
+      "default": "You can tell they actually play. Every recommendation just... made sense."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "Sarah T., Google Reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "4.5"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_star",
+          "label": "Show star icon next to value",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Average rating on Google"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Testimonial with stats",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "4.5",
+            "show_star": true,
+            "label": "Average rating on Google"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "165+",
+            "show_star": false,
+            "label": "Verified customer reviews"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "show_star": false,
+            "label": "Would shop with us again"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

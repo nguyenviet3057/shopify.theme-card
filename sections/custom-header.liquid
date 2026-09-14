@@ -1,0 +1,1719 @@
+{% comment %}
+  ============================================================
+  HEADER SECTION — "The Games Cube" style (v4)
+  ------------------------------------------------------------
+  CHANGELOG from v3:
+  - Fixed .tgc-drawer__body overflow shorthand bug: `overflow:
+  hidden;` was silently forcing overflow-y:hidden too, which
+  clipped any level list taller than the visible drawer,
+  cutting long submenus off after a handful of items with no
+  way to scroll to the rest.
+  - .tgc-mnav--root / .tgc-mnav--sub now get explicit
+  max-height:100% alongside height:100%, so mobile browsers
+  that collapse height:100% chains still cap the level at
+  the drawer's height and let it scroll internally.
+  - Mega menu images (mobile) are now matched PER level-2 item
+  inside the loop that builds that level's own <ul>, instead
+  of only ever checking link.links.first. Previously, images
+  configured for e.g. "Magic Booster Boxes" never rendered
+  unless that item happened to be first in the menu — now
+  each level-2 item's own submenu carries its own matched
+  images, exactly mirroring how the desktop mega menu behaves.
+  ------------------------------------------------------------
+  INSTALL:
+  1. Save this file as sections/header.liquid
+  2. Online Store > Navigation: build a menu up to 3 levels
+  (Parent > Child > Grandchild) and pick it under this
+  section's "Main menu" setting in the theme editor.
+  3. Add to your header group / theme.liquid.
+  4. Everything else (button text/links, colors, search scope
+  list, mega menu images, currency/language toggles) is
+  controlled from the theme customizer.
+  ============================================================
+{% endcomment %}
+
+{% render 'cart-drawer-custom' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --tgc-top-bg: {{ section.settings.color_top_bg }};
+      --tgc-top-text: {{ section.settings.color_top_text }};
+      --tgc-nav-bg: {{ section.settings.color_nav_bg }};
+      --tgc-nav-text: {{ section.settings.color_nav_text }};
+      --tgc-accent: {{ section.settings.color_accent }};
+      --tgc-control-h: 44px;
+      --tgc-radius: 4px;
+    }
+
+    .tgc-header {
+      font-family: inherit;
+      position: relative;
+      z-index: 100;
+    }
+    .tgc-header a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .tgc-header ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .tgc-header button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* ---------- TOP BAR ---------- */
+    .tgc-header__top {
+      background: var(--tgc-top-bg) !important;
+      color: var(--tgc-top-text);
+    }
+    .tgc-header__inner {
+      padding: 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap;
+    }
+
+    .tgc-hamburger {
+      display: none;
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      width: 28px;
+      height: 22px;
+      position: relative;
+      padding: 0;
+    }
+    .tgc-hamburger span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--tgc-top-text);
+      transition: transform 0.2s ease
+      , opacity 0.2s ease;
+    }
+    .tgc-hamburger span:nth-child(1) {
+      top: 0;
+    }
+    .tgc-hamburger span:nth-child(2) {
+      top: 10px;
+    }
+    .tgc-hamburger span:nth-child(3) {
+      top: 20px;
+    }
+    {% comment %} .tgc-hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+    .tgc-hamburger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+    .tgc-hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    } {% endcomment %}
+
+    .tgc-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .tgc-logo img {
+      display: block;
+      height: {{ section.settings.logo_width }}px;
+      max-width: 100%;
+    }
+    .tgc-logo__text {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* ---------- SEARCH ROW (form + CTA button, wraps together on mobile) ---------- */
+    .tgc-search-row {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      flex: 1 1 auto;
+      min-width: 0;
+      justify-content: space-between;
+    }
+
+    .tgc-search {
+      width: 80%;
+      min-width: 0;
+      display: flex;
+      align-items: stretch;
+      background: #fff;
+      border-radius: var(--tgc-radius);
+      overflow: visible;
+      position: relative;
+      height: var(--tgc-control-h);
+    }
+    .tgc-search__scope {
+      flex: 0 0 auto;
+      border: none;
+      background-color: #eef0f2;
+      background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23333333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 12px;
+      color: #333;
+      font-size: 13px;
+      padding: 0 32px 0 10px;
+      border-right: 1px solid #ddd;
+      height: 100%;
+      border-radius: var(--tgc-radius) 0 0 var(--tgc-radius);
+      max-width: 150px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .tgc-search__input {
+      flex: 1 1 auto;
+      min-width: 0;
+      border: none;
+      outline: none;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #222;
+      height: 100%;
+      background: transparent;
+    }
+    .tgc-search__submit {
+      flex: 0 0 auto;
+      width: 44px;
+      height: 100%;
+      border: none;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 var(--tgc-radius) var(--tgc-radius) 0;
+    }
+    .tgc-search__submit svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tgc-search__results {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      color: #222;
+      border-radius: var(--tgc-radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 60;
+    }
+    .tgc-search__results[hidden] {
+      display: none;
+    }
+    .tgc-search__result {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .tgc-search__result:hover {
+      background: #f7f7f7;
+    }
+    .tgc-search__result img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .tgc-search__result-title {
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    .tgc-search__result-price {
+      font-size: 12px;
+      color: #666;
+    }
+    .tgc-search__empty,
+    .tgc-search__viewall {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    .tgc-search__viewall {
+      font-weight: 600;
+      color: var(--tgc-accent);
+      border-top: 1px solid #eee;
+      display: block;
+    }
+
+    /* ---------- CTA BUTTON ---------- */
+    .tgc-cta-btn {
+      flex-shrink: 0;
+      height: var(--tgc-control-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 32px;
+      background: #FFffff;
+      color: #1D1A17 !important;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+      font-family: var(--font-h3--family);
+      box-sizing: border-box;
+    }
+
+    /* ---------- UTILITY (currency/lang/account/cart) — always plain, always visible ---------- */
+    .tgc-header__utility {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 15%;
+    }
+    .tgc-localization-form {
+      display: inline-flex;
+    }
+    .tgc-select {
+      background: transparent;
+      color: var(--tgc-top-text);
+      border: 0 solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--tgc-radius);
+      height: 32px;
+      font-size: 14px;
+      padding: 0 4px;
+      max-width: 88px;
+      font-family: 'Oswald';
+    }
+    .tgc-select:focus-visible {
+      outline: none !important;
+    }
+    .tgc-select option {
+      color: #222;
+    }
+    .tgc-icon-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .tgc-icon-link svg {
+      width: 22px;
+      height: 22px;
+    }
+    .tgc-cart-count {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      color: var(--tgc-nav-bg);
+      background: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2px;
+    }
+
+    /* ---------- NAV BAR (desktop) ---------- */
+    .tgc-nav {
+      background: var(--tgc-nav-bg);
+      color: var(--tgc-nav-text);
+      /* display: block; */
+    }
+    .tgc-nav__list {
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tgc-nav__item {
+      position: static;
+    }
+    .tgc-nav__link {
+      display: block;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-family: 'Oswald';
+    }
+    .tgc-nav__item.has-mega > .tgc-nav__link::after {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 8px;
+      margin-left: 6px;
+      background-image: url("data:image/svg+xml, %3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%23F7F1E4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      vertical-align: middle;
+    }
+
+    .tgc-nav__item.has-mega:hover > .tgc-nav__link::after {
+      transform: rotate(180deg);
+      background-image: url("data:image/svg+xml, %3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%232d7dd2'/%3E%3C/svg%3E");
+    }
+    .tgc-nav__item:hover > .tgc-nav__link,
+    .tgc-nav__item.is-open > .tgc-nav__link {
+      color: var(--tgc-accent) !important;
+    }
+
+    .tgc-mega {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: #ffffff;
+      color: #1D1A17;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+      z-index: 90;
+      padding: 0 60px;
+    }
+    .tgc-nav__item.is-open .tgc-mega {
+      display: flex;
+    }
+    .tgc-mega__col--l2 {
+      flex: 0 0 230px;
+      background: #ffffff;
+      padding: 18px 0;
+    }
+    .tgc-mega__col--l2 li {
+      padding: 0;
+    }
+    .tgc-mega__col--l2 a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1D1A17 !important;
+      font-family: var(--font-h3--family);
+      border-radius: 8px;
+    }
+    .tgc-mega__arrow {
+      font-size: 15px;
+      line-height: 1;
+      color: #999;
+      flex-shrink: 0;
+    }
+    .tgc-mega__col--l2 li.is-active a,
+    .tgc-mega__col--l2 li:hover a {
+      background: rgba(45, 125, 210, 0.15);
+      color: var(--tgc-accent) !important;
+    }
+    .tgc-mega__col--l2 li.is-active a .tgc-mega__arrow,
+    .tgc-mega__col--l2 li:hover a .tgc-mega__arrow {
+      color: var(--tgc-accent);
+    }
+    .tgc-mega__panel {
+      display: none;
+      flex: 1 1 auto;
+      padding: 24px;
+      gap: 32px;
+    }
+    .tgc-mega__panel.is-active {
+      display: flex;
+    }
+    .tgc-mega__col--l3 {
+      flex: 0 0 220px;
+    }
+    .tgc-mega__col--l3 a {
+      display: block;
+      padding: 10px 0;
+      font-size: 13px;
+      color: #1D1A17 !important;
+      font-family: var(--font-h3--family);
+    }
+    .tgc-mega__col--l3 a:hover {
+      color: var(--tgc-accent) !important;
+    }
+    .tgc-mega__col--images {
+      flex: 1 1 auto;
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+    }
+    .tgc-mega__image {
+      border-radius: 4px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .tgc-mega__image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ---------- MOBILE DRAWER ---------- */
+    .tgc-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      top: var(--menu-height, 0px);
+    }
+    .tgc-drawer.is-open {
+      visibility: visible;
+    }
+    .tgc-drawer__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .tgc-drawer.is-open .tgc-drawer__overlay {
+      opacity: 1;
+    }
+    .tgc-drawer__panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 360px;
+      background: #fff;
+      color: #111;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .tgc-drawer.is-open .tgc-drawer__panel {
+      transform: translateX(0);
+    }
+    .tgc-drawer__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      background: var(--tgc-nav-bg);
+      color: #fff;
+      font-weight: 700;
+      flex: 0 0 auto;
+      display: none;
+    }
+    .tgc-drawer__close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+
+    /*
+
+     FIX: `overflow: hidden;` is shorthand for BOTH overflow-x AND
+     overflow-y. It was silently forcing overflow-y:hidden too, which
+     clipped any menu level taller than the visible drawer height —
+     there was no way to scroll to items past the cutoff. The body
+     itself should not scroll (the individual levels inside it do,
+     via .tgc-mnav--root / .tgc-mnav--sub), so both axes are hidden
+     here on purpose, but the levels below now get an explicit
+     max-height so they can scroll internally within that space.
+  */
+    .tgc-drawer__body {
+      flex: 1 1 auto;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+    }
+
+
+    /*
+
+     ---------- MOBILE DRILL-DOWN MENU ----------
+     IMPORTANT: Submenus are nested inside their parent <li> elements.
+     Therefore we MUST NOT use display:none on the parent menu, otherwise
+     its child submenu can never become visible. Submenus overlay the parent.
+  */
+    .tgc-mnav {
+      display: block;
+      margin: 0;
+      padding: 4px 0;
+      list-style: none;
+    }
+
+    .tgc-mnav--root {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      max-height: 100%;
+      /* mobile browsers can collapse height:100% chains — this caps it explicitly */
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior-x: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tgc-mnav--sub {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      /* same fix as above, applied to every drilled-down level */
+      min-height: 100%;
+      margin: 0;
+      padding: 4px 0;
+      background: #fff;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior-x: none;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.25s ease
+      , visibility 0.25s ease;
+      z-index: 5;
+    }
+
+    .tgc-mnav--sub.is-open {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* .tgc-mnav li {
+      border-bottom: 1px solid #eee;
+    } */
+    .tgc-mnav a,
+    .tgc-mnav__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #111;
+      font-family: var(--font-h3--family);
+    }
+    .tgc-mnav__link .chev {
+      color: #999;
+      font-size: 16px;
+    }
+    .tgc-mnav__back {
+      background: #f4f4f4;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tgc-accent);
+      font-family: var(--font-h3--family);
+    }
+
+    body.tgc-lock-scroll {
+      overflow: hidden;
+    }
+
+    /* ---------- RESPONSIVE (<=768px) ---------- */
+    @media (max-width: 749px) {
+      .tgc-hamburger {
+        display: block;
+      }
+      .tgc-nav {
+        display: none;
+      } /* replaced by drawer */
+
+      .tgc-header__inner {
+        flex-wrap: wrap;
+        padding: 10px 0;
+        gap: 8px 10px;
+        justify-content: space-between;
+      }
+      .tgc-hamburger {
+        order: 1;
+      }
+      .tgc-logo {
+        order: 2;
+      }
+      .tgc-header__utility {
+        order: 3;
+        width: max-content;
+      }
+
+      /* search + CTA drop to their own full-width second row */
+      .tgc-search-row {
+        order: 4;
+        flex: 1 1 100%;
+        margin-top: 4px;
+        justify-content: space-between;
+      }
+
+      .tgc-logo img {
+        width: 120px;
+        height: 66px;
+      }
+      .tgc-logo__text {
+        font-size: 16px;
+      }
+      .tgc-cta-btn {
+        padding: 4px 16px;
+        font-size: 12px;
+      }
+      .tgc-select {
+        max-width: 64px;
+        height: 28px;
+        font-size: 11px;
+      }
+      .tgc-icon-link svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+
+    /* ---------- MOBILE SUBMENU IMAGES ---------- */
+    .tgc-mnav__images {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px 24px;
+    }
+    .tgc-mnav__images {
+      border-bottom: none !important;
+    }
+
+
+    /*
+
+     MOBILE X-AXIS OVERFLOW SAFETY
+     Hidden translated submenus must not increase the scroll width.
+  */
+    .tgc-drawer__panel,
+    .tgc-drawer__body,
+    .tgc-mnav--root,
+    .tgc-mnav--sub {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .tgc-mnav__image {
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid #DDD5C6 !important;
+      background: transparent !important;
+      aspect-ratio: 1 / 1;
+      padding: 0 !important;
+    }
+    .tgc-mnav__image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 749px) {
+      /* .tgc-mnav li {
+        border-bottom: 1px solid #eee;
+      } */
+      .tgc-mnav a,
+      .tgc-mnav__link {
+        min-height: 52px;
+        padding: 12px 24px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .tgc-mnav__back {
+        min-height: 50px;
+        background: #fff;
+        /* border-bottom: 1px solid #eee; */
+        color: #222;
+        font-size: 13px;
+        text-transform: none;
+      }
+      .tgc-mnav__link .chev {
+        font-size: 22px;
+        font-weight: 400;
+        color: #555;
+      }
+    }
+
+
+    /*
+
+     Mobile submenu visibility is handled above with overlay positioning.
+     Do not add display:none rules for .tgc-mnav here: submenus are nested.
+  */
+
+    .tgc-cart-link {
+      position: relative;
+    }
+
+    .tgc-cart-link.is-loading svg,
+    .tgc-cart-link.is-loading .tgc-cart-count {
+      opacity: 0;
+    }
+
+    .tgc-cart-spinner {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: var(--tgc-top-text);
+      border-radius: 50%;
+      animation: tgc-spin 0.6s linear infinite;
+    }
+
+    .tgc-cart-link.is-loading .tgc-cart-spinner {
+      display: block;
+    }
+
+    @keyframes tgc-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .cart-bubble__text {
+      color: var(--cart-bubble-background, var(--cart-bubble-background-fallback)) !important;
+    }
+
+    .cart-bubble__background {
+      background: white;
+    }
+</style>
+
+<header class="tgc-header" id="tgc-header-{{ section.id }}">
+  <div class="tgc-header__top section--page-width section">
+    <div class="tgc-header__inner">
+      <button
+        class="tgc-hamburger"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="tgc-mobile-drawer-{{ section.id }}"
+        data-drawer-toggle
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a href="{{ routes.root_url }}" class="tgc-logo">
+        {% if section.settings.logo %}
+          <img
+            src="{{ section.settings.logo | image_url: width: 400 }}"
+            width="{{ section.settings.logo_width }}"
+            alt="{{ shop.name }}"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="tgc-logo__text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+
+      <div class="tgc-search-row">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="tgc-search"
+          id="tgc-search-form-{{ section.id }}"
+          autocomplete="off"
+        >
+          {%- assign scope_blocks = section.blocks | where: 'type', 'search_scope' -%}
+          {%- if scope_blocks.size > 0 -%}
+            <select
+              name="scope"
+              class="tgc-search__scope"
+              aria-label="Search scope"
+              data-search-scope
+            >
+              {%- for block in scope_blocks -%}
+                <option
+                  value="{{ block.settings.label | handleize }}"
+                  data-type="{{ block.settings.filter_type }}"
+                  {% if block.settings.redirect_url != blank %}
+                    data-url="{{ block.settings.redirect_url | escape }}"
+                  {% endif %}
+                >
+                  {{ block.settings.label }}
+                </option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
+          <input
+            type="hidden"
+            name="type"
+            value="{{ scope_blocks.first.settings.filter_type }}"
+            id="tgc-search-type-{{ section.id }}"
+            {% if scope_blocks.first.settings.filter_type == blank %}
+              disabled
+            {% endif %}
+          >
+          <input
+            type="text"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ section.settings.search_placeholder | default: 'Search store' }}"
+            class="tgc-search__input"
+            id="tgc-search-input-{{ section.id }}"
+            data-predictive-search-input
+          >
+          <button
+            type="submit"
+            class="tgc-search__submit"
+            aria-label="Search"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="7" /><line
+                x1="21"
+                y1="21"
+                x2="16.65"
+                y2="16.65" />
+            </svg>
+          </button>
+          <div
+            class="tgc-search__results"
+            id="tgc-search-results-{{ section.id }}"
+            hidden
+          ></div>
+        </form>
+
+        {% if section.settings.cta_button_text != blank %}
+          <a href="{{ section.settings.cta_button_link | default: '#' }}" class="tgc-cta-btn">
+            <span>{{ section.settings.cta_button_text }}</span>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="tgc-header__utility">
+        {% if section.settings.show_currency_selector and localization.available_countries.size > 1 %}
+          {% form 'localization', id: 'tgc-currency-form', class: 'tgc-localization-form' %}
+            <select
+              name="country_code"
+              class="tgc-select"
+              aria-label="Currency"
+              onchange="this.form.submit()"
+            >
+              {% for country in localization.available_countries %}
+                <option
+                  class="localization-form__list-item"
+                  value="{{ country.iso_code }}"
+                  {% if country.iso_code == localization.country.iso_code %}
+                    selected
+                  {% endif %}
+                >
+                  {{ country.iso_code }}
+                  {{ country.currency.symbol }}
+                </option>
+              {% endfor %}
+            </select>
+          {% endform %}
+        {% endif %}
+
+        {% if section.settings.show_language_selector and localization.available_languages.size > 1 %}
+          {% form 'localization', id: 'tgc-language-form', class: 'tgc-localization-form' %}
+            <select
+              name="locale_code"
+              class="tgc-select"
+              aria-label="Language"
+              onchange="this.form.submit()"
+            >
+              {% for language in localization.available_languages %}
+                <option
+                  class="localization-form__list-item"
+                  value="{{ language.iso_code }}"
+                  {% if language.iso_code == localization.language.iso_code %}
+                    selected
+                  {% endif %}
+                >
+                  {{ language.endonym_name | capitalize }}
+                </option>
+              {% endfor %}
+            </select>
+          {% endform %}
+        {% endif %}
+
+        {% comment %}
+          <a href="{{ routes.account_url }}" class="tgc-icon-link" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          </a>
+        {% endcomment %}
+        {% render 'custom-header-action', section: section %}
+        {% comment %}
+          <a href="{{ routes.cart_url }}" class="tgc-icon-link tgc-cart-link" aria-label="Cart" data-cart-link>
+          <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          >
+          <path
+          d="M4.5875 19.4125C4.19583 19.0208 4 18.55 4 18C4 17.45 4.19583 16.9792 4.5875 16.5875C4.97917 16.1958 5.45 16 6 16C6.55 16 7.02083 16.1958 7.4125 16.5875C7.80417 16.9792 8 17.45 8 18C8 18.55 7.80417 19.0208 7.4125 19.4125C7.02083 19.8042 6.55 20 6 20C5.45 20 4.97917 19.8042 4.5875 19.4125ZM14.5875 19.4125C14.1958 19.0208 14 18.55 14 18C14 17.45 14.1958 16.9792 14.5875 16.5875C14.9792 16.1958 15.45 16 16 16C16.55 16 17.0208 16.1958 17.4125 16.5875C17.8042 16.9792 18 17.45 18 18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20C15.45 20 14.9792 19.8042 14.5875 19.4125ZM5.15 4L7.55 9H14.55L17.3 4H5.15ZM4.2 2H18.95C19.3333 2 19.625 2.17083 19.825 2.5125C20.025 2.85417 20.0333 3.2 19.85 3.55L16.3 9.95C16.1167 10.2833 15.8708 10.5417 15.5625 10.725C15.2542 10.9083 14.9167 11 14.55 11H7.1L6 13H18V15H6C5.25 15 4.68333 14.6708 4.3 14.0125C3.91667 13.3542 3.9 12.7 4.25 12.05L5.6 9.6L2 2H0V0H3.25L4.2 2Z"
+          fill="white"
+          />
+          </svg>
+          <span class="tgc-cart-count" data-cart-count>{{ cart.item_count }}</span>
+          <span class="tgc-cart-spinner" data-cart-spinner></span>
+          </a>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+  <nav class="tgc-nav section--page-width section" aria-label="Main navigation">
+    <ul class="tgc-nav__list">
+      {% for link in linklists[section.settings.main_menu].links %}
+        <li class="tgc-nav__item {% if link.links != blank %}has-mega{% endif %}" data-nav-item>
+          <a href="{{ link.url }}" class="tgc-nav__link">{{ link.title }}</a>
+
+          {% if link.links != blank %}
+            <div class="tgc-mega" data-mega>
+              <div class="tgc-mega__col tgc-mega__col--l2">
+                <ul>
+                  {% for link2 in link.links %}
+                    <li
+                      class="{% if forloop.first %}is-active{% endif %}"
+                      data-l2-trigger
+                      data-l2-index="{{ forloop.index0 }}"
+                    >
+                      <a href="{{ link2.url }}">
+                        <span>{{ link2.title }}</span>
+                        {% if link2.links != blank -%}
+                          <span class="tgc-mega__arrow">›</span>
+                        {%- endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+              {% for link2 in link.links %}
+                {%- assign mega_images = section.blocks | where: 'type', 'mega_image' -%}
+                <div
+                  class="tgc-mega__panel {% if forloop.first %}is-active{% endif %}"
+                  data-l2-panel="{{ forloop.index0 }}"
+                >
+                  {% if link2.links != blank %}
+                    <div class="tgc-mega__col tgc-mega__col--l3">
+                      <ul>
+                        {% for link3 in link2.links %}
+                          <li>
+                            <a href="{{ link3.url }}">{{ link3.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                  <div class="tgc-mega__col tgc-mega__col--images">
+                    {% for block in mega_images %}
+                      {% if block.settings.parent_label == link2.title %}
+                        {% if block.settings.image_1 %}
+                          <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mega__image">
+                            <img
+                              src="{{ block.settings.image_1 | image_url: width: 400 }}"
+                              alt="{{ block.settings.title_1 | escape }}"
+                              loading="lazy"
+                            >
+                          </a>
+                        {% endif %}
+                        {% if block.settings.image_2 %}
+                          <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mega__image">
+                            <img
+                              src="{{ block.settings.image_2 | image_url: width: 400 }}"
+                              alt="{{ block.settings.title_2 | escape }}"
+                              loading="lazy"
+                            >
+                          </a>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div
+  class="tgc-drawer"
+  id="tgc-mobile-drawer-{{ section.id }}"
+  aria-hidden="true"
+>
+  <div class="tgc-drawer__overlay" data-drawer-close></div>
+
+  <div class="tgc-drawer__panel">
+    <div class="tgc-drawer__header">
+      <span>Menu</span>
+      <button
+        class="tgc-drawer__close"
+        type="button"
+        data-drawer-close
+        aria-label="Close menu"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="tgc-drawer__body">
+      <!-- LEVEL 0 -->
+      <ul class="tgc-mnav tgc-mnav--root" data-level="0">
+        {% for link in linklists[section.settings.main_menu].links %}
+          <li>
+            {% if link.links != blank %}
+              <button
+                class="tgc-mnav__link"
+                type="button"
+                data-open-sub
+              >
+                <span>{{ link.title }}</span>
+                <span class="chev">&rsaquo;</span>
+              </button>
+
+              <!-- LEVEL 1 -->
+              <ul class="tgc-mnav tgc-mnav--sub" data-level="1">
+                <li>
+                  <button
+                    class="tgc-mnav__back"
+                    type="button"
+                    data-back
+                  >
+                    &larr; {{ link.title }}
+                  </button>
+                </li>
+
+                {% for link2 in link.links %}
+                  <li>
+                    {% if link2.links != blank %}
+                      <button
+                        class="tgc-mnav__link"
+                        type="button"
+                        data-open-sub
+                      >
+                        <span>{{ link2.title }}</span>
+                        <span class="chev">&rsaquo;</span>
+                      </button>
+
+                      <!-- LEVEL 2 -->
+                      <ul class="tgc-mnav tgc-mnav--sub" data-level="2">
+                        <li>
+                          <button
+                            class="tgc-mnav__back"
+                            type="button"
+                            data-back
+                          >
+                            &larr; {{ link2.title }}
+                          </button>
+                        </li>
+
+                        {% for link3 in link2.links %}
+                          <li>
+                            <a href="{{ link3.url }}">{{ link3.title }}</a>
+                          </li>
+                        {% endfor %}
+
+                        {% comment %}
+                          Images matched to THIS specific level-2 item's title,
+                          shown at the bottom of its own level-2 submenu list.
+                          Checked per-item (not just the first one) so images
+                          configured for any level-2 title actually render.
+                        {% endcomment %}
+                        {% for block in section.blocks %}
+                          {% if block.type == 'mega_image' and block.settings.parent_label == link2.title %}
+                            {% if block.settings.image_1 or block.settings.image_2 %}
+                              <li class="tgc-mnav__images">
+                                {% if block.settings.image_1 %}
+                                  <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mnav__image">
+                                    <img
+                                      src="{{ block.settings.image_1 | image_url: width: 500 }}"
+                                      alt="{{ block.settings.title_1 | escape }}"
+                                      loading="lazy"
+                                      width="500"
+                                      height="500"
+                                    >
+                                  </a>
+                                {% endif %}
+                                {% if block.settings.image_2 %}
+                                  <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mnav__image">
+                                    <img
+                                      src="{{ block.settings.image_2 | image_url: width: 500 }}"
+                                      alt="{{ block.settings.title_2 | escape }}"
+                                      loading="lazy"
+                                      width="500"
+                                      height="500"
+                                    >
+                                  </a>
+                                {% endif %}
+                              </li>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% else %}
+                      <a href="{{ link2.url }}">{{ link2.title }}</a>
+
+                      {% comment %}
+                        Flat (no-children) level-2 item — if it has matching
+                        images, show them right after it as its own row.
+                      {% endcomment %}
+                      {% for block in section.blocks %}
+                        {% if block.type == 'mega_image' and block.settings.parent_label == link2.title %}
+                          {% if block.settings.image_1 or block.settings.image_2 %}
+                            <div class="tgc-mnav__images">
+                              {% if block.settings.image_1 %}
+                                <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mnav__image">
+                                  <img
+                                    src="{{ block.settings.image_1 | image_url: width: 500 }}"
+                                    alt="{{ block.settings.title_1 | escape }}"
+                                    loading="lazy"
+                                    width="500"
+                                    height="500"
+                                  >
+                                </a>
+                              {% endif %}
+                              {% if block.settings.image_2 %}
+                                <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mnav__image">
+                                  <img
+                                    src="{{ block.settings.image_2 | image_url: width: 500 }}"
+                                    alt="{{ block.settings.title_2 | escape }}"
+                                    loading="lazy"
+                                    width="500"
+                                    height="500"
+                                  >
+                                </a>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('tgc-header-{{ section.id }}');
+    if (!root) return;
+
+    const header = document.querySelector('header');
+
+    if (header) {
+      const updateDrawerPosition = () => {
+        const height = header.getBoundingClientRect().bottom;
+
+        document.documentElement.style.setProperty('--menu-height', `${height}px`);
+      };
+
+      updateDrawerPosition();
+
+      const observer = new ResizeObserver(updateDrawerPosition);
+      observer.observe(header);
+    }
+
+    /* ---------- Desktop mega menu ---------- */
+    var navItems = root.querySelectorAll('[data-nav-item]');
+    navItems.forEach(function (item) {
+      if (!item.classList.contains('has-mega')) return;
+      var closeTimer;
+      function open() {
+        clearTimeout(closeTimer);
+        item.classList.add('is-open');
+      }
+      function close() {
+        closeTimer = setTimeout(function () {
+          item.classList.remove('is-open');
+        }, 150);
+      }
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', close);
+
+      var link = item.querySelector(':scope > .tgc-nav__link');
+      link.addEventListener('click', function (e) {
+        if (window.matchMedia('(hover: none)').matches) {
+          if (!item.classList.contains('is-open')) {
+            e.preventDefault();
+            navItems.forEach(function (i) {
+              i.classList.remove('is-open');
+            });
+            item.classList.add('is-open');
+          }
+        }
+      });
+
+      var l2Triggers = item.querySelectorAll('[data-l2-trigger]');
+      l2Triggers.forEach(function (trig) {
+        trig.addEventListener('mouseenter', function () {
+          var idx = trig.getAttribute('data-l2-index');
+          l2Triggers.forEach(function (t) {
+            t.classList.toggle('is-active', t === trig);
+          });
+          item.querySelectorAll('[data-l2-panel]').forEach(function (panel) {
+            panel.classList.toggle('is-active', panel.getAttribute('data-l2-panel') === idx);
+          });
+        });
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) {
+        navItems.forEach(function (i) {
+          i.classList.remove('is-open');
+        });
+      }
+    });
+
+    /* ---------- Mobile drawer (drill-down) ---------- */
+    var drawer = document.getElementById('tgc-mobile-drawer-{{ section.id }}');
+    var toggleBtn = root.querySelector('[data-drawer-toggle]');
+    var rootLevelUl = drawer ? drawer.querySelector('.tgc-mnav--root[data-level="0"]') : null;
+
+    function resetMobileMenu() {
+      if (!drawer) return;
+      drawer.querySelectorAll('.tgc-mnav--sub.is-open').forEach(function (menu) {
+        menu.classList.remove('is-open');
+      });
+    }
+
+    function openDrawer() {
+      if (!drawer) return;
+      resetMobileMenu();
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('tgc-lock-scroll');
+    }
+
+    function closeDrawer() {
+      if (!drawer) return;
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('tgc-lock-scroll');
+      resetMobileMenu();
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        if (drawer && drawer.classList.contains('is-open')) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+    }
+
+    if (drawer) {
+      drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+        el.addEventListener('click', closeDrawer);
+      });
+
+      function findDirectSub(li) {
+        if (!li) return null;
+        for (var i = 0; i < li.children.length; i++) {
+          var child = li.children[i];
+          if (child.classList && child.classList.contains('tgc-mnav--sub')) {
+            return child;
+          }
+        }
+        return null;
+      }
+
+      drawer.querySelectorAll('[data-open-sub]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var currentLi = btn.parentElement;
+          var submenu = findDirectSub(currentLi);
+          if (!submenu) return;
+
+          /* Keep parent visible in the DOM. The child submenu overlays it.
+             This is essential because the submenu is nested inside the parent. */
+          submenu.classList.add('is-open');
+        });
+      });
+
+      drawer.querySelectorAll('[data-back]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var currentMenu = btn.closest('.tgc-mnav--sub');
+          if (!currentMenu) return;
+
+          /* Closing the topmost submenu automatically reveals its parent. */
+          currentMenu.classList.remove('is-open');
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+          closeDrawer();
+        }
+      });
+    }
+
+    document.addEventListener('cart:loading', function () {
+      document.querySelectorAll('[data-cart-link]').forEach(function (el) {
+        el.classList.add('is-loading');
+      });
+    });
+
+    document.addEventListener('cart:updated', function (e) {
+      document.querySelectorAll('[data-cart-link]').forEach(function (el) {
+        el.classList.remove('is-loading');
+      });
+      if (e.detail && typeof e.detail.itemCount !== 'undefined') {
+        document.querySelectorAll('[data-cart-count]').forEach(function (el) {
+          el.textContent = e.detail.itemCount;
+        });
+      }
+    });
+
+    /* ---------- Predictive search ---------- */
+    var input = root.querySelector('[data-predictive-search-input]');
+    var resultsBox = document.getElementById('tgc-search-results-{{ section.id }}');
+    var debounceTimer;
+
+    function renderResults(data, query) {
+      var products = (data && data.resources && data.resources.results && data.resources.results.products) || [];
+      if (!products.length) {
+        resultsBox.innerHTML = '<div class="tgc-search__empty">No results for "' + query + '"</div>';
+        resultsBox.hidden = false;
+        return;
+      }
+      var html = products
+        .slice(0, 6)
+        .map(function (p) {
+          var img = p.image ? '<img src="' + p.image + '" alt="">' : '';
+          return (
+            '<a class="tgc-search__result" href="' +
+            p.url +
+            '">' +
+            img +
+            '<span><span class="tgc-search__result-title">' +
+            p.title +
+            '</span><br>' +
+            '<span class="tgc-search__result-price">' +
+            (p.price || '') +
+            '</span></span></a>'
+          );
+        })
+        .join('');
+      html +=
+        '<a class="tgc-search__viewall" href="{{ routes.search_url }}?q=' +
+        encodeURIComponent(query) +
+        '">View all results</a>';
+      resultsBox.innerHTML = html;
+      resultsBox.hidden = false;
+    }
+
+    if (input) {
+      input.addEventListener('input', function () {
+        var query = input.value.trim();
+        clearTimeout(debounceTimer);
+        if (query.length < 2) {
+          resultsBox.hidden = true;
+          return;
+        }
+        debounceTimer = setTimeout(function () {
+          fetch(
+            '/search/suggest.json?q=' +
+              encodeURIComponent(query) +
+              '&resources[type]=product&resources[limit]=6&resources[options][unavailable_products]=hide'
+          )
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              renderResults(data, query);
+            })
+            .catch(function () {
+              resultsBox.hidden = true;
+            });
+        }, 250);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!resultsBox.contains(e.target) && e.target !== input) resultsBox.hidden = true;
+      });
+    }
+
+    /* ---------- Search scope list: switch filter type or redirect ---------- */
+    var scopeSelect = root.querySelector('[data-search-scope]');
+    var typeInput = document.getElementById('tgc-search-type-{{ section.id }}');
+    if (scopeSelect) {
+      scopeSelect.addEventListener('change', function () {
+        var opt = scopeSelect.options[scopeSelect.selectedIndex];
+        var redirectUrl = opt.getAttribute('data-url');
+        if (redirectUrl) {
+          window.location.href = redirectUrl;
+          return;
+        }
+        var type = opt.getAttribute('data-type') || '';
+        if (typeInput) {
+          if (type) {
+            typeInput.disabled = false;
+            typeInput.value = type;
+          } else {
+            typeInput.disabled = true;
+          }
+        }
+      });
+    }
+
+    /* ---------- Keep cart count in sync (optional, works with theme's cart events) ---------- */
+    document.addEventListener('cart:updated', function (e) {
+      var countEls = root.querySelectorAll('[data-cart-count]');
+      if (e.detail && typeof e.detail.itemCount !== 'undefined') {
+        countEls.forEach(function (el) {
+          el.textContent = e.detail.itemCount;
+        });
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main menu",
+      "default": "main-menu",
+      "info": "Supports up to 3 levels (Parent > Child > Grandchild) for the mega menu."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 160
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder text",
+      "default": "Search store"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA button text",
+      "default": "Buylist"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": "Show currency selector",
+      "default": true,
+      "info": "Requires multiple markets/currencies enabled in Shopify."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language_selector",
+      "label": "Show language selector",
+      "default": true,
+      "info": "Requires multiple languages published in Shopify."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_top_bg",
+      "label": "Top bar background",
+      "default": "#b91c1c"
+    },
+    {
+      "type": "color",
+      "id": "color_top_text",
+      "label": "Top bar text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_nav_bg",
+      "label": "Nav bar background",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "color_nav_text",
+      "label": "Nav bar text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "color_accent",
+      "label": "Accent / hover color",
+      "default": "#2d7dd2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "search_scope",
+      "name": "Search scope option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label shown in dropdown",
+          "default": "Search store"
+        },
+        {
+          "type": "select",
+          "id": "filter_type",
+          "label": "Filters results to",
+          "default": "",
+          "options": [
+            {
+              "value": "",
+              "label": "Everything (products, pages, articles)"
+            },
+            {
+              "value": "product",
+              "label": "Products only"
+            },
+            {
+              "value": "page",
+              "label": "Pages only"
+            },
+            {
+              "value": "article",
+              "label": "Blog articles only"
+            }
+          ]
+        },
+        {
+          "type": "url",
+          "id": "redirect_url",
+          "label": "Optional redirect URL",
+          "info": "If set, choosing this option sends the shopper straight here (e.g. an external Buylist app) instead of running a normal search."
+        }
+      ]
+    },
+    {
+      "type": "mega_image",
+      "name": "Mega menu images",
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent_label",
+          "label": "Attach to menu item titled exactly",
+          "info": "Must match a 2nd-level menu item title, e.g. Magic Booster Boxes"
+        },
+        {
+          "type": "header",
+          "content": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Image 1 alt text"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Image 1 link"
+        },
+        {
+          "type": "header",
+          "content": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Image 2 alt text"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Image 2 link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

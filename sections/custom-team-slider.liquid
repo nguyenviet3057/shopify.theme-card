@@ -1,0 +1,359 @@
+<style>
+.team-slider {
+  background: {{ section.settings.background_color | default: '#e8f1fb' }};
+}
+
+.team-slider__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* --- Images side --- */
+.team-slider__images {
+  display: grid;
+}
+
+.team-slider__image-wrap {
+  grid-area: 1 / 1;   /* stacks every wrap in the same cell — no position needed */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+.team-slider__image-wrap.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.team-slider__image {
+  width: 100%;
+  height: 100%;
+}
+
+.team-slider__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  border-radius: 12px;
+}
+
+/* --- Text side --- */
+.team-slider__content {
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.team-slider__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: {{ section.settings.accent_color | default: '#2f6fed' }};
+}
+
+.team-slider__heading {
+  margin: 0 0 0.75rem;
+  font-size: 32px;
+  font-weight: 600;
+  color: {{ section.settings.heading_color | default: '#141414' }};
+}
+
+.team-slider__badge {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 0 1.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid {{ section.settings.button_border | default: '#2f6fed' }};
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: {{ section.settings.accent_color | default: '#2f6fed' }};
+}
+
+.team-slider__description {
+  margin: 0 0 2rem;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+.team-slider__nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.team-slider__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  {% comment %} box-shadow: 0 2px 8px rgba(0,0,0,0.12); {% endcomment %}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #141414;
+  box-shadow:
+    0 8px 4px 0 rgba(29, 26, 23, 0.12),
+    0 1px 4px 0 rgba(29, 26, 23, 0.04);
+}
+
+.team-slider__arrow:hover {
+  background: #f2f2f2;
+}
+
+.team-slider__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* one slide (text) visible at a time */
+.team-slider__text-slide {
+  display: none;
+}
+
+.team-slider__text-slide.is-active {
+  display: block;
+}
+
+/* --- Mobile layout: text first, images below --- */
+@media screen and (max-width: 749px) {
+  .team-slider__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .team-slider__content {
+    order: 1;
+  }
+
+  .team-slider__images {
+    order: 2;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .team-slider__image,
+  .team-slider__image img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .team-slider__heading {
+    font-size: 26px;
+  }
+
+  .team-slider__description {
+    font-size: 14px;
+  }
+}
+
+</style>
+
+<div class="team-slider" id="team-slider-{{ section.id }}">
+  <div class="section section--{{ section.settings.section_width }} spacing-style" style="{% render 'spacing-padding', settings: section.settings %}">
+    <div class="team-slider__inner">
+
+      <div class="team-slider__images">
+        {% for block in section.blocks %}
+          {% if block.type == 'member' %}
+            <div class="team-slider__image-wrap{% if forloop.first %} is-active{% endif %}" data-image-index="{{ forloop.index0 }}">
+              {% if block.settings.image %}
+                <div class="team-slider__image">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 900 }}"
+                    alt="{{ block.settings.heading | escape }}"
+                    loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  >
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="team-slider__content">
+        {% for block in section.blocks %}
+          {% if block.type == 'member' %}
+            <div class="team-slider__text-slide{% if forloop.first %} is-active{% endif %}" data-text-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {% if section.settings.eyebrow != blank %}
+                <p class="team-slider__eyebrow">{{ section.settings.eyebrow }}</p>
+              {% endif %}
+              {% if block.settings.heading != blank %}
+                <h2 class="team-slider__heading">{{ block.settings.heading }}</h2>
+              {% endif %}
+              {% if block.settings.badge_text != blank %}
+                <span class="team-slider__badge">{{ block.settings.badge_text }}</span>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="team-slider__description">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if section.blocks.size > 1 %}
+          <div class="team-slider__nav">
+            <button type="button" class="team-slider__arrow" data-team-prev aria-label="Previous team member">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="team-slider__arrow" data-team-next aria-label="Next team member">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var root = document.getElementById('team-slider-{{ section.id }}');
+  if (!root) return;
+
+  var textSlides = root.querySelectorAll('.team-slider__text-slide');
+  var imageSlides = root.querySelectorAll('.team-slider__image-wrap');
+  var prevBtn = root.querySelector('[data-team-prev]');
+  var nextBtn = root.querySelector('[data-team-next]');
+  var total = textSlides.length;
+  var current = 0;
+
+  if (!total) return;
+
+  function goTo(index) {
+    current = (index + total) % total;
+
+    textSlides.forEach(function (slide) {
+      slide.classList.toggle('is-active', parseInt(slide.dataset.textIndex, 10) === current);
+    });
+    imageSlides.forEach(function (slide) {
+      slide.classList.toggle('is-active', parseInt(slide.dataset.imageIndex, 10) === current);
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      goTo(current - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      goTo(current + 1);
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Meet the team",
+  "tag": "section",
+  "class": "shopify-section--team-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Meet the team"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#e8f1fb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (eyebrow, badge)",
+      "default": "#2f6fed"
+    },
+    {
+      "type": "color",
+      "id": "button_border",
+      "label": "Button Border",
+      "default": "#D6EDFE"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#141414"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        { "value": "page-width", "label": "t:options.page" },
+        { "value": "full-width", "label": "t:options.full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "Team member",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "heading", "label": "Name", "default": "Lindsay Heming" },
+        { "type": "text", "id": "badge_text", "label": "Badge text", "default": "Level 3 MTG Judge" },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Lindsay has been playing Magic since 1995 and has head-judged two Grand Prix events for Wizards of the Coast. If a ruling gets complicated, he's the one everyone calls."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Meet the team",
+      "blocks": [
+        { "type": "member" },
+        { "type": "member" }
+      ]
+    }
+  ]
+}
+{% endschema %}

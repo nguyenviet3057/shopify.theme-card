@@ -1,0 +1,430 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{"sections": {
+    "search": {
+      "type": "search-header",
+      "blocks": {
+        "heading": {
+          "type": "_heading",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text": "",
+            "read_only": true,
+            "alignment": "right",
+            "show_alignment": true,
+            "text_color": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "search": {
+          "type": "_search-input",
+          "static": true,
+          "settings": {
+            "width": "custom",
+            "custom_width": 50,
+            "input_style": "default",
+            "input_background_color": "{{ settings.color_palette.background }}",
+            "input_text_color": "{{ settings.color_palette.foreground }}",
+            "input_border_color": "{{ settings.color_palette.foreground }}",
+            "border_width": 1,
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "alignment": "flex-end",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "main": {
+      "type": "search-results",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "vertical",
+            "filter_width": "centered",
+            "text_label_case": "default",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": true,
+            "background_color": "",
+            "text_color": "",
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "facets_margin_bottom": 8,
+            "facets_margin_right": 20
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 0,
+            "background_color": "{{ settings.color_palette.color3 }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 8,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 12,
+            "padding-inline-end": 12
+          },
+          "blocks": {
+            "card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_card_group_DRXCbP": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "flex-start",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 16,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_cthTgB": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<h3>{{ closest.product.title }} </h3>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1.25rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "#1d1a17",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_dEMtiW": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.variant.value }} </p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.75rem",
+                    "line_height": "tight",
+                    "letter_spacing": "tight",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "#46626f",
+                    "background": true,
+                    "background_color": "{{ settings.color_palette.background }}",
+                    "corner_radius": 50,
+                    "padding-block-start": 4,
+                    "padding-block-end": 4,
+                    "padding-inline-start": 8,
+                    "padding-inline-end": 12
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["text_cthTgB", "text_dEMtiW"]
+            },
+            "product_card_group_LDbbRp": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 6,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "price_E6JG9N": {
+                  "type": "price",
+                  "name": "t:names.product_price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "custom",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "#207fc4",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "custom_liquid_jhqzgE": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "full_width": false,
+                    "custom_liquid": "{% assign variant = closest.product.selected_or_first_available_variant %} \n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %} \n    <span style=\"color:red;\">DEBUG: closest.product also blank</span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \" {{ variant.inventory_management }} \"</span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %} \n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left</span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\"> {{ variant.inventory_quantity }} left</span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %} \n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder</span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock</span>\n      {% endif %} \n    {% endif %} \n  {% endif %} \n</div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n</style>"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["price_E6JG9N", "custom_liquid_jhqzgE"]
+            },
+            "product_card_group_TGfPHG": {
+              "type": "_product-card-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "custom_liquid_Y9QXdP": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "full_width": true,
+                    "custom_liquid": "<style>\n.trending__selects{\npadding-top: 4px;\n}\n  .trending__select {\n    width: 100%;\n    padding: 0.5rem 0.6rem;\n    border: 1px solid #C0DFF6;\n    border-radius: 4px;\n    font-size: 15px;\n    margin-bottom: 4px;\n    background: #fff;\n    height: 48px;\n    appearance: none;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    background-image: url(\"data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%235C554C'/%3E%3C/svg%3E\");\n    background-repeat: no-repeat;\n    background-position: right 12px center;\n    background-size: 12px 8px;\n    padding-right: 30px;\n  }\n</style>\n\n<div class=\"trending__selects\" {{ block.shopify_attributes }} >\n  {% assign product = closest.product %} \n  {% assign variant = product.selected_or_first_available_variant %} \n\n  {% for option in product.options_with_values %} \n    <select\n      class=\"trending__select\"\n      data-option-name=\"{{ option.name | escape }} \"\n      data-option-position=\"{{ forloop.index }} \"\n      data-variant-option\n    >\n      {% for value in option.values %} \n        {% case value %} \n          {% when 'NM' %}\n             {% assign display_value = 'Near Mint' %} \n          {% when 'LP' %}\n             {% assign display_value = 'Lightly Played' %} \n          {% when 'MP' %}\n             {% assign display_value = 'Moderately Played' %} \n          {% when 'HP' %}\n             {% assign display_value = 'Heavily Played' %} \n          {% when 'DMG' %}\n             {% assign display_value = 'Damaged' %} \n          {% else %}\n             {% assign display_value = value %} \n        {% endcase %} \n        <option\n          value=\"{{ value | escape }} \"\n          {% if variant.options[forloop.parentloop.index0] == value %} \n            selected\n          {% endif %} \n        >\n          {{ display_value }} \n        </option>\n      {% endfor %} \n    </select>\n  {% endfor %} \n\n  {% comment %} \n    ==========================================\n    HARD-CODED STORE LOCATIONS\n    Product tag format: Location: Melbourne\n    ==========================================\n  {% endcomment %} \n\n  {% comment %} \n  {% assign all_locations = 'Melbourne||My Custom Location||Shop location' | split: '||' %} \n  {% assign product_location_names = '' %} \n\n  {% for tag in product.tags %} \n    {% assign tag_prefix = tag | slice: 0, 9 %} \n    {% if tag_prefix == 'Location:' %} \n      {% assign location_name = tag | remove_first: 'Location:' | strip %} \n      {% assign product_location_names = product_location_names | append: location_name | append: '||' %} \n    {% endif %} \n  {% endfor %} \n\n  {% assign product_locations = product_location_names | split: '||' %} \n\n  <select class=\"trending__select\" data-store-select>\n    {% for location in all_locations %} \n      {% assign is_available = false %} \n      {% for product_location in product_locations %} \n        {% assign clean_product_location = product_location | strip %} \n        {% if clean_product_location == location %} \n          {% assign is_available = true %} \n          {% break %} \n        {% endif %} \n      {% endfor %} \n      <option value=\"{{ location | escape }} \" {% if is_available %} selected{% else %}disabled{% endif %} >\n        {{ location }}{% unless is_available %}(Unavailable){% endunless %} \n      </option>\n    {% endfor %} \n  </select>\n  {% endcomment %} \n  \n  {% comment %} Variants for client-side matching, scoped to this block instance {% endcomment %} \n  <script type=\"application/json\" data-variants-json-{{ block.id }} >\n    [\n      {% for v in product.variants %} \n        {\n          \"id\": {{ v.id | json }} ,\n          \"options\": {{ v.options | json }} ,\n          \"available\": {{ v.available | json }} \n        }{% unless forloop.last %},{% endunless %} \n      {% endfor %} \n    ]\n  </script>\n</div>\n\n<script>\n(function () {\n  var container = document.currentScript.previousElementSibling;\n  if (!container) return;\n\n  var blockId = '{{ block.id }} ';\n  var variantsScript = document.querySelector('[data-variants-json-' + blockId + ']');\n  var variants = variantsScript ? JSON.parse(variantsScript.textContent) : [];\n  var optionSelects = container.querySelectorAll('[data-variant-option]');\n\n  if (!variants.length || !optionSelects.length) return;\n\n  function findMatchingVariant() {\n    var chosenOptions = [];\n    optionSelects.forEach(function (select) {\n      var position = parseInt(select.dataset.optionPosition, 10) - 1;\n      chosenOptions[position] = select.value;\n    });\n    return variants.find(function (v) {\n      return chosenOptions.every(function (val, i) {\n        return v.options[i] === val;\n      });\n    });\n  }\n\n  function updateHiddenVariantInput(variant) {\n    if (!variant) return;\n    var card = container.closest('product-card, [data-product-id]');\n    if (!card) return;\n    var hiddenInput = card.querySelector('input[name=\"id\"]');\n    if (hiddenInput) hiddenInput.value = variant.id;\n  }\n\n  optionSelects.forEach(function (select) {\n    select.addEventListener('change', function () {\n      updateHiddenVariantInput(findMatchingVariant());\n    });\n  });\n})();\n</script>"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["custom_liquid_Y9QXdP"]
+            },
+            "buy_buttons_wXaaG3": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": true,
+                "text_color": "",
+                "show_pickup_availability": true,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "custom",
+                    "input_background_color": "{{ settings.color_palette.color3 }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "#c0dff6",
+                    "border_width": 1,
+                    "border_radius": 8
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-custom",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "rgba(0,0,0,0)"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            }
+          },
+          "block_order": [
+            "card-gallery",
+            "product_card_group_DRXCbP",
+            "product_card_group_LDbbRp",
+            "product_card_group_TGfPHG",
+            "buy_buttons_wXaaG3"
+          ]
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "medium",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": false,
+        "products_per_page": 24,
+        "product_grid_width": "centered",
+        "full_width_on_mobile": true,
+        "columns_gap_horizontal": 16,
+        "columns_gap_vertical": 24,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": ["search", "main"]
+}

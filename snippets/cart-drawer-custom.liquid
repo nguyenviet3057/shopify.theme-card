@@ -1,0 +1,1463 @@
+{% comment %}
+  Plain snippet — no schema, no theme-editor settings, nothing to configure
+  in the customizer. Save as snippets/cart-drawer-custom.liquid and render
+  it once, e.g. right before </body> in theme.liquid:
+
+    {% render 'cart-drawer-custom' %}
+
+  HOOKING IT UP:
+  - Any element with [data-cart-drawer-toggle] opens the drawer on click.
+    Add that attribute to your existing cart/bag icon in the header, e.g:
+      <a href="{{ routes.cart_url }}" data-cart-drawer-toggle>Cart ({{ cart.item_count }})</a>
+    The click is intercepted (preventDefault) so it opens the drawer instead
+    of navigating, but if JS fails for any reason the href still works as a
+    graceful fallback to the real cart page.
+  - Listens for `cart:updated` (dispatched by this file) if you want other
+    parts of your theme (header cart count bubble, etc.) to react.
+
+  REAL DATA USED:
+  - cart.items — actual cart line items, rendered server-side on load
+  - Quantity +/- and remove use Shopify's real /cart/change.js AJAX endpoint
+  - Checkout button submits the real cart form to /checkout
+  - "View cart" links to routes.cart_url (your cart page section)
+  - "Estimate shipping" calls Shopify's real /cart/shipping_rates.json
+  - "Buy it with" Add-to-cart buttons use the real /cart/add.js AJAX endpoint
+  - Badges + subtitle: same metafields as your cart page
+    (product.metafields.custom.variant / subtitle / release_date)
+
+    # Products to show under "Buy it with" now come from a collection
+  # instead of a hardcoded handle list. Set this to any collection handle
+  # in your store (Admin → Products → Collections — the handle is the
+  # part of the collection's URL after /collections/).
+  assign gl_biw_collection_handle = 'cart-cross-sell'
+  assign gl_biw_limit = 4
+
+  CONFIG — edit these directly instead of theme-editor settings:
+{% endcomment %}
+
+{%- liquid
+  assign gl_price_color = '#2F6FED'
+  assign gl_subtotal_bg_color = '#a10a0a'
+  assign gl_continue_shopping_url = routes.all_products_collection_url
+  assign gl_low_stock_threshold = 5
+
+  # Handles of the products to show under "Buy it with". Edit this list.
+  assign gl_biw_collection_handle = 'all-products'
+  assign gl_biw_limit = 4
+-%}
+
+<style>
+    .gl-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 998;
+    }
+    .gl-drawer-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .gl-cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 480px;
+      max-width: 92vw;
+      background: #ffffff;
+      box-shadow: -6px 0 24px rgba(0, 0, 0, 0.12);
+      transform: translateX(100%);
+      transition: transform 0.28s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .gl-cart-drawer.is-open {
+      transform: translateX(0);
+    }
+    .gl-cart-drawer.is-loading::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.55);
+      pointer-events: none;
+    }
+    .gl-cart-drawer.is-loading::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 11;
+      width: 28px;
+      height: 28px;
+      margin: -14px 0 0 -14px;
+      border: 2px solid rgba(29, 26, 23, 0.2);
+      border-top-color: #1D1A17;
+      border-radius: 50%;
+      animation: header-cart-spin 0.7s linear infinite;
+      pointer-events: none;
+    }
+
+    /* --- Two-panel slide: cart view <-> shipping view --- */
+    .gl-drawer-panels {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .gl-drawer-panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      transform: translateX(0);
+      transition: transform 0.28s ease;
+    }
+
+    .gl-panel-cart {
+      z-index: 2;
+    }
+
+    .gl-panel-shipping {
+      z-index: 1;
+      transform: translateX(100%);
+    }
+
+    .gl-cart-drawer.shipping-open .gl-panel-cart {
+      transform: translateX(-100%);
+    }
+    .gl-cart-drawer.shipping-open .gl-panel-shipping {
+      transform: translateX(0);
+      z-index: 3;
+    }
+
+    /* --- Shared header --- */
+    .gl-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid #C0DFF6;
+      flex-shrink: 0;
+    }
+    .gl-drawer-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #1D1A17;
+    }
+    .gl-drawer-header__back {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1D1A17;
+      padding: 0;
+    }
+    .gl-drawer-close,
+    .gl-drawer-header__back svg {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #1D1A17;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gl-drawer-close svg,
+    .gl-drawer-header__back svg { width: 16px; height: 16px; }
+
+    /* --- Cart items --- */
+    .gl-drawer-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 1.25rem;
+    }
+
+    .gl-cart-empty {
+      text-align: center;
+      padding: 3rem 1.25rem;
+    }
+    .gl-cart-empty__icon { width: 48px; height: 48px; margin: 0 auto 1rem; color: #c9c9c9; }
+    .gl-cart-empty__heading { font-size: 18px; font-weight: 800; margin: 0 0 0.4rem; color: #1D1A17; }
+    .gl-cart-empty__text { font-size: 13px; color: #6b6b6b; margin: 0 0 1.25rem; }
+    .gl-cart-empty__continue {
+      display: inline-flex;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    .gl-cart-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 0.75rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .gl-cart-item__image img {
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #eee;
+    }
+
+    .gl-cart-item__title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+    .gl-cart-item__title {
+      font-weight: 700;
+      font-size: 20px;
+      font-family: 'Oswald';
+      color: #1D1A17;
+      text-decoration: none;
+      line-height: 1.3;
+    }
+    .gl-cart-item__variant {
+      margin: 0 0 0.2rem;
+      font-size: 13px;
+      font-weight: 400;
+      color: #1D1A17;
+      opacity: 0.6;
+      line-height: 1.3;
+    }
+    .gl-cart-item__badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .gl-cart-item__badge--foil {
+      color: #14181A;
+      background: linear-gradient(90deg, #EAF4FC 50%, #C7E0F4 100%, #8FB8DC 100%);
+      border: 1px solid #D6EDFE;
+    }
+    .gl-cart-item__badge--preorder { background: #FCE6D6; color: #C25A1E; }
+
+    .gl-cart-item__subtitle {
+      font-size: 12px;
+      color: #6b6b6b;
+      margin: 0 0 6px;
+    }
+
+    .gl-cart-item__bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+
+    .gl-cart-item__qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid #C0DFF6;
+      border-radius: 4px;
+      height: 34px;
+    }
+    .gl-cart-item__qty button {
+      width: 28px;
+      height: 100%;
+      border: none;
+      background: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .gl-cart-item__qty input {
+      width: 28px;
+      border: none;
+      text-align: center;
+      font-size: 13px;
+    }
+    .gl-cart-item__error {
+      margin: 0.45rem 0 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b0231c;
+      line-height: 1.35;
+    }
+
+    .gl-cart-item__remove {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 17px;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .gl-cart-item__remove svg { width: 15px; height: 17px; }
+    .gl-cart-item__remove:hover { color: #b0231c; }
+    .gl-cart-item__remove.is-loading {
+      pointer-events: none;
+      color: inherit;
+    }
+    .gl-cart-item__remove.is-loading svg {
+      visibility: hidden;
+    }
+    .gl-cart-item__remove.is-loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(29, 26, 23, 0.2);
+      border-top-color: #1D1A17;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: header-cart-spin 0.7s linear infinite;
+    }
+
+    .gl-cart-item__right-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .gl-cart-item__price {
+      font-weight: 700;
+      font-size: 14px;
+      color: {{ gl_price_color }};
+    }
+
+    /* --- Buy it with --- */
+
+    .gl-buy-it-with {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #C0DFF6;
+    }
+    .gl-buy-it-with__heading {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 0.85rem;
+      color: #1D1A17;
+    }
+    .gl-buy-it-with__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .gl-biw-card {
+      background: white;
+      padding: 8px;
+      border: 1px solid #c0dff6;
+      border-radius: 8px;
+  }
+
+    .gl-biw-card__image {
+      display: block;
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+    .gl-biw-card__image img {
+      width: 100%;
+      {% comment %} aspect-ratio: 1 / 1; {% endcomment %}
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid #eee;
+      display: block;
+    }
+    .gl-biw-card__title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1D1A17;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .gl-biw-card__price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .gl-biw-card__price {
+      font-weight: 700;
+      font-size: 13px;
+      color: {{ gl_price_color }};
+    }
+    .gl-biw-card__stock {
+      font-size: 10px;
+      font-weight: 700;
+      color: #C25A1E;
+      background: #FCE6D6;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+    }
+    .gl-biw-card__select {
+      width: 100%;
+      height: 34px;
+      border: 1px solid #d8d8d8;
+      border-radius: 4px;
+      font-size: 12px;
+      padding: 0 0.5rem;
+      margin-bottom: 0.5rem;
+      background: #fff;
+    }
+    .gl-biw-card__btn-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .gl-biw-card__qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid #C0DFF6;
+      border-radius: 4px;
+      height: 34px;
+      flex-shrink: 0;
+      width: 70%;
+      justify-content: space-between;
+    }
+    .gl-biw-card__qty button {
+      width: 26px;
+      height: 100%;
+      border: none;
+      background: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .gl-biw-card__qty input {
+      width: 32px;
+      border: none;
+      text-align: center;
+      font-size: 12px;
+      color: #1D1A17;
+    }
+    .gl-biw-card__add {
+      flex: 1;
+      height: 34px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+      .gl-biw-card__qty input[type="number"]::-webkit-inner-spin-button,
+  .gl-biw-card__qty input[type="number"]::-webkit-outer-spin-button,
+  .gl-cart-item__qty input[type="number"]::-webkit-inner-spin-button,
+  .gl-cart-item__qty input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .gl-biw-card__qty input[type="number"],
+  .gl-cart-item__qty input[type="number"] {
+    -moz-appearance: textfield;
+  }
+    .gl-biw-card__add svg { width: 21px; height: 21px; }
+    .gl-biw-card__add:hover { background: #000; }
+    .gl-biw-card__add.gl-preorder-btn {
+      width: 100%;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .gl-biw-card__add.is-added { background: #1e7e34; }
+
+    /* --- Summary / footer --- */
+    .gl-drawer-summary {
+      flex-shrink: 0;
+      {% comment %} padding: 1.1rem 1.25rem 1.25rem; {% endcomment %}
+    }
+
+    .gl-summary-box {
+      background: {{ gl_subtotal_bg_color }};
+      color: #fff;
+      border-radius: 6px 6px 0 0;
+      padding: 1.1rem 1.25rem;
+    }
+    .gl-summary-box__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-family: 'Oswald';
+    }
+    .gl-summary-box__ship-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 14px;
+      text-decoration: underline;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Oswald';
+      padding: 0;
+    }
+
+    .gl-drawer-actions {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.9rem;
+      background: #a10a0a;
+    }
+    .gl-drawer-actions a,
+    .gl-drawer-actions button {
+      flex: 1;
+      font-family: 'Oswald';
+      height: 42px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .gl-drawer-actions__view-cart {
+      {% comment %} background: #fff; {% endcomment %}
+      color: #ffffff;
+      border: 1px solid #ffffff !important;
+    }
+    .gl-drawer-actions__checkout {
+      background: #111;
+      color: #fff;
+    }
+    .gl-drawer-actions__checkout:hover { background: #000; }
+
+    /* --- Shipping panel --- */
+    .gl-shipping-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.1rem 1.25rem;
+    }
+    .gl-shipping-field { margin-bottom: 1rem; }
+    .gl-shipping-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: #1D1A17;
+    }
+    .gl-shipping-field select,
+    .gl-shipping-field input {
+      width: 100%;
+      height: 42px;
+      padding: 0 0.75rem;
+      border: 1px solid #d8d8d8;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    .gl-shipping-estimate-btn {
+      width: 100%;
+      height: 46px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: 'Oswald';
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.25rem;
+    }
+    .gl-shipping-estimate-btn:hover { background: #000; }
+    .gl-shipping-estimate-btn.is-loading { opacity: 0.6; pointer-events: none; }
+
+    .gl-shipping-results {
+      display: none;
+      margin-top: 1.1rem;
+      padding: 0.9rem;
+      border: 1px solid #C0DFF6;
+      border-radius: 4px;
+      background: #F4FAFF;
+      font-size: 13px;
+    }
+    .gl-shipping-results.is-visible { display: block; }
+    .gl-shipping-results ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+    .gl-shipping-results li { margin-bottom: 0.3rem; }
+    .gl-shipping-results strong { color: {{ gl_price_color }}; }
+
+
+      @media screen and (max-width: 750px) {
+      .gl-cart-drawer {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        height: -webkit-fill-available;
+        max-height: 88vh;
+        border-radius: 16px 16px 0 0;
+        transform: translateY(100%);
+        box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.16);
+      }
+      .gl-cart-drawer.is-open {
+        transform: translateY(0);
+      }
+    }
+</style>
+
+<div class="gl-drawer-overlay" data-gl-drawer-overlay></div>
+
+<div
+  class="gl-cart-drawer"
+  data-gl-drawer
+  data-gl-section-id="{{ section.id }}"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="gl-cart-drawer-heading"
+>
+  <div class="gl-drawer-panels">
+    {%- comment -%} ===== PANEL 1: CART ===== {%- endcomment -%}
+    <div class="gl-drawer-panel gl-panel-cart">
+      <div class="gl-drawer-header">
+        <h2 id="gl-cart-drawer-heading">Your cart ({{ cart.item_count }})</h2>
+        <button type="button" class="gl-drawer-close" data-gl-drawer-close aria-label="Close cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="gl-drawer-scroll">
+        {%- if cart.item_count == 0 -%}
+          <div class="gl-cart-empty">
+            <svg class="gl-cart-empty__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            <p class="gl-cart-empty__heading">Your cart is empty</p>
+            <p class="gl-cart-empty__text">Looks like you haven't added anything yet.</p>
+            <a href="{{ gl_continue_shopping_url }}" class="gl-cart-empty__continue"> Continue shopping </a>
+          </div>
+        {%- else -%}
+          <div data-gl-cart-items>
+            {%- for item in cart.items -%}
+              <div class="gl-cart-item" data-gl-cart-item data-key="{{ item.key }}">
+                <a href="{{ item.url }}" class="gl-cart-item__image">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.product.title | escape }}">
+                  {%- endif -%}
+                </a>
+
+                <div class="gl-cart-item__details">
+                  <div class="gl-cart-item__title-row">
+                    <a href="{{ item.url }}" class="gl-cart-item__title">{{ item.product.title }}</a>
+                    {%- if item.product.metafields.custom.variant != blank -%}
+                      <span class="gl-cart-item__badge gl-cart-item__badge--foil">
+                        {{- item.product.metafields.custom.variant -}}
+                      </span>
+                    {%- endif -%}
+                    {%- if item.product.tags contains 'Pre-order' -%}
+                      <span class="gl-cart-item__badge gl-cart-item__badge--preorder">Pre-order</span>
+                    {%- endif -%}
+                  </div>
+
+                  {%- unless item.variant.title == 'Default Title' -%}
+                    <p class="gl-cart-item__variant">Variant: {{ item.variant.title }}</p>
+                  {%- endunless -%}
+
+                  {%- if item.product.metafields.custom.subtitle != blank -%}
+                    <p class="gl-cart-item__subtitle">{{ item.product.metafields.custom.subtitle }}</p>
+                  {%- endif -%}
+                  {%- if item.product.tags contains 'Pre-order'
+                    and item.product.metafields.custom.release_date != blank
+                  -%}
+                    <p class="gl-cart-item__subtitle">
+                      Release Date: {{ item.product.metafields.custom.release_date }}
+                    </p>
+                  {%- endif -%}
+
+                  <div class="gl-cart-item__bottom-row">
+                    <div class="gl-cart-item__qty">
+                      <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+                      <input type="number" value="{{ item.quantity }}" min="1" data-qty-input>
+                      <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+                    </div>
+                    <div class="gl-cart-item__right-actions">
+                      <button
+                        type="button"
+                        class="gl-cart-item__remove"
+                        data-remove-item
+                        aria-label="Remove {{ item.product.title }}"
+                      >
+                        <svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.09961 0.5V1.7002H13.9004V2.5H12.7002V14.9893C12.7002 15.3662 12.5749 15.666 12.3193 15.9199C12.0602 16.1772 11.7627 16.2997 11.4004 16.2998H3C2.63866 16.2998 2.34151 16.1774 2.08203 15.918C1.82255 15.6585 1.7002 15.3613 1.7002 15V2.5H0.5V1.7002H5.2998V0.5H9.09961ZM2.5 15.5H11.9004V2.5H2.5V15.5ZM9.09961 5.2998V12.7002H8.2998V5.2998H9.09961ZM6.09961 5.2998V12.7002H5.2998V5.2998H6.09961Z" fill="currentColor"/>
+                        </svg>
+                      </button>
+                      <div class="gl-cart-item__price" data-line-price>{{ item.original_line_price | money }}</div>
+                    </div>
+                  </div>
+                  <p class="gl-cart-item__error" data-qty-error role="alert" hidden></p>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- assign gl_biw_collection = collections[gl_biw_collection_handle] -%}
+          {%- if gl_biw_collection != blank and gl_biw_collection.products.size > 0 -%}
+            <div class="gl-buy-it-with">
+              <h3 class="gl-buy-it-with__heading">Buy it with</h3>
+              <div class="gl-buy-it-with__grid">
+                {%- for biw_product in gl_biw_collection.products limit: gl_biw_limit -%}
+                  {%- assign biw_variant = biw_product.selected_or_first_available_variant -%}
+                  <div class="gl-biw-card">
+                    <a href="{{ biw_product.url }}" class="gl-biw-card__image">
+                      {%- if biw_product.featured_image -%}
+                        <img
+                          src="{{ biw_product.featured_image | image_url: width: 300 }}"
+                          alt="{{ biw_product.title | escape }}"
+                          loading="lazy"
+                        >
+                      {%- endif -%}
+                    </a>
+                    <a href="{{ biw_product.url }}" class="gl-biw-card__title">{{ biw_product.title }}</a>
+                    <div class="gl-biw-card__price-row">
+                      <span class="gl-biw-card__price">{{ biw_variant.price | money }}</span>
+                      <span class="gl-biw-card__stock">{{ biw_variant.inventory_quantity }} left</span>
+                    </div>
+
+                    {%- comment -%}
+                      HARD-CODED STORE LOCATIONS
+                      Product tag format: Location: Melbourne
+                    {%- endcomment -%}
+                    {%- assign biw_all_locations = 'Melbourne||My Custom Location||Shop location' | split: '||' -%}
+                    {%- assign biw_product_location_names = '' -%}
+
+                    {%- for tag in biw_product.tags -%}
+                      {%- assign biw_tag_prefix = tag | slice: 0, 9 -%}
+                      {%- if biw_tag_prefix == 'Location:' -%}
+                        {%- assign biw_location_name = tag | remove_first: 'Location:' | strip -%}
+                        {%- assign biw_product_location_names = biw_product_location_names
+                          | append: biw_location_name
+                          | append: '||'
+                        -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    {%- assign biw_product_locations = biw_product_location_names | split: '||' -%}
+
+                    <select class="gl-biw-card__select" data-biw-location>
+                      {%- for location in biw_all_locations -%}
+                        {%- assign biw_is_available = false -%}
+                        {%- for product_location in biw_product_locations -%}
+                          {%- assign biw_clean_product_location = product_location | strip -%}
+                          {%- if biw_clean_product_location == location -%}
+                            {%- assign biw_is_available = true -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                        <option
+                          value="{{ location | escape }}"
+                          {% if biw_is_available %}
+                            selected
+                          {% else %}
+                            disabled
+                          {% endif %}
+                        >
+                          {{ location -}}
+                          {%- unless biw_is_available %} (Unavailable){% endunless %}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+
+                    {%- if biw_product.tags contains 'Pre-order' -%}
+                      <button
+                        type="button"
+                        class="gl-biw-card__add gl-preorder-btn"
+                        data-biw-add
+                        data-variant-id="{{ biw_variant.id }}"
+                      >
+                        Pre-order
+                      </button>
+                    {%- else -%}
+                      <div class="gl-biw-card__btn-row">
+                        <div class="gl-biw-card__qty">
+                          <button type="button" data-biw-qty-minus aria-label="Decrease quantity">&minus;</button>
+                          <input type="number" disabled value="1" min="1" data-biw-qty-input>
+                          <button type="button" data-biw-qty-plus aria-label="Increase quantity">+</button>
+                        </div>
+                        <button
+                          type="button"
+                          class="gl-biw-card__add"
+                          data-biw-add
+                          data-variant-id="{{ biw_variant.id }}"
+                          aria-label="Add {{ biw_product.title | escape }} to cart"
+                        >
+                          <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11 9V6H8V4H11V1H13V4H16V6H13V9H11ZM5.5875 21.4125C5.19583 21.0208 5 20.55 5 20C5 19.45 5.19583 18.9792 5.5875 18.5875C5.97917 18.1958 6.45 18 7 18C7.55 18 8.02083 18.1958 8.4125 18.5875C8.80417 18.9792 9 19.45 9 20C9 20.55 8.80417 21.0208 8.4125 21.4125C8.02083 21.8042 7.55 22 7 22C6.45 22 5.97917 21.8042 5.5875 21.4125ZM15.5875 21.4125C15.1958 21.0208 15 20.55 15 20C15 19.45 15.1958 18.9792 15.5875 18.5875C15.9792 18.1958 16.45 18 17 18C17.55 18 18.0208 18.1958 18.4125 18.5875C18.8042 18.9792 19 19.45 19 20C19 20.55 18.8042 21.0208 18.4125 21.4125C18.0208 21.8042 17.55 22 17 22C16.45 22 15.9792 21.8042 15.5875 21.4125ZM1 4V2H4.275L8.525 11H15.525L19.425 4H21.7L17.3 11.95C17.1167 12.2833 16.8708 12.5417 16.5625 12.725C16.2542 12.9083 15.9167 13 15.55 13H8.1L7 15H19V17H7C6.25 17 5.67917 16.675 5.2875 16.025C4.89583 15.375 4.88333 14.7167 5.25 14.05L6.6 11.6L3 4H1Z" fill="#E3E3E3" />
+                        </svg>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- if cart.item_count > 0 -%}
+        <div class="gl-drawer-summary">
+          <div class="gl-summary-box">
+            <div class="gl-summary-box__row">
+              <span>Subtotal</span>
+              <span data-gl-subtotal>{{ cart.total_price | money }}</span>
+            </div>
+            <button type="button" class="gl-summary-box__ship-link" data-gl-open-shipping>Estimate shipping</button>
+          </div>
+          <div class="gl-drawer-actions">
+            <a href="{{ routes.cart_url }}" class="gl-drawer-actions__view-cart">View cart</a>
+            <form action="{{ routes.cart_url }}" method="post" style="flex:1; display:flex;">
+              <button type="submit" name="checkout" class="gl-drawer-actions__checkout" style="width:100%;">
+                Checkout
+              </button>
+            </form>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ===== PANEL 2: SHIPPING ===== {%- endcomment -%}
+    <div class="gl-drawer-panel gl-panel-shipping">
+      <div class="gl-drawer-header">
+        <button type="button" class="gl-drawer-header__back" data-gl-close-shipping aria-label="Back to cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Estimate shipping</span>
+        </button>
+      </div>
+
+      <div class="gl-shipping-scroll">
+        <div class="gl-shipping-field">
+          <label for="gl-shipping-country-drawer">Country</label>
+          <select id="gl-shipping-country-drawer" data-gl-shipping-country>
+            {{ all_country_option_tags }}
+          </select>
+        </div>
+
+        <div class="gl-shipping-field">
+          <label for="gl-shipping-province-drawer">State</label>
+          <select id="gl-shipping-province-drawer" data-gl-shipping-province></select>
+        </div>
+
+        <div class="gl-shipping-field">
+          <label for="gl-shipping-zip-drawer">Zip code</label>
+          <input type="text" id="gl-shipping-zip-drawer" data-gl-shipping-zip placeholder="e.g. 2000">
+        </div>
+
+        <button type="button" class="gl-shipping-estimate-btn" data-gl-estimate-shipping>Estimate shipping</button>
+
+        <div class="gl-shipping-results" data-gl-shipping-results></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // Prevents this whole script from running twice if the snippet
+    // somehow gets rendered more than once on the page (was causing
+    // qty to jump by 2 per click, and delete to double-fire).
+    if (window.__glCartDrawerInitialized) return;
+    window.__glCartDrawerInitialized = true;
+
+    var drawer = document.querySelector('[data-gl-drawer]');
+    var overlay = document.querySelector('[data-gl-drawer-overlay]');
+    if (!drawer || !overlay) return;
+
+    var sectionId = drawer.getAttribute('data-gl-section-id') || '{{ section.id }}';
+    var shopRoot = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+    var drawerRefreshToken = 0;
+    var addToCartRefreshInFlight = false;
+    var addToCartRefreshQueued = false;
+
+    /* ---------- open / close ---------- */
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-open');
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      drawer.classList.remove('shipping-open');
+      document.documentElement.style.overflow = '';
+    }
+
+    function syncCartCount(itemCount, animateBubble) {
+      document.querySelectorAll('[data-cart-count]').forEach(function (el) {
+        el.textContent = String(itemCount);
+      });
+
+      var heading = drawer.querySelector('#gl-cart-drawer-heading');
+      if (heading) heading.textContent = 'Your cart (' + itemCount + ')';
+
+      document.querySelectorAll('cart-icon').forEach(function (icon) {
+        if (typeof icon.renderCartBubble === 'function') {
+          icon.renderCartBubble(itemCount, animateBubble !== false);
+        }
+      });
+
+      document.dispatchEvent(new CustomEvent('cart:updated', { detail: { itemCount: itemCount } }));
+    }
+
+    function fetchCart() {
+      return fetch('/cart.js', { credentials: 'same-origin' }).then(function (res) {
+        return res.json();
+      });
+    }
+
+    function bindDrawerContents() {
+      drawer.querySelectorAll('[data-gl-drawer-close]').forEach(function (btn) {
+        btn.addEventListener('click', closeDrawer);
+      });
+
+      var openShippingBtn = drawer.querySelector('[data-gl-open-shipping]');
+      var closeShippingBtn = drawer.querySelector('[data-gl-close-shipping]');
+      if (openShippingBtn) {
+        openShippingBtn.addEventListener('click', function () {
+          drawer.classList.add('shipping-open');
+        });
+      }
+      if (closeShippingBtn) {
+        closeShippingBtn.addEventListener('click', function () {
+          drawer.classList.remove('shipping-open');
+        });
+      }
+
+      bindBuyItWith();
+      bindShippingEstimator();
+    }
+
+    function refreshCartDrawer() {
+      if (!sectionId) return Promise.resolve();
+
+      var requestId = ++drawerRefreshToken;
+      return fetch(shopRoot + '?section_id=' + encodeURIComponent(sectionId), {
+        credentials: 'same-origin',
+      })
+        .then(function (res) {
+          return res.text();
+        })
+        .then(function (html) {
+          if (requestId !== drawerRefreshToken) return;
+
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var newDrawer = doc.querySelector('[data-gl-drawer]');
+          if (!newDrawer) return;
+
+          var wasOpen = drawer.classList.contains('is-open');
+          var wasShipping = drawer.classList.contains('shipping-open');
+          drawer.innerHTML = newDrawer.innerHTML;
+          if (wasOpen) drawer.classList.add('is-open');
+          if (wasShipping) drawer.classList.add('shipping-open');
+          bindDrawerContents();
+        });
+    }
+
+    function setDrawerLoading(isLoading) {
+      drawer.classList.toggle('is-loading', isLoading);
+    }
+
+    function onCartChanged(cart, options) {
+      options = options || {};
+      if (options.open) openDrawer();
+
+      if (cart && typeof cart.item_count !== 'undefined') {
+        syncCartCount(cart.item_count, options.animateBubble);
+      }
+
+      var shouldRebuild = options.rebuild === true || (cart && cart.item_count === 0);
+      return shouldRebuild ? refreshCartDrawer() : Promise.resolve();
+    }
+
+    function onAddToCartSuccess() {
+      if (addToCartRefreshInFlight) {
+        addToCartRefreshQueued = true;
+        return;
+      }
+      addToCartRefreshInFlight = true;
+      document.dispatchEvent(new CustomEvent('cart:loading'));
+      openDrawer();
+      setDrawerLoading(true);
+
+      Promise.all([
+        fetchCart().then(function (cart) {
+          if (cart && typeof cart.item_count !== 'undefined') {
+            syncCartCount(cart.item_count, true);
+          }
+        }),
+        refreshCartDrawer(),
+      ])
+        .catch(function (err) {
+          console.error('Cart refresh after add failed:', err);
+        })
+        .finally(function () {
+          setDrawerLoading(false);
+          addToCartRefreshInFlight = false;
+          if (addToCartRefreshQueued) {
+            addToCartRefreshQueued = false;
+            onAddToCartSuccess();
+          }
+        });
+    }
+
+    /* ---------- open the drawer after ANY successful /cart/add, without reloading ---------- */
+    (function () {
+      var nativeFetch = window.fetch;
+      window.fetch = function (input, init) {
+        var url = typeof input === 'string' ? input : (input && input.url) || '';
+        var isAddToCart = url.indexOf('/cart/add') !== -1;
+
+        return nativeFetch.apply(this, arguments).then(function (response) {
+          if (isAddToCart && response.ok) {
+            response
+              .clone()
+              .json()
+              .then(function (data) {
+                if (data && data.status && Number(data.status) >= 400) return;
+                onAddToCartSuccess();
+              })
+              .catch(function () {
+                onAddToCartSuccess();
+              });
+          }
+          return response;
+        });
+      };
+    })();
+
+    document.addEventListener('click', function (e) {
+      var toggle = e.target.closest('[data-cart-drawer-toggle]');
+      if (toggle) {
+        e.preventDefault();
+        openDrawer();
+      }
+    });
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    /* ---------- money formatting (matches Liquid | money; do not use shop.currency) ---------- */
+    var moneyFormat = {{ shop.money_format | json }};
+    var currencyCode = {{ cart.currency.iso_code | json }};
+
+    function formatMoney(cents) {
+      var amount = Number(cents);
+      if (isNaN(amount)) return '';
+
+      if (window.Shopify && typeof Shopify.formatMoney === 'function') {
+        return Shopify.formatMoney(amount, moneyFormat);
+      }
+
+      var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+      var formatString = moneyFormat || ('$' + ['{', '{amount}}'].join(''));
+
+      function formatWithDelimiters(number, precision, thousands, decimal) {
+        precision = precision == null ? 2 : precision;
+        thousands = thousands == null ? ',' : thousands;
+        decimal = decimal == null ? '.' : decimal;
+        var parts = (Math.abs(number) / 100).toFixed(precision).split('.');
+        var dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands);
+        var centsPart = parts[1] ? decimal + parts[1] : '';
+        return (number < 0 ? '-' : '') + dollars + centsPart;
+      }
+
+      var match = formatString.match(placeholderRegex);
+      var placeholder = match ? match[1] : 'amount';
+      var formatted;
+
+      switch (placeholder) {
+        case 'amount_no_decimals':
+          formatted = formatWithDelimiters(amount, 0);
+          break;
+        case 'amount_with_comma_separator':
+          formatted = formatWithDelimiters(amount, 2, '.', ',');
+          break;
+        case 'amount_no_decimals_with_comma_separator':
+          formatted = formatWithDelimiters(amount, 0, '.', ',');
+          break;
+        case 'amount_with_space_separator':
+          formatted = formatWithDelimiters(amount, 2, ' ', ',');
+          break;
+        case 'amount_with_period_and_space_separator':
+          formatted = formatWithDelimiters(amount, 2, ' ', '.');
+          break;
+        case 'amount_with_apostrophe_separator':
+          formatted = formatWithDelimiters(amount, 2, "'", '.');
+          break;
+        case 'amount_no_decimals_with_space_separator':
+          formatted = formatWithDelimiters(amount, 0, ' ', '.');
+          break;
+        case 'currency':
+          formatted = currencyCode;
+          break;
+        default:
+          formatted = formatWithDelimiters(amount, 2);
+      }
+
+      return formatString.replace(placeholderRegex, formatted);
+    }
+
+    /* ---------- cart line items: qty / remove (real /cart/change.js) ---------- */
+    function cartErrorMessage(data) {
+      if (!data) return 'Could not update cart. Please try again.';
+      if (typeof data.errors === 'string' && data.errors) return data.errors;
+      if (data.description) return data.description;
+      if (data.errors && typeof data.errors === 'object') {
+        var parts = [];
+        Object.keys(data.errors).forEach(function (key) {
+          var val = data.errors[key];
+          if (Array.isArray(val)) parts.push(val.join(' '));
+          else if (val) parts.push(String(val));
+        });
+        if (parts.length) return parts.join(' ');
+      }
+      if (data.message) return data.message;
+      return 'Could not update cart. Please try again.';
+    }
+
+    function isCartAjaxError(res, data) {
+      if (!res.ok) return true;
+      if (!data || typeof data !== 'object') return true;
+      if (data.errors) return true;
+      if (data.status && Number(data.status) >= 400) return true;
+      return false;
+    }
+
+    function showRowError(row, message) {
+      var el = row.querySelector('[data-qty-error]');
+      if (!el) return;
+      el.textContent = message || 'Could not update cart. Please try again.';
+      el.hidden = false;
+    }
+
+    function hideRowError(row) {
+      var el = row.querySelector('[data-qty-error]');
+      if (!el) return;
+      el.textContent = '';
+      el.hidden = true;
+    }
+
+    function revertRowQuantity(row) {
+      var qtyInput = row.querySelector('[data-qty-input]');
+      if (!qtyInput) return;
+      qtyInput.value = qtyInput.defaultValue || '1';
+    }
+
+    function updateLineItem(key, quantity) {
+      return fetch('{{ routes.cart_change_url }}', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ id: key, quantity: quantity })
+      }).then(function (res) {
+        return res.json().then(
+          function (data) {
+            if (isCartAjaxError(res, data)) {
+              throw new Error(cartErrorMessage(data));
+            }
+            return data;
+          },
+          function () {
+            throw new Error('Could not update cart. Please try again.');
+          }
+        );
+      });
+    }
+
+    function refreshSubtotal(cart) {
+      var el = drawer.querySelector('[data-gl-subtotal]');
+      if (el) el.textContent = formatMoney(cart.total_price);
+    }
+
+    // Per-item request token (discards stale/out-of-order responses)
+    // + per-item debounce timer (coalesces rapid clicks into ONE
+    // network call instead of one per click — fixes 429 rate limits).
+    var qtyRequestTokens = {};
+    var qtyDebounceTimers = {};
+
+    function setRowQtyLoading(row, isLoading) {
+      var removeBtn = row.querySelector('[data-remove-item]');
+      if (!removeBtn) return;
+
+      removeBtn.classList.toggle('is-loading', isLoading);
+      if (isLoading) {
+        removeBtn.setAttribute('aria-busy', 'true');
+      } else {
+        removeBtn.removeAttribute('aria-busy');
+      }
+    }
+
+    function applyQuantity(row, newQty) {
+      var key = row.dataset.key;
+      var qtyInput = row.querySelector('[data-qty-input]');
+      var linePriceEl = row.querySelector('[data-line-price]');
+
+      newQty = parseInt(newQty, 10);
+      if (isNaN(newQty) || newQty < 0) newQty = 0;
+
+      // Update the visible number instantly; the actual network call
+      // is delayed below so rapid clicks don't spam Shopify.
+      hideRowError(row);
+      qtyInput.value = Math.max(newQty, 1);
+      setRowQtyLoading(row, true);
+
+      clearTimeout(qtyDebounceTimers[key]);
+      qtyDebounceTimers[key] = setTimeout(function () {
+        qtyRequestTokens[key] = (qtyRequestTokens[key] || 0) + 1;
+        var thisRequest = qtyRequestTokens[key];
+
+        updateLineItem(key, newQty).then(function (cart) {
+          if (thisRequest !== qtyRequestTokens[key]) return; // stale response, discard
+
+          refreshSubtotal(cart);
+          var updated = cart.items && cart.items.find(function (i) { return i.key === key; });
+
+          if (!updated) {
+            if (cart.item_count === 0) {
+              onCartChanged(cart, { rebuild: true, animateBubble: false });
+              return;
+            }
+            row.remove();
+          } else {
+            qtyInput.value = updated.quantity;
+            qtyInput.defaultValue = String(updated.quantity);
+            if (linePriceEl) {
+              linePriceEl.textContent = formatMoney(updated.original_line_price);
+            }
+          }
+          syncCartCount(cart.item_count, false);
+        }).catch(function (err) {
+          console.error(err);
+          if (thisRequest !== qtyRequestTokens[key]) return;
+          revertRowQuantity(row);
+          showRowError(row, err && err.message);
+        }).finally(function () {
+          if (thisRequest !== qtyRequestTokens[key]) return;
+          if (row.isConnected) setRowQtyLoading(row, false);
+        });
+      }, 400);
+    }
+
+    var removeInFlight = {};
+
+    drawer.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-gl-cart-item]');
+      if (!row) return;
+      var qtyInput = row.querySelector('[data-qty-input]');
+
+      if (e.target.closest('[data-qty-minus]')) {
+        applyQuantity(row, parseInt(qtyInput.value, 10) - 1);
+      } else if (e.target.closest('[data-qty-plus]')) {
+        applyQuantity(row, parseInt(qtyInput.value, 10) + 1);
+      } else if (e.target.closest('[data-remove-item]')) {
+        var key = row.dataset.key;
+        if (removeInFlight[key]) return; // ignore double-clicks on remove
+        removeInFlight[key] = true;
+
+        hideRowError(row);
+        updateLineItem(key, 0).then(function (cart) {
+          if (cart.item_count === 0) {
+            return onCartChanged(cart, { rebuild: true, animateBubble: false });
+          }
+          row.remove();
+          refreshSubtotal(cart);
+          syncCartCount(cart.item_count, false);
+        }).catch(function (err) {
+          console.error(err);
+          if (row.isConnected) showRowError(row, err && err.message);
+        }).finally(function () {
+          removeInFlight[key] = false;
+        });
+      }
+    });
+
+    drawer.addEventListener('change', function (e) {
+      var row = e.target.closest('[data-gl-cart-item]');
+      if (!row) return;
+      if (e.target.matches('[data-qty-input]')) {
+        applyQuantity(row, parseInt(e.target.value, 10));
+      }
+    });
+
+    /* ---------- Buy it with: qty + real /cart/add.js ---------- */
+    function bindBuyItWith() {
+      drawer.querySelectorAll('.gl-biw-card').forEach(function (card) {
+        var qtyInput = card.querySelector('[data-biw-qty-input]');
+        var minusBtn = card.querySelector('[data-biw-qty-minus]');
+        var plusBtn = card.querySelector('[data-biw-qty-plus]');
+        var addBtn = card.querySelector('[data-biw-add]');
+
+        if (minusBtn) {
+          minusBtn.addEventListener('click', function () {
+            qtyInput.value = Math.max(1, parseInt(qtyInput.value, 10) - 1);
+          });
+        }
+        if (plusBtn) {
+          plusBtn.addEventListener('click', function () {
+            qtyInput.value = parseInt(qtyInput.value, 10) + 1;
+          });
+        }
+
+        if (addBtn) {
+          addBtn.addEventListener('click', function () {
+            var variantId = addBtn.getAttribute('data-variant-id');
+            var quantity = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+
+            fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: variantId, quantity: quantity }),
+            })
+              .then(function (res) { return res.json(); })
+              .then(function (data) {
+                if (data && data.status && Number(data.status) >= 400) {
+                  throw new Error(data.description || data.message || 'Add to cart failed');
+                }
+                addBtn.classList.add('is-added');
+                setTimeout(function () { addBtn.classList.remove('is-added'); }, 1200);
+              })
+              .catch(function (err) { console.error('Add to cart failed:', err); });
+          });
+        }
+      });
+    }
+
+    /* ---------- shipping estimator (real /cart/shipping_rates.json) ---------- */
+    function bindShippingEstimator() {
+      var countrySelect = drawer.querySelector('[data-gl-shipping-country]');
+      var provinceSelect = drawer.querySelector('[data-gl-shipping-province]');
+      var zipInput = drawer.querySelector('[data-gl-shipping-zip]');
+      var estimateBtn = drawer.querySelector('[data-gl-estimate-shipping]');
+      var resultsBox = drawer.querySelector('[data-gl-shipping-results]');
+
+      function populateProvinces() {
+        if (!countrySelect || !provinceSelect) return;
+        var selectedOption = countrySelect.options[countrySelect.selectedIndex];
+        var provincesData = selectedOption ? selectedOption.getAttribute('data-provinces') : null;
+        provinceSelect.innerHTML = '';
+        if (!provincesData) return;
+        try {
+          var provinces = JSON.parse(provincesData);
+          if (!provinces.length) {
+            provinceSelect.innerHTML = '<option value="">N/A</option>';
+            return;
+          }
+          provinces.forEach(function (p) {
+            var opt = document.createElement('option');
+            opt.value = p[0];
+            opt.textContent = p[1];
+            provinceSelect.appendChild(opt);
+          });
+        } catch (e) {
+          console.error('Could not parse provinces:', e);
+        }
+      }
+
+      if (countrySelect) {
+        countrySelect.addEventListener('change', populateProvinces);
+        populateProvinces();
+      }
+
+      if (estimateBtn) {
+        estimateBtn.addEventListener('click', function () {
+          var country = countrySelect ? countrySelect.value : '';
+          var province = provinceSelect ? provinceSelect.value : '';
+          var zip = zipInput ? zipInput.value.trim() : '';
+
+          if (!zip) {
+            resultsBox.innerHTML = '<strong>Please enter a zip/postal code.</strong>';
+            resultsBox.classList.add('is-visible');
+            return;
+          }
+
+          estimateBtn.classList.add('is-loading');
+          resultsBox.classList.remove('is-visible');
+
+          var params = new URLSearchParams({
+            'shipping_address[zip]': zip,
+            'shipping_address[country]': country,
+            'shipping_address[province]': province,
+          });
+
+          fetch('/cart/shipping_rates.json?' + params.toString())
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              var rates = data.shipping_rates || [];
+              if (!rates.length) {
+                resultsBox.innerHTML = '<strong>No shipping rates available for this address.</strong>';
+              } else {
+                var html = '<strong>There are multiple shipping rates for your address:</strong><ul>';
+                rates.forEach(function (rate) {
+                  html += '<li>' + rate.name + ': <strong>' + formatMoney(Math.round(parseFloat(rate.price) * 100)) + '</strong></li>';
+                });
+                html += '</ul>';
+                resultsBox.innerHTML = html;
+              }
+              resultsBox.classList.add('is-visible');
+            })
+            .catch(function (err) {
+              console.error('Shipping estimate failed:', err);
+              resultsBox.innerHTML = '<strong>Could not estimate shipping. Please try again.</strong>';
+              resultsBox.classList.add('is-visible');
+            })
+            .finally(function () {
+              estimateBtn.classList.remove('is-loading');
+            });
+        });
+      }
+    }
+
+    bindDrawerContents();
+  })();
+</script>

@@ -1,0 +1,92 @@
+{% liquid
+  assign product_limit = block.settings.product_limit | default: 6
+  assign tab_label = block.settings.tab_label | default: block.settings.collection.title | default: 'Collection'
+  assign carousel_ref = 'trendingCarousel' | append: block.id
+%}
+
+<div
+  class="trending__panel"
+  data-tab-label="{{ tab_label | escape }}"
+  data-trending-panel
+  {{ block.shopify_attributes }}
+>
+  {% capture list_items %}
+    {% if block.settings.collection != blank %}
+      {% for product in block.settings.collection.products limit: product_limit %}
+        <div class="resource-list__item">
+          {% content_for 'block',
+            type: '_product-card',
+            id: 'static-product-card',
+            closest.product: product,
+            product_view_context: 'collection'
+          %}
+        </div>
+        {% unless forloop.last %}
+          <!--@list/split-->
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+  {% endcapture %}
+
+  {% liquid
+    assign list_items_array = list_items | strip | split: '<!--@list/split-->'
+    assign slide_count = list_items_array.size
+  %}
+
+  {% render 'resource-list',
+    list_items: list_items,
+    list_items_array: list_items_array,
+    settings: section.settings,
+    carousel_ref: carousel_ref,
+    slide_count: slide_count,
+    content_type: 'products',
+    test_id: 'trending-resource-list'
+  %}
+
+  {% if block.settings.collection != blank %}
+    <div class="trending__view-all" data-trending-view-all>
+      <a class="button button--primary" href="{{ block.settings.collection.url }}">
+        {{ section.settings.view_all_label | default: 'View all' }}
+        <svg
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection tab",
+  "tag": null,
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "tab_label",
+      "label": "Tab label (optional — defaults to collection name)"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Number of products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    }
+  ]
+}
+{% endschema %}
