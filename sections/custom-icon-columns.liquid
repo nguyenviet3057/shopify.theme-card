@@ -1,3 +1,9 @@
+<script
+  src="{{ 'dialog.js' | asset_url }}"
+  type="module"
+></script>
+{% render 'dialog-styles' %}
+
 <style>
   .icon-columns {
     position: relative;
@@ -18,10 +24,21 @@
     display: none;
   }
 
-  .icon-columns__item {
+  .icon-columns__track > .icon-columns__item,
+  .icon-columns__track > .icon-columns__dialog {
     flex: 1 0 calc((100% - 4rem) / 5);
     max-width: 100%;
     scroll-snap-align: center;
+  }
+
+  .icon-columns__dialog {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon-columns__item {
+    height: 100%;
+    box-sizing: border-box;
     border: 1px solid #E3F3FF;
     background: {{  section.settings.background_color_box }};
     border-radius: 12px;
@@ -32,8 +49,17 @@
     text-align: center;
   }
 
+  .icon-columns__item--clickable {
+    cursor: pointer;
+  }
+
+  .icon-columns__item--clickable:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
   @media (max-width: 749px) {
-    .icon-columns__item {
+    .icon-columns__track > .icon-columns__item,
+    .icon-columns__track > .icon-columns__dialog {
       flex: 1 0 60cqw;
     }
   }
@@ -49,10 +75,19 @@
     margin-bottom: 0.75rem;
   }
 
-  .icon-columns__icon img {
+  .icon-columns__icon img,
+  .icon-columns__icon svg {
     width: 22px;
     height: 22px;
     object-fit: contain;
+    display: block;
+  }
+
+  .icon-columns__svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
   }
 
   .icon-columns__heading {
@@ -68,6 +103,138 @@
     color: #5C554C;
     margin: 0;
     line-height: 1.4;
+  }
+
+  .icon-columns-modal.dialog-modal {
+    box-sizing: border-box;
+    box-shadow: var(--shadow-popover);
+    border: none;
+    border-radius: 0.75rem;
+    --color-background: #ffffff;
+    --color-background-rgb: 255 255 255;
+    background-color: #ffffff;
+    padding: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    width: min(35rem, calc(100vw - 2rem));
+    max-width: min(35rem, calc(100vw - 2rem));
+    height: fit-content;
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    overflow: auto;
+  }
+
+  .icon-columns-modal.dialog-modal[open] {
+    animation: icon-columns-modal-in var(--animation-speed, 0.25s) var(--animation-easing, ease) forwards;
+  }
+
+  .icon-columns-modal.dialog-modal.dialog-closing {
+    animation: icon-columns-modal-out var(--animation-speed, 0.25s) var(--animation-easing, ease) forwards;
+  }
+
+  @keyframes icon-columns-modal-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes icon-columns-modal-out {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .icon-columns-modal.dialog-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      transform: translate(-50%, -50%);
+      width: min(35rem, calc(100vw - 2rem));
+      max-width: min(35rem, calc(100vw - 2rem));
+      height: fit-content;
+      max-height: calc(100dvh - 2rem);
+      padding: 0;
+      margin: 0;
+      border-radius: 0.75rem;
+    }
+  }
+
+  .icon-columns-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem 0.5rem;
+  }
+
+  .icon-columns-modal__heading {
+    margin: 0;
+    flex: 1 1 auto;
+  }
+
+  .icon-columns-modal__close {
+    position: static;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: inherit;
+    line-height: 0;
+  }
+
+  .icon-columns-modal__close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+    pointer-events: none;
+  }
+
+  .icon-columns-modal__content {
+    color: #1D1A17;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 0.5rem 1.5rem 0.75rem;
+  }
+
+  .icon-columns-modal__content > *:first-child {
+    margin-top: 0;
+  }
+
+  .icon-columns-modal__content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .icon-columns-modal__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem 1.5rem;
+    border-top: 1px solid #e3f3ff;
   }
 </style>
 
@@ -89,8 +256,35 @@
       <div class="icon-columns__track">
         {% for block in section.blocks %}
           {% if block.type == 'item' %}
-            <div class="icon-columns__item" {{ block.shopify_attributes }}>
-              {% if block.settings.icon %}
+            {% liquid
+              assign modal_enabled = block.settings.modal_enabled
+              assign modal_heading = block.settings.modal_heading
+              assign heading_preset = block.settings.modal_heading_preset | default: 'h2'
+              if modal_heading == blank
+                assign modal_heading = block.settings.heading
+              endif
+            %}
+
+            {% if modal_enabled %}
+              <dialog-component class="icon-columns__dialog">
+            {% endif %}
+
+            <div
+              class="icon-columns__item{% if modal_enabled %} icon-columns__item--clickable{% endif %}"
+              {% if modal_enabled %}
+                role="button"
+                tabindex="0"
+                aria-haspopup="dialog"
+                aria-controls="icon-columns-modal-{{ block.id }}"
+                on:click="/showDialog"
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              {% if block.settings.icon_svg != blank %}
+                <div class="icon-columns__icon">
+                  <span class="icon-columns__svg" data-icon-columns-svg>{{ block.settings.icon_svg }}</span>
+                </div>
+              {% elsif block.settings.icon != blank %}
                 <div class="icon-columns__icon">
                   <img
                     src="{{ block.settings.icon | image_url: width: 80 }}"
@@ -110,12 +304,240 @@
                 <p class="icon-columns__text">{{ block.settings.text }}</p>
               {% endif %}
             </div>
+
+            {% if modal_enabled %}
+              <dialog
+                id="icon-columns-modal-{{ block.id }}"
+                ref="dialog"
+                class="icon-columns-modal dialog-modal color-custom-popover"
+                scroll-lock
+                aria-labelledby="icon-columns-modal-heading-{{ block.id }}"
+              >
+                <div class="icon-columns-modal__header">
+                  {% if modal_heading != blank %}
+                    <h2
+                      id="icon-columns-modal-heading-{{ block.id }}"
+                      class="icon-columns-modal__heading {{ heading_preset }} {{ heading_preset }}{% if heading_preset == 'custom' %} custom-typography{% if block.settings.modal_heading_size != blank %} custom-font-size{% endif %}{% endif %}"
+                      {% if heading_preset == 'custom' and block.settings.modal_heading_size != blank %}
+                        style="--font-size: {{ block.settings.modal_heading_size }};"
+                      {% endif %}
+                    >
+                      {{ modal_heading }}
+                    </h2>
+                  {% else %}
+                    <h2
+                      id="icon-columns-modal-heading-{{ block.id }}"
+                      class="visually-hidden"
+                    >
+                      {{ block.settings.heading | default: 'Details' }}
+                    </h2>
+                  {% endif %}
+
+                  <button
+                    type="button"
+                    ref="closeButton"
+                    on:click="/closeDialog"
+                    class="icon-columns-modal__close"
+                    aria-label="{{ 'accessibility.close_dialog' | t }}"
+                  >
+                    {{- 'icon-close.svg' | inline_asset_content -}}
+                  </button>
+                </div>
+
+                {% if block.settings.modal_content != blank %}
+                  <div class="icon-columns-modal__content rte">
+                    {{ block.settings.modal_content }}
+                  </div>
+                {% endif %}
+
+                {% liquid
+                  assign has_modal_buttons = false
+                  if block.settings.button_1_label != blank or block.settings.button_2_label != blank
+                    assign has_modal_buttons = true
+                  endif
+                %}
+
+                {% if has_modal_buttons %}
+                  <div class="icon-columns-modal__buttons">
+                    {% for btn_n in (1..2) %}
+                      {% if btn_n == 1 %}
+                        {% liquid
+                          assign btn_label = block.settings.button_1_label
+                          assign btn_link = block.settings.button_1_link
+                          assign btn_new_tab = block.settings.button_1_open_in_new_tab
+                          assign btn_style = block.settings.button_1_style_class | default: 'button'
+                          assign btn_bg = block.settings.button_1_custom_background
+                          assign btn_text = block.settings.button_1_custom_text
+                          assign btn_border = block.settings.button_1_custom_border
+                          assign btn_link_color = block.settings.button_1_link_text_color
+                          assign btn_default = block.settings.button_1_default_action
+                          assign btn_action = block.settings.button_1_custom_action
+                        %}
+                      {% else %}
+                        {% liquid
+                          assign btn_label = block.settings.button_2_label
+                          assign btn_link = block.settings.button_2_link
+                          assign btn_new_tab = block.settings.button_2_open_in_new_tab
+                          assign btn_style = block.settings.button_2_style_class | default: 'button-secondary'
+                          assign btn_bg = block.settings.button_2_custom_background
+                          assign btn_text = block.settings.button_2_custom_text
+                          assign btn_border = block.settings.button_2_custom_border
+                          assign btn_link_color = block.settings.button_2_link_text_color
+                          assign btn_default = block.settings.button_2_default_action
+                          assign btn_action = block.settings.button_2_custom_action
+                        %}
+                      {% endif %}
+
+                      {% if btn_label != blank %}
+                        {% liquid
+                          assign btn_class = btn_style | append: ' ' | append: btn_style | append: '--' | append: block.id | append: '-' | append: btn_n
+                          assign btn_action_id = 'icon-columns-js-' | append: block.id | append: '-' | append: btn_n
+                        %}
+
+                        {% if btn_style == 'button-custom' %}
+                          {% style %}
+                            .button-custom--{{ block.id }}-{{ btn_n }} {
+                              {% if btn_bg != blank %}
+                                --button-background-color: rgb({{ btn_bg.rgba }});
+                              {% endif %}
+                              {% if btn_text != blank %}
+                                --button-color: rgb({{ btn_text.rgba }});
+                              {% endif %}
+                              {% if btn_border != blank %}
+                                --button-border-color: rgb({{ btn_border.rgba }});
+                              {% endif %}
+                            }
+                          {% endstyle %}
+                        {% endif %}
+
+                        {% if btn_style == 'button-unstyled' and btn_link_color != blank %}
+                          {% style %}
+                            .button-unstyled--{{ block.id }}-{{ btn_n }} {
+                              color: rgb({{ btn_link_color.rgba }});
+                            }
+                          {% endstyle %}
+                        {% endif %}
+
+                        {% if btn_link != blank %}
+                          <a
+                            href="{{ btn_link }}"
+                            class="{{ btn_class }}"
+                            {% if btn_new_tab %}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            {% endif %}
+                            {% if btn_action != blank %}
+                              data-icon-columns-action="{{ btn_action_id }}"
+                            {% elsif btn_default == 'close' %}
+                              on:click="/closeDialog"
+                            {% endif %}
+                          >
+                            {{ btn_label }}
+                          </a>
+                        {% else %}
+                          <button
+                            type="button"
+                            class="{{ btn_class }}"
+                            {% if btn_action != blank %}
+                              data-icon-columns-action="{{ btn_action_id }}"
+                            {% elsif btn_default == 'close' %}
+                              on:click="/closeDialog"
+                            {% endif %}
+                          >
+                            {{ btn_label }}
+                          </button>
+                        {% endif %}
+
+                        {% if btn_action != blank %}
+                          <script
+                            type="text/plain"
+                            id="{{ btn_action_id }}"
+                            hidden
+                          >{{ btn_action }}</script>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </dialog>
+              </dialog-component>
+            {% endif %}
           {% endif %}
         {% endfor %}
       </div>
     </div>
   </div>
 </div>
+
+{% javascript %}
+  (function () {
+    function hydrateSvgs(root) {
+      root.querySelectorAll('[data-icon-columns-svg]').forEach(function (el) {
+        if (el.querySelector('svg')) return;
+        var raw = (el.textContent || '').trim();
+        var start = raw.indexOf('<svg');
+        if (start === -1) return;
+        el.innerHTML = raw.substring(start);
+      });
+    }
+
+    function bindActions(root) {
+      root.querySelectorAll('[data-icon-columns-action]').forEach(function (el) {
+        if (el.dataset.iconColumnsBound === 'true') return;
+        el.dataset.iconColumnsBound = 'true';
+        el.addEventListener('click', function (event) {
+          var id = el.getAttribute('data-icon-columns-action');
+          var source = id ? document.getElementById(id) : null;
+          if (!source) return;
+          var code = source.textContent;
+          if (!code || !code.trim()) return;
+          event.preventDefault();
+          try {
+            Function('event', code).call(el, event);
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      });
+    }
+
+    function bindItemKeys(root) {
+      root.querySelectorAll('.icon-columns__item[role="button"]').forEach(function (item) {
+        if (item.dataset.iconColumnsKeyBound === 'true') return;
+        item.dataset.iconColumnsKeyBound = 'true';
+        item.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            item.click();
+          }
+        });
+      });
+    }
+
+    function init(root) {
+      if (!root) return;
+      hydrateSvgs(root);
+      bindActions(root);
+      bindItemKeys(root);
+    }
+
+    function onReady(fn) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        fn();
+      }
+    }
+
+    onReady(function () {
+      init(document);
+    });
+
+    document.addEventListener('shopify:section:load', function (event) {
+      init(event.target);
+    });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
@@ -181,9 +603,283 @@
       "type": "item",
       "name": "Item",
       "settings": [
-        { "type": "image_picker", "id": "icon", "label": "Icon" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Have a question" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Email or call us" }
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "SVG icon",
+          "info": "Paste SVG markup starting with <svg. This overrides the image icon when set."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Have a question"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Email or call us"
+        },
+        {
+          "type": "header",
+          "content": "Modal"
+        },
+        {
+          "type": "checkbox",
+          "id": "modal_enabled",
+          "label": "Enable modal",
+          "info": "Opens this modal when the item is clicked",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "modal_heading",
+          "label": "Heading",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "select",
+          "id": "modal_heading_preset",
+          "label": "t:settings.preset",
+          "options": [
+            { "value": "rte", "label": "t:options.default" },
+            { "value": "paragraph", "label": "t:options.paragraph" },
+            { "value": "h1", "label": "t:options.h1" },
+            { "value": "h2", "label": "t:options.h2" },
+            { "value": "h3", "label": "t:options.h3" },
+            { "value": "h4", "label": "t:options.h4" },
+            { "value": "h5", "label": "t:options.h5" },
+            { "value": "h6", "label": "t:options.h6" },
+            { "value": "custom", "label": "t:options.custom" }
+          ],
+          "default": "h2",
+          "info": "t:info.edit_presets_in_theme_settings",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "select",
+          "id": "modal_heading_size",
+          "label": "t:settings.size",
+          "options": [
+            { "value": "", "label": "t:options.default" },
+            { "value": "0.625rem", "label": "10px" },
+            { "value": "0.75rem", "label": "12px" },
+            { "value": "0.875rem", "label": "14px" },
+            { "value": "1rem", "label": "16px" },
+            { "value": "1.125rem", "label": "18px" },
+            { "value": "1.25rem", "label": "20px" },
+            { "value": "1.5rem", "label": "24px" },
+            { "value": "2rem", "label": "32px" },
+            { "value": "2.5rem", "label": "40px" },
+            { "value": "3rem", "label": "48px" },
+            { "value": "3.5rem", "label": "56px" },
+            { "value": "4.5rem", "label": "72px" },
+            { "value": "5.5rem", "label": "88px" },
+            { "value": "7.5rem", "label": "120px" },
+            { "value": "9.5rem", "label": "152px" },
+            { "value": "11.5rem", "label": "184px" }
+          ],
+          "default": "1rem",
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.modal_heading_preset == \"custom\" }}"
+        },
+        {
+          "type": "html",
+          "id": "modal_content",
+          "label": "Content",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "header",
+          "content": "Button 1",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "t:settings.label",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "t:settings.link",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_1_open_in_new_tab",
+          "label": "t:settings.open_new_tab",
+          "default": false,
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "select",
+          "id": "button_1_style_class",
+          "label": "t:settings.style",
+          "options": [
+            { "value": "button", "label": "t:options.primary" },
+            { "value": "button-secondary", "label": "t:options.secondary" },
+            { "value": "button-unstyled", "label": "t:options.link" },
+            { "value": "button-custom", "label": "t:options.custom" }
+          ],
+          "default": "button",
+          "info": "t:info.edit_button_style_in_theme_settings",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "header",
+          "content": "t:content.button_colors",
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_1_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_1_custom_background",
+          "label": "t:settings.background",
+          "default": "{{ settings.color_palette.foreground }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_1_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_1_custom_text",
+          "label": "t:settings.text",
+          "default": "{{ settings.color_palette.background }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_1_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_1_custom_border",
+          "label": "t:settings.borders",
+          "default": "{{ settings.color_palette.background }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_1_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_1_link_text_color",
+          "label": "t:settings.link_text_color",
+          "placeholder": "t:settings.default",
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_1_style_class == \"button-unstyled\" }}"
+        },
+        {
+          "type": "select",
+          "id": "button_1_default_action",
+          "label": "Default action",
+          "options": [
+            { "value": "none", "label": "t:options.none" },
+            { "value": "close", "label": "Close" }
+          ],
+          "default": "none",
+          "info": "Used when Custom action is empty.",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "textarea",
+          "id": "button_1_custom_action",
+          "label": "Custom action",
+          "info": "Optional JavaScript that runs on click instead of the default action and the button link.",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "header",
+          "content": "Button 2",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "t:settings.label",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "t:settings.link",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_2_open_in_new_tab",
+          "label": "t:settings.open_new_tab",
+          "default": false,
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "select",
+          "id": "button_2_style_class",
+          "label": "t:settings.style",
+          "options": [
+            { "value": "button", "label": "t:options.primary" },
+            { "value": "button-secondary", "label": "t:options.secondary" },
+            { "value": "button-unstyled", "label": "t:options.link" },
+            { "value": "button-custom", "label": "t:options.custom" }
+          ],
+          "default": "button-secondary",
+          "info": "t:info.edit_button_style_in_theme_settings",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "header",
+          "content": "t:content.button_colors",
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_2_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_2_custom_background",
+          "label": "t:settings.background",
+          "default": "{{ settings.color_palette.foreground }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_2_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_2_custom_text",
+          "label": "t:settings.text",
+          "default": "{{ settings.color_palette.background }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_2_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_2_custom_border",
+          "label": "t:settings.borders",
+          "default": "{{ settings.color_palette.background }}",
+          "alpha": true,
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_2_style_class == \"button-custom\" }}"
+        },
+        {
+          "type": "color",
+          "id": "button_2_link_text_color",
+          "label": "t:settings.link_text_color",
+          "placeholder": "t:settings.default",
+          "visible_if": "{{ block.settings.modal_enabled and block.settings.button_2_style_class == \"button-unstyled\" }}"
+        },
+        {
+          "type": "select",
+          "id": "button_2_default_action",
+          "label": "Default action",
+          "options": [
+            { "value": "none", "label": "t:options.none" },
+            { "value": "close", "label": "Close" }
+          ],
+          "default": "none",
+          "info": "Used when Custom action is empty.",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        },
+        {
+          "type": "textarea",
+          "id": "button_2_custom_action",
+          "label": "Custom action",
+          "info": "Optional JavaScript that runs on click instead of the default action and the button link.",
+          "visible_if": "{{ block.settings.modal_enabled }}"
+        }
       ]
     }
   ],
