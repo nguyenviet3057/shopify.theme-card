@@ -1,0 +1,192 @@
+{% doc %}
+  Renders a stacked list of shipping groups and option rows.
+
+  @example
+  {% content_for 'block', type: 'shipping-options', id: 'cart-shipping-options' %}
+{% enddoc %}
+
+<div class="gl-ship-options" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .gl-ship-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .gl-ship-group__label {
+    margin: 0 0 0.45rem;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #6b7280;
+  }
+
+  .gl-ship-group__card {
+    background: #ffffff;
+    border: 1px solid #c0dff6;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .gl-ship-option {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .gl-ship-option + .gl-ship-option {
+    border-top: 1px solid #e3f3ff;
+  }
+
+  .gl-ship-option__copy {
+    min-width: 0;
+  }
+
+  .gl-ship-option__title,
+  .gl-ship-option__desc,
+  .gl-ship-option__price {
+    margin: 0;
+  }
+
+  .gl-ship-option__title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1d1a17;
+  }
+
+  .gl-ship-option__desc {
+    margin-top: 0.2rem;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #6b7280;
+  }
+
+  .gl-ship-option__price {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1d1a17;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shipping options",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_shipping-group"
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Shipping options",
+      "blocks": [
+        {
+          "type": "_shipping-group",
+          "settings": {
+            "title": "Letters"
+          },
+          "blocks": [
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Regular Post",
+                "description": "Tracked envelope · 2–6 business days",
+                "price": "$6.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Registered Post",
+                "description": "Signature required on delivery · extra protection for your cards · 2–6 business days",
+                "price": "$8.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Express Post",
+                "description": "Next business day · fully tracked",
+                "price": "$10.00"
+              }
+            }
+          ]
+        },
+        {
+          "type": "_shipping-group",
+          "settings": {
+            "title": "Parcels"
+          },
+          "blocks": [
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Standard Parcel",
+                "description": "Flat rate tracked shipping · 3–8 business days",
+                "price": "$10.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Registered Parcel",
+                "description": "Signature required on delivery · 3–8 business days",
+                "price": "$15.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Express Parcel",
+                "description": "Next business day · fully tracked",
+                "price": "$20.00"
+              }
+            }
+          ]
+        },
+        {
+          "type": "_shipping-group",
+          "settings": {
+            "title": "Add-on — Shipping insurance"
+          },
+          "blocks": [
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Basic cover",
+                "description": "Covers your order up to $300",
+                "price": "+$5.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Standard cover",
+                "description": "Covers your order up to $500",
+                "price": "+$10.00"
+              }
+            },
+            {
+              "type": "_shipping-option",
+              "settings": {
+                "title": "Premium cover",
+                "description": "Covers your order up to $1000",
+                "price": "+$20.00"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,47 @@
+{% doc %}
+  Renders a single shipping option row with title, description, and price.
+
+  @example
+  {% content_for 'block', type: '_shipping-option', id: 'regular-post' %}
+{% enddoc %}
+
+<div class="gl-ship-option" {{ block.shopify_attributes }}>
+  <div class="gl-ship-option__copy">
+    {% if block.settings.title != blank %}
+      <p class="gl-ship-option__title">{{ block.settings.title }}</p>
+    {% endif %}
+    {% if block.settings.description != blank %}
+      <p class="gl-ship-option__desc">{{ block.settings.description }}</p>
+    {% endif %}
+  </div>
+  {% if block.settings.price != blank %}
+    <p class="gl-ship-option__price">{{ block.settings.price }}</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Shipping option",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Regular Post"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Tracked envelope · 2–6 business days"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$6.00"
+    }
+  ]
+}
+{% endschema %}

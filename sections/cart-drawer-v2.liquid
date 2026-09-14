@@ -1,0 +1,134 @@
+{% capture shipping_options %}
+  {% content_for 'block', type: 'shipping-options', id: 'cart-shipping-options' %}
+{% endcapture %}
+
+{% render 'cart-drawer-custom', shipping_options: shipping_options %}
+
+{% stylesheet %}
+  .gl-cart-drawer-section {
+    margin: 0;
+    padding: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cart drawer v2",
+  "tag": "section",
+  "class": "gl-cart-drawer-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cart drawer v2",
+      "blocks": [
+        {
+          "type": "shipping-options",
+          "id": "cart-shipping-options",
+          "static": true,
+          "blocks": [
+            {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Letters"
+              },
+              "blocks": [
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Regular Post",
+                    "description": "Tracked envelope · 2–6 business days",
+                    "price": "$6.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Post",
+                    "description": "Signature required on delivery · extra protection for your cards · 2–6 business days",
+                    "price": "$8.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Post",
+                    "description": "Next business day · fully tracked",
+                    "price": "$10.00"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Parcels"
+              },
+              "blocks": [
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard Parcel",
+                    "description": "Flat rate tracked shipping · 3–8 business days",
+                    "price": "$10.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Parcel",
+                    "description": "Signature required on delivery · 3–8 business days",
+                    "price": "$15.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Parcel",
+                    "description": "Next business day · fully tracked",
+                    "price": "$20.00"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Add-on — Shipping insurance"
+              },
+              "blocks": [
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Basic cover",
+                    "description": "Covers your order up to $300",
+                    "price": "+$5.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard cover",
+                    "description": "Covers your order up to $500",
+                    "price": "+$10.00"
+                  }
+                },
+                {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Premium cover",
+                    "description": "Covers your order up to $1000",
+                    "price": "+$20.00"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

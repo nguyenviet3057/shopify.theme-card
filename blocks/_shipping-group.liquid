@@ -1,0 +1,35 @@
+{% doc %}
+  Renders a labeled card of nested shipping option rows.
+
+  @example
+  {% content_for 'block', type: '_shipping-group', id: 'letters' %}
+{% enddoc %}
+
+<div class="gl-ship-group" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank %}
+    <p class="gl-ship-group__label">{{ block.settings.title }}</p>
+  {% endif %}
+  <div class="gl-ship-group__card">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping group",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_shipping-option"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Group title",
+      "default": "Letters"
+    }
+  ]
+}
+{% endschema %}

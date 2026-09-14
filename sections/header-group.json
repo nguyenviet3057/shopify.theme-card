@@ -116,6 +116,120 @@
         "text_color_transparent_collection": ""
       }
     },
+    "custom_cart_drawer": {
+      "type": "cart-drawer-v2",
+      "blocks": {
+        "cart-shipping-options": {
+          "type": "shipping-options",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "group_letters": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Letters"
+              },
+              "blocks": {
+                "opt_regular_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Regular Post",
+                    "description": "Tracked envelope · 2–6 business days",
+                    "price": "$6.00"
+                  }
+                },
+                "opt_registered_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Post",
+                    "description": "Signature required on delivery · extra protection for your cards · 2–6 business days",
+                    "price": "$8.00"
+                  }
+                },
+                "opt_express_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Post",
+                    "description": "Next business day · fully tracked",
+                    "price": "$10.00"
+                  }
+                }
+              },
+              "block_order": ["opt_regular_post", "opt_registered_post", "opt_express_post"]
+            },
+            "group_parcels": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Parcels"
+              },
+              "blocks": {
+                "opt_standard_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard Parcel",
+                    "description": "Flat rate tracked shipping · 3–8 business days",
+                    "price": "$10.00"
+                  }
+                },
+                "opt_registered_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Parcel",
+                    "description": "Signature required on delivery · 3–8 business days",
+                    "price": "$15.00"
+                  }
+                },
+                "opt_express_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Parcel",
+                    "description": "Next business day · fully tracked",
+                    "price": "$20.00"
+                  }
+                }
+              },
+              "block_order": ["opt_standard_parcel", "opt_registered_parcel", "opt_express_parcel"]
+            },
+            "group_insurance": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Add-on — Shipping insurance"
+              },
+              "blocks": {
+                "opt_basic_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Basic cover",
+                    "description": "Covers your order up to $300",
+                    "price": "+$5.00"
+                  }
+                },
+                "opt_standard_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard cover",
+                    "description": "Covers your order up to $500",
+                    "price": "+$10.00"
+                  }
+                },
+                "opt_premium_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Premium cover",
+                    "description": "Covers your order up to $1000",
+                    "price": "+$20.00"
+                  }
+                }
+              },
+              "block_order": ["opt_basic_cover", "opt_standard_cover", "opt_premium_cover"]
+            }
+          },
+          "block_order": ["group_letters", "group_parcels", "group_insurance"]
+        }
+      },
+      "block_order": [],
+      "settings": {}
+    },
     "custom_header_k3BA7T": {
       "type": "custom-header",
       "blocks": {
@@ -159,4 +273,5 @@
       }
     }
   },
-  "order": ["header_announcements_9jGBFp", "header_section", "custom_header_k3BA7T"]}
+  "order": ["header_announcements_9jGBFp", "header_section", "custom_header_k3BA7T", "custom_cart_drawer"]
+}

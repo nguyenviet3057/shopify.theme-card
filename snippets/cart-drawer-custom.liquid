@@ -20,7 +20,7 @@
   - Quantity +/- and remove use Shopify's real /cart/change.js AJAX endpoint
   - Checkout button submits the real cart form to /checkout
   - "View cart" links to routes.cart_url (your cart page section)
-  - "Estimate shipping" calls Shopify's real /cart/shipping_rates.json
+  - "View shipping options" opens the overlay panel with the shipping-options theme block
   - "Buy it with" Add-to-cart buttons use the real /cart/add.js AJAX endpoint
   - Badges + subtitle: same metafields as your cart page
     (product.metafields.custom.variant / subtitle / release_date)
@@ -558,60 +558,15 @@
     .gl-drawer-actions__checkout:hover { background: #000; }
 
     /* --- Shipping panel --- */
+    .gl-panel-shipping {
+      background: #F4FAFF;
+    }
     .gl-shipping-scroll {
       flex: 1;
       overflow-y: auto;
-      padding: 1.1rem 1.25rem;
-    }
-    .gl-shipping-field { margin-bottom: 1rem; }
-    .gl-shipping-field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      color: #1D1A17;
-    }
-    .gl-shipping-field select,
-    .gl-shipping-field input {
-      width: 100%;
-      height: 42px;
-      padding: 0 0.75rem;
-      border: 1px solid #d8d8d8;
-      border-radius: 4px;
-      font-size: 14px;
-      box-sizing: border-box;
-      background: #fff;
-    }
-    .gl-shipping-estimate-btn {
-      width: 100%;
-      height: 46px;
-      background: #111;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 14px;
-      font-family: 'Oswald';
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-top: 0.25rem;
-    }
-    .gl-shipping-estimate-btn:hover { background: #000; }
-    .gl-shipping-estimate-btn.is-loading { opacity: 0.6; pointer-events: none; }
-
-    .gl-shipping-results {
-      display: none;
-      margin-top: 1.1rem;
-      padding: 0.9rem;
-      border: 1px solid #C0DFF6;
-      border-radius: 4px;
+      padding: 1.1rem 1.25rem 1.4rem;
       background: #F4FAFF;
-      font-size: 13px;
     }
-    .gl-shipping-results.is-visible { display: block; }
-    .gl-shipping-results ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
-    .gl-shipping-results li { margin-bottom: 0.3rem; }
-    .gl-shipping-results strong { color: {{ gl_price_color }}; }
 
 
       @media screen and (max-width: 750px) {
@@ -673,7 +628,12 @@
               <div class="gl-cart-item" data-gl-cart-item data-key="{{ item.key }}">
                 <a href="{{ item.url }}" class="gl-cart-item__image">
                   {%- if item.image -%}
-                    <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.product.title | escape }}">
+                    <img
+                      src="{{ item.image | image_url: width: 160 }}"
+                      alt="{{ item.product.title | escape }}"
+                      width="80"
+                      height="80"
+                    >
                   {%- endif -%}
                 </a>
 
@@ -744,6 +704,8 @@
                         <img
                           src="{{ biw_product.featured_image | image_url: width: 300 }}"
                           alt="{{ biw_product.title | escape }}"
+                          width="150"
+                          height="150"
                           loading="lazy"
                         >
                       {%- endif -%}
@@ -847,7 +809,9 @@
               <span>Subtotal</span>
               <span data-gl-subtotal>{{ cart.total_price | money }}</span>
             </div>
-            <button type="button" class="gl-summary-box__ship-link" data-gl-open-shipping>Estimate shipping</button>
+            {%- if shipping_options != blank -%}
+              <button type="button" class="gl-summary-box__ship-link" data-gl-open-shipping>View shipping options</button>
+            {%- endif -%}
           </div>
           <div class="gl-drawer-actions">
             <a href="{{ routes.cart_url }}" class="gl-drawer-actions__view-cart">View cart</a>
@@ -868,31 +832,12 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-          <span>Estimate shipping</span>
+          <span>Shipping options</span>
         </button>
       </div>
 
-      <div class="gl-shipping-scroll">
-        <div class="gl-shipping-field">
-          <label for="gl-shipping-country-drawer">Country</label>
-          <select id="gl-shipping-country-drawer" data-gl-shipping-country>
-            {{ all_country_option_tags }}
-          </select>
-        </div>
-
-        <div class="gl-shipping-field">
-          <label for="gl-shipping-province-drawer">State</label>
-          <select id="gl-shipping-province-drawer" data-gl-shipping-province></select>
-        </div>
-
-        <div class="gl-shipping-field">
-          <label for="gl-shipping-zip-drawer">Zip code</label>
-          <input type="text" id="gl-shipping-zip-drawer" data-gl-shipping-zip placeholder="e.g. 2000">
-        </div>
-
-        <button type="button" class="gl-shipping-estimate-btn" data-gl-estimate-shipping>Estimate shipping</button>
-
-        <div class="gl-shipping-results" data-gl-shipping-results></div>
+      <div class="gl-shipping-scroll" data-gl-shipping-options>
+        {{ shipping_options }}
       </div>
     </div>
   </div>
@@ -971,7 +916,6 @@
       }
 
       bindBuyItWith();
-      bindShippingEstimator();
     }
 
     function refreshCartDrawer() {
@@ -1373,90 +1317,11 @@
       });
     }
 
-    /* ---------- shipping estimator (real /cart/shipping_rates.json) ---------- */
-    function bindShippingEstimator() {
-      var countrySelect = drawer.querySelector('[data-gl-shipping-country]');
-      var provinceSelect = drawer.querySelector('[data-gl-shipping-province]');
-      var zipInput = drawer.querySelector('[data-gl-shipping-zip]');
-      var estimateBtn = drawer.querySelector('[data-gl-estimate-shipping]');
-      var resultsBox = drawer.querySelector('[data-gl-shipping-results]');
-
-      function populateProvinces() {
-        if (!countrySelect || !provinceSelect) return;
-        var selectedOption = countrySelect.options[countrySelect.selectedIndex];
-        var provincesData = selectedOption ? selectedOption.getAttribute('data-provinces') : null;
-        provinceSelect.innerHTML = '';
-        if (!provincesData) return;
-        try {
-          var provinces = JSON.parse(provincesData);
-          if (!provinces.length) {
-            provinceSelect.innerHTML = '<option value="">N/A</option>';
-            return;
-          }
-          provinces.forEach(function (p) {
-            var opt = document.createElement('option');
-            opt.value = p[0];
-            opt.textContent = p[1];
-            provinceSelect.appendChild(opt);
-          });
-        } catch (e) {
-          console.error('Could not parse provinces:', e);
-        }
-      }
-
-      if (countrySelect) {
-        countrySelect.addEventListener('change', populateProvinces);
-        populateProvinces();
-      }
-
-      if (estimateBtn) {
-        estimateBtn.addEventListener('click', function () {
-          var country = countrySelect ? countrySelect.value : '';
-          var province = provinceSelect ? provinceSelect.value : '';
-          var zip = zipInput ? zipInput.value.trim() : '';
-
-          if (!zip) {
-            resultsBox.innerHTML = '<strong>Please enter a zip/postal code.</strong>';
-            resultsBox.classList.add('is-visible');
-            return;
-          }
-
-          estimateBtn.classList.add('is-loading');
-          resultsBox.classList.remove('is-visible');
-
-          var params = new URLSearchParams({
-            'shipping_address[zip]': zip,
-            'shipping_address[country]': country,
-            'shipping_address[province]': province,
-          });
-
-          fetch('/cart/shipping_rates.json?' + params.toString())
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-              var rates = data.shipping_rates || [];
-              if (!rates.length) {
-                resultsBox.innerHTML = '<strong>No shipping rates available for this address.</strong>';
-              } else {
-                var html = '<strong>There are multiple shipping rates for your address:</strong><ul>';
-                rates.forEach(function (rate) {
-                  html += '<li>' + rate.name + ': <strong>' + formatMoney(Math.round(parseFloat(rate.price) * 100)) + '</strong></li>';
-                });
-                html += '</ul>';
-                resultsBox.innerHTML = html;
-              }
-              resultsBox.classList.add('is-visible');
-            })
-            .catch(function (err) {
-              console.error('Shipping estimate failed:', err);
-              resultsBox.innerHTML = '<strong>Could not estimate shipping. Please try again.</strong>';
-              resultsBox.classList.add('is-visible');
-            })
-            .finally(function () {
-              estimateBtn.classList.remove('is-loading');
-            });
-        });
-      }
-    }
+    document.addEventListener('shopify:block:select', function (event) {
+      if (!event.target || !event.target.contains(drawer)) return;
+      openDrawer();
+      drawer.classList.add('shipping-open');
+    });
 
     bindDrawerContents();
   })();
