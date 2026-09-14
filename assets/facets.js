@@ -227,8 +227,14 @@ class FacetInputsComponent extends Component {
 
   /**
    * Updates filters and the selected facet summary
+   * @param {Event} [event]
    */
-  updateFilters() {
+  updateFilters(event) {
+    const source = typeof event?.composedPath === 'function' ? event.composedPath()[0] : event?.target;
+    if (source instanceof Element && source.classList.contains('facet-search-select__input')) {
+      return;
+    }
+
     const facetsForm = this.closest('facets-form-component');
 
     if (!(facetsForm instanceof FacetsFormComponent)) return;
@@ -319,6 +325,153 @@ class FacetInputsComponent extends Component {
 
 if (!customElements.get('facet-inputs-component')) {
   customElements.define('facet-inputs-component', FacetInputsComponent);
+}
+
+/**
+ * Searchable filter select: type to filter options, then toggle checkboxes.
+ * @extends {Component}
+ */
+class FacetSearchSelectComponent extends Component {
+  /** @type {HTMLInputElement | null} */
+  #input = null;
+  /** @type {HTMLElement | null} */
+  #empty = null;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.#input = this.querySelector('.facet-search-select__input');
+    this.#empty = this.querySelector('.facet-search-select__empty');
+
+    this.#input?.addEventListener('input', this.#onQuery, true);
+    this.#input?.addEventListener('focus', this.#open);
+    this.#input?.addEventListener('keydown', this.#onKeyDown);
+    this.#input?.addEventListener('change', this.stopSearchEvent, true);
+    this.addEventListener('click', this.#onClick);
+    document.addEventListener('pointerdown', this.#onDocumentPointerDown);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.#input?.removeEventListener('input', this.#onQuery, true);
+    this.#input?.removeEventListener('focus', this.#open);
+    this.#input?.removeEventListener('keydown', this.#onKeyDown);
+    this.#input?.removeEventListener('change', this.stopSearchEvent, true);
+    this.removeEventListener('click', this.#onClick);
+    document.removeEventListener('pointerdown', this.#onDocumentPointerDown);
+  }
+
+  /**
+   * Prevents the search field from submitting filters on change.
+   * @param {Event} event
+   */
+  stopSearchEvent = (event) => {
+    event.stopPropagation();
+  };
+
+  /**
+   * @param {MouseEvent} event
+   */
+  #onClick = (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (!event.target.closest('.facet-search-select__field')) return;
+
+    this.#open();
+    this.#input?.focus();
+  };
+
+  /**
+   * @param {PointerEvent} event
+   */
+  #onDocumentPointerDown = (event) => {
+    if (!(event.target instanceof Node) || this.contains(event.target)) return;
+    this.#close();
+  };
+
+  /**
+   * @param {Event} event
+   */
+  #onQuery = (event) => {
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    this.#open();
+    this.#filter();
+  };
+
+  /**
+   * @param {KeyboardEvent} event
+   */
+  #onKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.#close();
+      this.#input?.blur();
+      return;
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      const checkbox = this.#visibleItems()[0]?.querySelector('input[type="checkbox"]');
+      if (checkbox instanceof HTMLInputElement && !checkbox.disabled) {
+        checkbox.click();
+      }
+      return;
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.#open();
+      const checkbox = this.#visibleItems()[0]?.querySelector('input[type="checkbox"]');
+      if (checkbox instanceof HTMLElement) checkbox.focus();
+    }
+  };
+
+  #open = () => {
+    this.classList.add('is-open');
+    this.#input?.setAttribute('aria-expanded', 'true');
+    this.#filter();
+  };
+
+  #close = () => {
+    if (!this.classList.contains('is-open')) return;
+
+    this.classList.remove('is-open');
+    this.#input?.setAttribute('aria-expanded', 'false');
+    if (this.#input) this.#input.value = '';
+    this.#filter();
+  };
+
+  #filter() {
+    const query = (this.#input?.value ?? '').trim().toLowerCase();
+    const items = this.querySelectorAll('.facets__inputs-list-item');
+    let visibleCount = 0;
+
+    items.forEach((item) => {
+      if (!(item instanceof HTMLElement)) return;
+      const label = (item.dataset.label ?? item.textContent ?? '').trim().toLowerCase();
+      const match = query === '' || label.includes(query);
+      item.classList.toggle('facet-search-select__item--hidden', !match);
+      item.hidden = !match;
+      if (match) visibleCount += 1;
+    });
+
+    const isEmpty = visibleCount === 0;
+    this.classList.toggle('is-empty', isEmpty);
+    if (this.#empty) this.#empty.hidden = !isEmpty;
+  }
+
+  /**
+   * @returns {HTMLElement[]}
+   */
+  #visibleItems() {
+    return Array.from(this.querySelectorAll('.facets__inputs-list-item')).filter(
+      (item) => item instanceof HTMLElement && !item.hidden
+    );
+  }
+}
+
+if (!customElements.get('facet-search-select-component')) {
+  customElements.define('facet-search-select-component', FacetSearchSelectComponent);
 }
 
 /**
