@@ -48,6 +48,13 @@
     }
   }
 
+  .collection-wrapper:has(.facets-product-toolbar) {
+    @media screen and (min-width: 750px) {
+      grid-template-rows: max-content auto;
+      align-items: start;
+    }
+  }
+
   .collection-wrapper:has(.facets-block-wrapper--vertical:not(#filters-drawer)):has(.collection-wrapper--full-width) {
     @media screen and (min-width: 750px) {
       grid-column: 1 / -1;
