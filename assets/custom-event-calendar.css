@@ -1,0 +1,572 @@
+gl-event-calendar,
+.gl-event-calendar {
+  display: block;
+  --gl-cal-border: #E3F3FF;
+  --gl-cal-text: #1d1a17;
+  --gl-cal-muted: #5C554C;
+  --gl-cal-accent: #207FC4;
+  --gl-cal-past: #E4E4E4;
+  --gl-cal-today: #D6FFE7;
+  color: var(--gl-cal-text);
+}
+
+.gl-event-calendar__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.gl-event-calendar__kicker {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  /* font-weight: 700; */
+  /* letter-spacing: 0.12em; */
+  text-transform: uppercase;
+  color: var(--gl-cal-accent);
+}
+
+.gl-event-calendar__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--gl-cal-text);
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .gl-event-calendar__title {
+    font-size: 44px;
+  }
+}
+
+.gl-event-calendar__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.gl-event-calendar__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gl-event-calendar__nav-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gl-cal-text);
+  padding: 0;
+  border-radius: 8px;
+}
+
+.gl-event-calendar__nav-btn:hover:not(:disabled) {
+  background: rgba(47, 111, 237, 0.08);
+}
+
+.gl-event-calendar__nav-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.gl-event-calendar__month-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  min-width: 160px;
+  text-align: center;
+  line-height: 1;
+}
+
+.gl-event-calendar__controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gl-event-calendar__search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.gl-event-calendar__search,
+.gl-event-calendar__game-select {
+  height: 44px;
+  padding: 0 40px 0 16px;
+  border: 1px solid #d7dde5;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--gl-cal-text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.gl-event-calendar__search {
+  width: 100%;
+}
+
+.gl-event-calendar__search::-webkit-search-decoration,
+.gl-event-calendar__search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.gl-event-calendar__search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9aa3af;
+  pointer-events: none;
+}
+
+.gl-event-calendar__search:focus,
+.gl-event-calendar__game-select:focus {
+  outline: none;
+  border-color: var(--gl-cal-accent);
+}
+
+.gl-event-calendar__game-select {
+  width: 100%;
+  padding-right: 36px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%236b7280'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+}
+
+@media (min-width: 768px) {
+  .gl-event-calendar__search-wrap {
+    width: 230px;
+  }
+
+  .gl-event-calendar__game-select {
+    width: 180px;
+  }
+}
+
+.gl-event-calendar__skeleton {
+  border: 1px solid var(--gl-cal-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gl-event-calendar__skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.gl-event-calendar__skeleton-cell {
+  height: 110px;
+  border-right: 1px solid var(--gl-cal-border);
+  border-bottom: 1px solid var(--gl-cal-border);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 25%, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: gl-cal-shimmer 1.5s infinite;
+}
+
+.gl-event-calendar__skeleton-cell:nth-child(7n) {
+  border-right: none;
+}
+
+@keyframes gl-cal-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.gl-event-calendar__grid-wrapper {
+  border: 1px solid var(--gl-cal-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gl-event-calendar__day-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #fff;
+  border-bottom: 1px solid var(--gl-cal-border);
+}
+
+.gl-event-calendar__day-headers > div {
+  padding: 14px 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gl-cal-muted);
+}
+
+@media (max-width: 989px) {
+  .gl-event-calendar__day-headers > div {
+    font-size: 0.75rem;
+    padding: 12px 4px;
+  }
+}
+
+.gl-event-calendar__grid-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.gl-event-calendar__cell {
+  min-height: 108px;
+  border-right: 1px solid var(--gl-cal-border);
+  border-bottom: 1px solid var(--gl-cal-border);
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.gl-event-calendar__cell:nth-child(7n) {
+  border-right: none;
+}
+
+.gl-event-calendar__grid-body .gl-event-calendar__cell:nth-last-child(-n + 7) {
+  border-bottom: none;
+}
+
+@media (min-width: 1068px) {
+  .gl-event-calendar__cell {
+    min-height: 124px;
+    padding: 10px;
+  }
+}
+
+.gl-event-calendar__cell--past {
+  background: var(--gl-cal-past);
+}
+
+.gl-event-calendar__cell--today {
+  background: var(--gl-cal-today);
+}
+
+.gl-event-calendar__cell--other-month .gl-event-calendar__cell-date {
+  opacity: 0.4;
+}
+
+.gl-event-calendar__cell-date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.6;
+  min-width: 1.4em;
+  padding: 3px 0 0;
+  flex-shrink: 0;
+}
+
+.gl-event-calendar__cell-events {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.gl-event-calendar__chip {
+  display: block;
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--chip-bg, #1d1a17);
+  color: var(--chip-text, #fff);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+  font-family: inherit;
+}
+
+.gl-event-calendar__more-btn {
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  color: var(--gl-cal-muted);
+  cursor: pointer;
+  padding: 1px 4px;
+  text-align: left;
+  font-family: inherit;
+}
+
+.gl-event-calendar__more-btn:hover {
+  text-decoration: underline;
+}
+
+.gl-event-calendar__agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.gl-event-calendar__agenda-day {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gl-event-calendar__agenda-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gl-cal-text);
+}
+
+.gl-event-calendar__agenda-events {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gl-event-calendar__agenda-item {
+  display: block;
+  width: 100%;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--chip-bg, #1d1a17);
+  color: var(--chip-text, #fff);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  line-height: 1.3;
+}
+
+.gl-event-calendar__empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gl-cal-muted);
+  font-size: 0.9rem;
+}
+
+.gl-event-calendar [hidden] {
+  display: none !important;
+}
+
+.gl-event-calendar__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.gl-event-calendar__backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gl-event-calendar__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 420px;
+  max-width: 92vw;
+  background: #fff;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+  pointer-events: none;
+}
+
+.gl-event-calendar__drawer.is-open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.gl-event-calendar__drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--gl-cal-border);
+  flex-shrink: 0;
+}
+
+.gl-event-calendar__drawer-header h3 {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.gl-event-calendar__drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gl-cal-text);
+  display: flex;
+  padding: 4px;
+}
+
+.gl-event-calendar__drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+.gl-event-calendar__drawer-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.gl-event-calendar__drawer-badge {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 0 6px 12px 0;
+}
+
+.gl-event-calendar__drawer-event-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.gl-event-calendar__drawer-date,
+.gl-event-calendar__drawer-game {
+  font-size: 0.9rem;
+  color: var(--gl-cal-muted);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.gl-event-calendar__drawer-description {
+  font-size: 0.9rem;
+  color: var(--gl-cal-muted);
+  line-height: 1.65;
+  margin-top: 16px;
+}
+
+.gl-event-calendar__overflow-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gl-event-calendar__overflow-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--gl-cal-border);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.gl-event-calendar__overflow-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gl-event-calendar__overflow-name {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gl-event-calendar__overflow-time {
+  font-size: 0.8rem;
+  color: var(--gl-cal-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .gl-event-calendar__controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gl-event-calendar__nav {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .gl-event-calendar__controls-right {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gl-event-calendar__search-wrap,
+  .gl-event-calendar__game-select {
+    width: 100%;
+    max-width: none;
+  }
+
+  .gl-event-calendar__drawer {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 88vh;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.16);
+  }
+
+  .gl-event-calendar__drawer.is-open {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-event-calendar__drawer,
+  .gl-event-calendar__backdrop {
+    transition: none;
+  }
+}

@@ -66,6 +66,7 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/message_icon_bdfae177-b103-44b6-8299-8c71564279e9.png",
+            "icon_svg": "",
             "heading": "Have a question",
             "text": "Email or call (02) 8677 1966",
             "modal_enabled": true,
@@ -98,7 +99,8 @@
         "item_YgXcxF": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/delivery_icon_0ed23049-4d69-493e-a267-6e47385395fa.png",
+            "icon": "shopify://shop_images/storefront_icon_4de8c74d-2ef8-4f0b-a784-cfae47adb669.png",
+            "icon_svg": "",
             "heading": "STORE PICKUP AVAILABLE",
             "text": "Card singles from Frankston only",
             "modal_enabled": true,
@@ -128,43 +130,11 @@
             "button_2_custom_action": ""
           }
         },
-        "item_Jbterg": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/storefront_icon_4de8c74d-2ef8-4f0b-a784-cfae47adb669.png",
-            "heading": "STORE PICKUP AVAILABLE",
-            "text": "Seven Hills",
-            "modal_enabled": false,
-            "modal_heading": "",
-            "modal_heading_preset": "h2",
-            "modal_heading_size": "1rem",
-            "modal_content": "",
-            "button_1_label": "",
-            "button_1_link": "",
-            "button_1_open_in_new_tab": false,
-            "button_1_style_class": "button",
-            "button_1_custom_background": "{{ settings.color_palette.foreground }}",
-            "button_1_custom_text": "{{ settings.color_palette.background }}",
-            "button_1_custom_border": "{{ settings.color_palette.background }}",
-            "button_1_link_text_color": "",
-            "button_1_default_action": "none",
-            "button_1_custom_action": "",
-            "button_2_label": "",
-            "button_2_link": "",
-            "button_2_open_in_new_tab": false,
-            "button_2_style_class": "button-secondary",
-            "button_2_custom_background": "{{ settings.color_palette.foreground }}",
-            "button_2_custom_text": "{{ settings.color_palette.background }}",
-            "button_2_custom_border": "{{ settings.color_palette.background }}",
-            "button_2_link_text_color": "",
-            "button_2_default_action": "none",
-            "button_2_custom_action": ""
-          }
-        },
         "item_c6bXp7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Vector.png",
+            "icon": "shopify://shop_images/delivery_icon_0ed23049-4d69-493e-a267-6e47385395fa.png",
+            "icon_svg": "",
             "heading": "EXPRESS SHIPPING",
             "text": "Express shipping available — view options",
             "modal_enabled": true,
@@ -198,6 +168,7 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/magic_icon_3e258cf3-3472-48c0-8ff6-739cba9011fc.png",
+            "icon_svg": "",
             "heading": "DECK BUILDER",
             "text": "Got a list, paste it in here",
             "modal_enabled": true,
@@ -231,7 +202,6 @@
       "block_order": [
         "item_XQcigM",
         "item_YgXcxF",
-        "item_Jbterg",
         "item_c6bXp7",
         "item_NR8yPE"
       ],
@@ -1887,7 +1857,7 @@
         "trending_tab_PiWCec"
       ],
       "custom_css": [
-        ".trending .resource-list__slide {min-width: calc((100% - (var(--column-count) - 1) * 1rem) / var(--column-count));}"
+        ".trending .resource-list__slide {min-width: calc( (100% - (var(--column-count) - 1) * 1rem) / var(--column-count) );}"
       ],
       "name": "Products Tabs",
       "settings": {
@@ -2139,6 +2109,19 @@
         "padding-block-end": 32
       }
     },
+    "custom_event_calendar_h8yr7U": {
+      "type": "custom-event-calendar",
+      "name": "Event calendar",
+      "settings": {
+        "heading": "Event Calendar",
+        "subtitle": "See what's on at Game Locker",
+        "empty_message": "No events this month.",
+        "background_color": "#e8f1fb",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
     "custom_stats_banner_XzUWxB": {
       "type": "custom-stats-banner",
       "blocks": {
@@ -2228,6 +2211,7 @@
     "collection_list_Tp6wpc",
     "custom_products_tabs_VjGWXx",
     "collection_list_93zjHF",
+    "custom_event_calendar_h8yr7U",
     "custom_stats_banner_XzUWxB",
     "custom_team_slider_NkUJ67"
   ]

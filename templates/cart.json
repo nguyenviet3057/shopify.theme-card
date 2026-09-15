@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "custom_breadcrumbs_xR9fTJ": {
@@ -14,8 +23,8 @@
     },
     "custom_main_cart_P6YQBG": {
       "type": "custom-main-cart",
-      "name": "Custom cart",
       "disabled": true,
+      "name": "Custom cart",
       "settings": {
         "subtotal_bg_color": "#ad0807",
         "price_color": "#207fc4",
@@ -27,7 +36,6 @@
     },
     "custom_main_cart_v2": {
       "type": "custom-main-cart-v2",
-      "name": "Custom cart v2",
       "blocks": {
         "cart-shipping-options": {
           "type": "shipping-options",
@@ -65,7 +73,11 @@
                   }
                 }
               },
-              "block_order": ["opt_regular_post", "opt_registered_post", "opt_express_post"]
+              "block_order": [
+                "opt_regular_post",
+                "opt_registered_post",
+                "opt_express_post"
+              ]
             },
             "group_parcels": {
               "type": "_shipping-group",
@@ -98,7 +110,11 @@
                   }
                 }
               },
-              "block_order": ["opt_standard_parcel", "opt_registered_parcel", "opt_express_parcel"]
+              "block_order": [
+                "opt_standard_parcel",
+                "opt_registered_parcel",
+                "opt_express_parcel"
+              ]
             },
             "group_insurance": {
               "type": "_shipping-group",
@@ -131,13 +147,21 @@
                   }
                 }
               },
-              "block_order": ["opt_basic_cover", "opt_standard_cover", "opt_premium_cover"]
+              "block_order": [
+                "opt_basic_cover",
+                "opt_standard_cover",
+                "opt_premium_cover"
+              ]
             }
           },
-          "block_order": ["group_letters", "group_parcels", "group_insurance"]
+          "block_order": [
+            "group_letters",
+            "group_parcels",
+            "group_insurance"
+          ]
         }
       },
-      "block_order": [],
+      "name": "Custom cart v2",
       "settings": {
         "subtotal_bg_color": "#ad0807",
         "price_color": "#207fc4",
@@ -175,8 +199,8 @@
             "dividers": true,
             "vendor": false,
             "input_style": "custom",
-            "input_background_color":"{{ settings.color_palette.color3 }}",
-            "input_text_color":"{{ settings.color_palette.foreground }}",
+            "input_background_color": "{{ settings.color_palette.color3 }}",
+            "input_text_color": "{{ settings.color_palette.foreground }}",
             "input_border_color": "#c0dff6",
             "border_width": 1,
             "border_radius": 0,
@@ -206,7 +230,7 @@
       "disabled": true,
       "settings": {
         "section_width": "page-width",
-        "background_color":"{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "text_color": "",
         "padding-block-start": 24,
         "padding-block-end": 0
@@ -253,7 +277,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>You may also like<\/h3>",
+                "text": "<h3>You may also like</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -282,9 +306,9 @@
                 "label": "View all",
                 "open_in_new_tab": false,
                 "style_class": "link",
-                "custom_button_background":"{{ settings.color_palette.foreground }}",
-                "custom_button_text":"{{ settings.color_palette.background }}",
-                "custom_button_border":"{{ settings.color_palette.background }}",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
                 "link_text_color": "",
                 "width": "fit-content",
                 "custom_width": 100,
@@ -294,7 +318,10 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_list_text_fifeh4", "product_list_button_eibbma"]
+          "block_order": [
+            "product_list_text_fifeh4",
+            "product_list_button_eibbma"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -421,7 +448,10 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["text_cthTgB", "text_dEMtiW"]
+              "block_order": [
+                "text_cthTgB",
+                "text_dEMtiW"
+              ]
             },
             "product_card_group_LDbbRp": {
               "type": "_product-card-group",
@@ -490,12 +520,15 @@
                   "name": "t:names.custom_liquid",
                   "settings": {
                     "full_width": false,
-                    "custom_liquid": "{% assign variant = closest.product.selected_or_first_available_variant %} \n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %} \n    <span style=\"color:red;\">DEBUG: closest.product also blank</span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \" {{ variant.inventory_management }} \"</span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %} \n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left</span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\"> {{ variant.inventory_quantity }} left</span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %} \n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder</span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock</span>\n      {% endif %} \n    {% endif %} \n  {% endif %} \n</div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n</style>"
+                    "custom_liquid": "{% assign variant = closest.product.selected_or_first_available_variant %} \n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %} \n    <span style=\"color:red;\">DEBUG: closest.product also blank</span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \"  {{ variant.inventory_management }} \"</span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %} \n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left</span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\">  {{ variant.inventory_quantity }} left</span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %} \n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder</span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock</span>\n      {% endif %} \n    {% endif %} \n  {% endif %} \n</div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n</style>"
                   },
                   "blocks": {}
                 }
               },
-              "block_order": ["price_E6JG9N", "custom_liquid_jhqzgE"]
+              "block_order": [
+                "price_E6JG9N",
+                "custom_liquid_jhqzgE"
+              ]
             },
             "product_card_group_TGfPHG": {
               "type": "_product-card-group",
@@ -541,12 +574,14 @@
                   "name": "t:names.custom_liquid",
                   "settings": {
                     "full_width": true,
-                    "custom_liquid": "<style>\n.trending__selects{\npadding-top: 4px;\n}\n  .trending__select {\n    width: 100%;\n    padding: 0.5rem 0.6rem;\n    border: 1px solid #C0DFF6;\n    border-radius: 4px;\n    font-size: 15px;\n    margin-bottom: 4px;\n    background: #fff;\n    height: 48px;\n    appearance: none;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    background-image: url(\"data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%235C554C'/%3E%3C/svg%3E\");\n    background-repeat: no-repeat;\n    background-position: right 12px center;\n    background-size: 12px 8px;\n    padding-right: 30px;\n  }\n</style>\n\n<div class=\"trending__selects\" {{ block.shopify_attributes }} >\n  {% assign product = closest.product %} \n  {% assign variant = product.selected_or_first_available_variant %} \n\n  {% for option in product.options_with_values %} \n    <select\n      class=\"trending__select\"\n      data-option-name=\"{{ option.name | escape }} \"\n      data-option-position=\"{{ forloop.index }} \"\n      data-variant-option\n    >\n      {% for value in option.values %} \n        {% case value %} \n          {% when 'NM' %}\n             {% assign display_value = 'Near Mint' %} \n          {% when 'LP' %}\n             {% assign display_value = 'Lightly Played' %} \n          {% when 'MP' %}\n             {% assign display_value = 'Moderately Played' %} \n          {% when 'HP' %}\n             {% assign display_value = 'Heavily Played' %} \n          {% when 'DMG' %}\n             {% assign display_value = 'Damaged' %} \n          {% else %}\n             {% assign display_value = value %} \n        {% endcase %} \n        <option\n          value=\"{{ value | escape }} \"\n          {% if variant.options[forloop.parentloop.index0] == value %} \n            selected\n          {% endif %} \n        >\n          {{ display_value }} \n        </option>\n      {% endfor %} \n    </select>\n  {% endfor %} \n\n  {% comment %} \n    ==========================================\n    HARD-CODED STORE LOCATIONS\n    Product tag format: Location: Melbourne\n    ==========================================\n  {% endcomment %} \n\n  {% comment %} \n  {% assign all_locations = 'Melbourne||My Custom Location||Shop location' | split: '||' %} \n  {% assign product_location_names = '' %} \n\n  {% for tag in product.tags %} \n    {% assign tag_prefix = tag | slice: 0, 9 %} \n    {% if tag_prefix == 'Location:' %} \n      {% assign location_name = tag | remove_first: 'Location:' | strip %} \n      {% assign product_location_names = product_location_names | append: location_name | append: '||' %} \n    {% endif %} \n  {% endfor %} \n\n  {% assign product_locations = product_location_names | split: '||' %} \n\n  <select class=\"trending__select\" data-store-select>\n    {% for location in all_locations %} \n      {% assign is_available = false %} \n      {% for product_location in product_locations %} \n        {% assign clean_product_location = product_location | strip %} \n        {% if clean_product_location == location %} \n          {% assign is_available = true %} \n          {% break %} \n        {% endif %} \n      {% endfor %} \n      <option value=\"{{ location | escape }} \" {% if is_available %} selected{% else %}disabled{% endif %} >\n        {{ location }}{% unless is_available %}(Unavailable){% endunless %} \n      </option>\n    {% endfor %} \n  </select>\n  {% endcomment %} \n  \n  {% comment %} Variants for client-side matching, scoped to this block instance {% endcomment %} \n  <script type=\"application/json\" data-variants-json-{{ block.id }} >\n    [\n      {% for v in product.variants %} \n        {\n          \"id\": {{ v.id | json }} ,\n          \"options\": {{ v.options | json }} ,\n          \"available\": {{ v.available | json }} \n        }{% unless forloop.last %},{% endunless %} \n      {% endfor %} \n    ]\n  </script>\n</div>\n\n<script>\n(function () {\n  var container = document.currentScript.previousElementSibling;\n  if (!container) return;\n\n  var blockId = '{{ block.id }} ';\n  var variantsScript = document.querySelector('[data-variants-json-' + blockId + ']');\n  var variants = variantsScript ? JSON.parse(variantsScript.textContent) : [];\n  var optionSelects = container.querySelectorAll('[data-variant-option]');\n\n  if (!variants.length || !optionSelects.length) return;\n\n  function findMatchingVariant() {\n    var chosenOptions = [];\n    optionSelects.forEach(function (select) {\n      var position = parseInt(select.dataset.optionPosition, 10) - 1;\n      chosenOptions[position] = select.value;\n    });\n    return variants.find(function (v) {\n      return chosenOptions.every(function (val, i) {\n        return v.options[i] === val;\n      });\n    });\n  }\n\n  function updateHiddenVariantInput(variant) {\n    if (!variant) return;\n    var card = container.closest('product-card, [data-product-id]');\n    if (!card) return;\n    var hiddenInput = card.querySelector('input[name=\"id\"]');\n    if (hiddenInput) hiddenInput.value = variant.id;\n  }\n\n  optionSelects.forEach(function (select) {\n    select.addEventListener('change', function () {\n      updateHiddenVariantInput(findMatchingVariant());\n    });\n  });\n})();\n</script>"
+                    "custom_liquid": "<style>\n.trending__selects{\npadding-top: 4px;\n}\n  .trending__select {\n    width: 100%;\n    padding: 0.5rem 0.6rem;\n    border: 1px solid #C0DFF6;\n    border-radius: 4px;\n    font-size: 15px;\n    margin-bottom: 4px;\n    background: #fff;\n    height: 48px;\n    appearance: none;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    background-image: url(\"data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%235C554C'/%3E%3C/svg%3E\");\n    background-repeat: no-repeat;\n    background-position: right 12px center;\n    background-size: 12px 8px;\n    padding-right: 30px;\n  }\n</style>\n\n<div class=\"trending__selects\" {{ block.shopify_attributes }} >\n  {% assign product = closest.product %} \n  {% assign variant = product.selected_or_first_available_variant %} \n\n  {% for option in product.options_with_values %} \n    <select\n      class=\"trending__select\"\n      data-option-name=\"{{ option.name | escape }} \"\n      data-option-position=\"{{ forloop.index }} \"\n      data-variant-option\n    >\n      {% for value in option.values %} \n        {% case value %} \n          {% when 'NM' %}\n              {% assign display_value = 'Near Mint' %} \n          {% when 'LP' %}\n              {% assign display_value = 'Lightly Played' %} \n          {% when 'MP' %}\n              {% assign display_value = 'Moderately Played' %} \n          {% when 'HP' %}\n              {% assign display_value = 'Heavily Played' %} \n          {% when 'DMG' %}\n              {% assign display_value = 'Damaged' %} \n          {% else %}\n              {% assign display_value = value %} \n        {% endcase %} \n        <option\n          value=\"{{ value | escape }} \"\n          {% if variant.options[forloop.parentloop.index0] == value %} \n            selected\n          {% endif %} \n        >\n          {{ display_value }} \n        </option>\n      {% endfor %} \n    </select>\n  {% endfor %} \n\n  {% comment %} \n    ==========================================\n    HARD-CODED STORE LOCATIONS\n    Product tag format: Location: Melbourne\n    ==========================================\n  {% endcomment %} \n\n  {% comment %} \n  {% assign all_locations = 'Melbourne||My Custom Location||Shop location' | split: '||' %} \n  {% assign product_location_names = '' %} \n\n  {% for tag in product.tags %} \n    {% assign tag_prefix = tag | slice: 0, 9 %} \n    {% if tag_prefix == 'Location:' %} \n      {% assign location_name = tag | remove_first: 'Location:' | strip %} \n      {% assign product_location_names = product_location_names | append: location_name | append: '||' %} \n    {% endif %} \n  {% endfor %} \n\n  {% assign product_locations = product_location_names | split: '||' %} \n\n  <select class=\"trending__select\" data-store-select>\n    {% for location in all_locations %} \n      {% assign is_available = false %} \n      {% for product_location in product_locations %} \n        {% assign clean_product_location = product_location | strip %} \n        {% if clean_product_location == location %} \n          {% assign is_available = true %} \n          {% break %} \n        {% endif %} \n      {% endfor %} \n      <option value=\"{{ location | escape }} \" {% if is_available %} selected{% else %}disabled{% endif %} >\n        {{ location }}{% unless is_available %}(Unavailable){% endunless %} \n      </option>\n    {% endfor %} \n  </select>\n  {% endcomment %} \n  \n  {% comment %} Variants for client-side matching, scoped to this block instance {% endcomment %} \n  <script type=\"application/json\" data-variants-json-{{ block.id }} >\n    [\n      {% for v in product.variants %} \n        {\n          \"id\": {{ v.id | json }} ,\n          \"options\": {{ v.options | json }} ,\n          \"available\": {{ v.available | json }} \n        }{% unless forloop.last %},{% endunless %} \n      {% endfor %} \n    ]\n  </script>\n</div>\n\n<script>\n(function () {\n  var container = document.currentScript.previousElementSibling;\n  if (!container) return;\n\n  var blockId = '{{ block.id }} ';\n  var variantsScript = document.querySelector('[data-variants-json-' + blockId + ']');\n  var variants = variantsScript ? JSON.parse(variantsScript.textContent) : [];\n  var optionSelects = container.querySelectorAll('[data-variant-option]');\n\n  if (!variants.length || !optionSelects.length) return;\n\n  function findMatchingVariant() {\n    var chosenOptions = [];\n    optionSelects.forEach(function (select) {\n      var position = parseInt(select.dataset.optionPosition, 10) - 1;\n      chosenOptions[position] = select.value;\n    });\n    return variants.find(function (v) {\n      return chosenOptions.every(function (val, i) {\n        return v.options[i] === val;\n      });\n    });\n  }\n\n  function updateHiddenVariantInput(variant) {\n    if (!variant) return;\n    var card = container.closest('product-card, [data-product-id]');\n    if (!card) return;\n    var hiddenInput = card.querySelector('input[name=\"id\"]');\n    if (hiddenInput) hiddenInput.value = variant.id;\n  }\n\n  optionSelects.forEach(function (select) {\n    select.addEventListener('change', function () {\n      updateHiddenVariantInput(findMatchingVariant());\n    });\n  });\n})();\n</script>"
                   },
                   "blocks": {}
                 }
               },
-              "block_order": ["custom_liquid_Y9QXdP"]
+              "block_order": [
+                "custom_liquid_Y9QXdP"
+              ]
             },
             "buy_buttons_wXaaG3": {
               "type": "buy-buttons",
@@ -636,11 +671,17 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color":"{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
     }
   },
-  "order": ["custom_breadcrumbs_xR9fTJ", "custom_main_cart_P6YQBG", "custom_main_cart_v2", "cart-section", "product_list_NNFgcy"]
+  "order": [
+    "custom_breadcrumbs_xR9fTJ",
+    "custom_main_cart_P6YQBG",
+    "custom_main_cart_v2",
+    "cart-section",
+    "product_list_NNFgcy"
+  ]
 }
