@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "accessibility": {
     "account": "Account",
     "active_filters": "Active filters:",
@@ -236,6 +236,7 @@
     "price_sale": "Sale price",
     "price_filter_html": "The highest price is {{ price }}",
     "any": "Any",
+    "search_filter": "Search {{ label }}",
     "product_image": "Product image",
     "product_information": "Product information",
     "product_disclosures": "Product disclosures",

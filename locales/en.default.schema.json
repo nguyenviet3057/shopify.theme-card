@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "categories": {
     "banners": "Banners",
     // Category for fundamental content blocks (text, images, buttons)
@@ -236,6 +236,7 @@
     "edit_presets_in_theme_settings": "Edit presets in [theme settings](/editor?context=theme&category=typography)",
     "edit_variants_in_theme_settings": "Edit variant styling in [theme settings](/editor?context=theme&category=variant%20pickers)",
     "enable_filtering_info": "Customize filters with the [Search & Discovery app](https://help.shopify.com/manual/online-store/search-and-discovery/filters)",
+    "searchable_filter_labels": "Comma-separated filter names that use a search dropdown instead of showing every option. Example: Sets",
     "grid_layout_on_mobile": "Grid layout is used for mobile",
     "hide_logo_on_home_page_help": "Logo will remain visible when sticky header is active",
     "hover_effects": "Applies to product and collection cards",
@@ -1053,6 +1054,7 @@
     "row": "Row",
     "scroll_speed": "Time to next announcement",
     "search": "Search",
+    "searchable_filter_labels": "Searchable select filters",
     "search_icon": "Search icon",
     // Setting for search bar placement in header
     "search_position": "Position",
