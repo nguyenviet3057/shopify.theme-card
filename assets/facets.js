@@ -325,6 +325,8 @@ if (!customElements.get('facet-inputs-component')) {
  * @typedef {Object} PriceFacetRefs
  * @property {HTMLInputElement} minInput - The minimum price input
  * @property {HTMLInputElement} maxInput - The maximum price input
+ * @property {HTMLInputElement} [minSlider] - The minimum price range slider
+ * @property {HTMLInputElement} [maxSlider] - The maximum price range slider
  */
 
 /**
@@ -336,17 +338,25 @@ class PriceFacetComponent extends Component {
   currency;
   /** @type {string} */
   moneyFormat;
+  /** @type {'min' | 'max' | null} */
+  #draggingThumb = null;
 
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('keydown', this.#onKeyDown);
     this.currency = this.dataset.currency ?? 'USD';
     this.moneyFormat = this.#extractMoneyPlaceholder(this.dataset.moneyFormat ?? '{{amount}}');
+    this.addEventListener('input', this.#onSliderInput);
+    this.addEventListener('pointerdown', this.#onSliderPointerDown);
+    this.#syncSliderUi();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('keydown', this.#onKeyDown);
+    this.removeEventListener('input', this.#onSliderInput);
+    this.removeEventListener('pointerdown', this.#onSliderPointerDown);
+    this.#stopThumbDrag();
   }
 
   /**
@@ -365,16 +375,198 @@ class PriceFacetComponent extends Component {
    */
   #onKeyDown = (event) => {
     if (event.metaKey) return;
+    if (event.target instanceof HTMLInputElement && event.target.type === 'range') return;
 
     const pattern = /[0-9]|\.|,|'| |Tab|Backspace|Enter|ArrowUp|ArrowDown|ArrowLeft|ArrowRight|Delete|Escape/;
     if (!event.key.match(pattern)) event.preventDefault();
   };
 
   /**
+   * Handles slider input events.
+   * @param {Event} event - The input event
+   */
+  #onSliderInput = (event) => {
+    if (!(event.target instanceof HTMLInputElement) || event.target.type !== 'range') return;
+    this.syncPriceSlider(event);
+  };
+
+  /**
+   * Starts dragging a price thumb, including its 4px side gaps.
+   * @param {PointerEvent} event - The pointer event
+   */
+  #onSliderPointerDown = (event) => {
+    if (!(event.target instanceof Element)) return;
+
+    const thumb = event.target.closest('.price-facet__slider-thumb');
+    if (!thumb) return;
+
+    event.preventDefault();
+    this.#draggingThumb = thumb.classList.contains('price-facet__slider-thumb--min') ? 'min' : 'max';
+    this.setPointerCapture(event.pointerId);
+    this.addEventListener('pointermove', this.#onSliderPointerMove);
+    this.addEventListener('pointerup', this.#onSliderPointerUp);
+    this.addEventListener('pointercancel', this.#onSliderPointerUp);
+    this.#setThumbValueFromClientX(event.clientX);
+  };
+
+  /**
+   * Updates the active thumb while dragging.
+   * @param {PointerEvent} event - The pointer event
+   */
+  #onSliderPointerMove = (event) => {
+    if (!this.#draggingThumb) return;
+    this.#setThumbValueFromClientX(event.clientX);
+  };
+
+  /**
+   * Finishes a thumb drag and applies the price filter.
+   */
+  #onSliderPointerUp = () => {
+    if (!this.#draggingThumb) return;
+    this.#stopThumbDrag();
+    this.updatePriceFilterAndResults();
+  };
+
+  /**
+   * Clears thumb drag listeners.
+   */
+  #stopThumbDrag() {
+    this.#draggingThumb = null;
+    this.removeEventListener('pointermove', this.#onSliderPointerMove);
+    this.removeEventListener('pointerup', this.#onSliderPointerUp);
+    this.removeEventListener('pointercancel', this.#onSliderPointerUp);
+  }
+
+  /**
+   * Sets the active thumb value from a pointer x position.
+   * @param {number} clientX - Pointer x in viewport coordinates
+   */
+  #setThumbValueFromClientX(clientX) {
+    const { minSlider, maxSlider } = this.refs;
+    const slider = this.querySelector('.price-facet__slider');
+    if (
+      !(slider instanceof HTMLElement) ||
+      !(minSlider instanceof HTMLInputElement) ||
+      !(maxSlider instanceof HTMLInputElement)
+    ) {
+      return;
+    }
+
+    const rect = slider.getBoundingClientRect();
+    if (rect.width <= 0) return;
+
+    const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    const rangeMin = Number(minSlider.min);
+    const rangeMax = Number(minSlider.max);
+    const value = Math.round(rangeMin + ratio * (rangeMax - rangeMin));
+
+    if (this.#draggingThumb === 'min') {
+      minSlider.value = String(Math.min(value, Number(maxSlider.value)));
+      this.syncPriceSlider({ target: minSlider });
+      return;
+    }
+
+    maxSlider.value = String(Math.max(value, Number(minSlider.value)));
+    this.syncPriceSlider({ target: maxSlider });
+  }
+
+  /**
+   * Keeps dual-handle sliders and text inputs in sync while dragging.
+   * @param {Event} [event] - The input event
+   */
+  syncPriceSlider = (event) => {
+    const { minSlider, maxSlider } = this.refs;
+    if (!(minSlider instanceof HTMLInputElement) || !(maxSlider instanceof HTMLInputElement)) return;
+
+    let min = Number(minSlider.value);
+    let max = Number(maxSlider.value);
+
+    if (min > max) {
+      if (event?.target === minSlider) {
+        min = max;
+        minSlider.value = String(min);
+      } else {
+        max = min;
+        maxSlider.value = String(max);
+      }
+    }
+
+    this.#applySliderValues(min, max);
+  };
+
+  /**
+   * Updates slider fill, form values, and heading status from slider numbers.
+   * @param {number} min - Selected minimum in minor units
+   * @param {number} max - Selected maximum in minor units
+   */
+  #applySliderValues(min, max) {
+    const { minSlider, maxSlider, minInput, maxInput } = this.refs;
+    if (!(minInput instanceof HTMLInputElement) || !(maxInput instanceof HTMLInputElement)) return;
+
+    const rangeMin = Number(minSlider?.min ?? 0);
+    const rangeMax = Number(maxSlider?.max ?? 0);
+    const span = rangeMax - rangeMin;
+    const slider = this.querySelector('.price-facet__slider');
+
+    if (slider instanceof HTMLElement && span > 0) {
+      slider.style.setProperty('--min-percent', `${((min - rangeMin) / span) * 100}%`);
+      slider.style.setProperty('--max-percent', `${((max - rangeMin) / span) * 100}%`);
+    }
+
+    if (minSlider instanceof HTMLInputElement) {
+      minSlider.style.zIndex = min > rangeMin + span / 2 ? '5' : '3';
+    }
+
+    const isAny = min <= rangeMin && max >= rangeMax;
+    if (isAny) {
+      minInput.value = '';
+      maxInput.value = '';
+    } else {
+      minInput.value = formatMoney(min, this.moneyFormat, this.currency);
+      maxInput.value = formatMoney(max, this.moneyFormat, this.currency);
+    }
+
+    this.#updateHeadingStatus(isAny, min, max);
+  }
+
+  /**
+   * Updates the "(Any)" / price range label next to the heading.
+   * @param {boolean} isAny - Whether the full range is selected
+   * @param {number} min - Selected minimum in minor units
+   * @param {number} max - Selected maximum in minor units
+   */
+  #updateHeadingStatus(isAny, min, max) {
+    const status = this.closest('.facets__panel')?.querySelector('.facets__heading-status');
+    if (!(status instanceof HTMLElement)) return;
+
+    if (isAny) {
+      const anyLabel = status.dataset.anyLabel || 'Any';
+      status.textContent = `(${anyLabel})`;
+      return;
+    }
+
+    const format = this.dataset.moneyFormat ?? this.moneyFormat;
+    status.textContent = `(${formatMoney(min, format, this.currency)} – ${formatMoney(max, format, this.currency)})`;
+  }
+
+  /**
+   * Initializes slider fill from the current input values.
+   */
+  #syncSliderUi() {
+    const { minSlider, maxSlider } = this.refs;
+    if (!(minSlider instanceof HTMLInputElement) || !(maxSlider instanceof HTMLInputElement)) return;
+    this.#applySliderValues(Number(minSlider.value), Number(maxSlider.value));
+  }
+
+  /**
    * Updates price filter and results
    */
   updatePriceFilterAndResults() {
-    const { minInput, maxInput } = this.refs;
+    const { minInput, maxInput, minSlider } = this.refs;
+
+    if (minSlider instanceof HTMLInputElement) {
+      this.syncPriceSlider({ target: document.activeElement });
+    }
 
     this.#adjustToValidValues(minInput);
     this.#adjustToValidValues(maxInput);
@@ -760,8 +952,12 @@ class SortingFilterComponent extends Component {
    * @param {Event} event - The change event
    */
   updateFilterAndSorting(event) {
+    const boundFormId = this.querySelector('input[name="sort_by"]')?.getAttribute('form');
+    const boundForm = boundFormId ? document.getElementById(boundFormId) : null;
     const facetsForm =
-      this.closest('facets-form-component') || this.closest('.shopify-section')?.querySelector('facets-form-component');
+      boundForm?.closest('facets-form-component') ||
+      this.closest('facets-form-component') ||
+      this.closest('.shopify-section')?.querySelector('facets-form-component');
 
     if (!(facetsForm instanceof FacetsFormComponent)) return;
     const isMobile = window.innerWidth < 750;

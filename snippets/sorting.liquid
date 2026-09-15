@@ -3,13 +3,12 @@
    SORT — BEST MATCH STYLE
    ========================================= */
 
-.facets__panel {
+.sorting-filter .facets__panel {
   position: relative;
 }
 
 /* Main "Best Match" button */
-.facets__panel .facets__summary {
-
+.sorting-filter .facets__panel .facets__summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +19,7 @@
   cursor: pointer;
 }
 
-.facets__panel .facets__label {
+.sorting-filter .facets__panel .facets__label {
   display: flex;
   align-items: center;
   margin: 0;
@@ -29,7 +28,7 @@
   font-weight: 400;
 }
 
-.facets__panel .facets__label::before {
+.sorting-filter .facets__panel .facets__label::before {
   content: "";
   display: inline-block;
   width: 18px;
@@ -67,6 +66,10 @@
 >
   {% liquid
     assign default_sort_by = results.default_sort_by
+    assign sort_uid = section_id
+    if suffix != blank
+      assign sort_uid = section_id | append: '-' | append: suffix
+    endif
     for option in results.sort_options
       if option.value == sort_by
         assign status = option.name
@@ -76,14 +79,14 @@
 
   <div class="sorting-filter__container {% if should_use_select_on_mobile %} desktop:hidden {% else %} hidden {% endif %}">
     <label
-      for="sort-select-{{ section_id }}"
+      for="sort-select-{{ sort_uid }}"
       class="facets__label"
     >
       {{- 'actions.sort' | t -}}
     </label>
     <div class="sorting-filter__select-wrapper">
       <select
-        id="sort-select-{{ section_id }}"
+        id="sort-select-{{ sort_uid }}"
         name="sort_by"
         class="sorting-filter__select"
         {% if should_use_select_on_mobile == false %}
@@ -117,7 +120,7 @@
   {% capture accordion_children %}
     <details
       ref="details"
-      id="Sorting-{{ section_id }}"
+      id="Sorting-{{ sort_uid }}"
       data-default-sort-by="{{ default_sort_by }}"
       class="facets__panel {% if should_use_select_on_mobile %} mobile:hidden {% endif %}"
       data-auto-close-details="desktop,mobile"
@@ -127,12 +130,12 @@
         class="facets__summary"
         role="button"
         aria-expanded="false"
-        aria-controls="sorting-options-{{ section_id }}-{{ suffix }}"
+        aria-controls="sorting-options-{{ sort_uid }}"
         ref="summary"
       >
         <span
           class="facets__label"
-          id="sort-label-{{ section_id }}"
+          id="sort-label-{{ sort_uid }}"
         >
           {{- status -}}
         </span>
@@ -146,16 +149,16 @@
         </span> {% endcomment %}
       </summary>
       <floating-panel-component
-        id="sorting-options-{{ section_id }}-{{ suffix }}"
+        id="sorting-options-{{ sort_uid }}"
         class="sorting-filter__options color-custom-popover"
         role="listbox"
-        aria-labelledby="sort-label-{{ section_id }}"
+        aria-labelledby="sort-label-{{ sort_uid }}"
         ref="listbox"
       >
         <div class="sorting-filter__options-inner">
           {% for option in results.sort_options %}
             <label
-              for="sort-option-{{ option.value }}-{{ section_id }}"
+              for="sort-option-{{ option.value }}-{{ sort_uid }}"
             >
               <div
                 class="sorting-filter__option"
@@ -166,7 +169,7 @@
                 <input
                   type="radio"
                   name="sort_by"
-                  id="sort-option-{{ option.value }}-{{ section_id }}"
+                  id="sort-option-{{ option.value }}-{{ sort_uid }}"
                   {% if suffix != blank %}
                     form="FacetFiltersForm--{{ section_id }}-{{ suffix }}"
                   {% endif %}
@@ -392,6 +395,21 @@
   .facets-toggle .sorting-filter::before {
     @media screen and (max-width: 749px) {
       display: none;
+    }
+  }
+
+  .facets-toggle accordion-custom {
+    display: block;
+    width: auto;
+  }
+
+  .facets-toggle .sorting-filter__options {
+    @media screen and (max-width: 749px) {
+      left: 0;
+      right: 0;
+      width: auto;
+      min-width: 100%;
+      z-index: var(--layer-sticky);
     }
   }
 
