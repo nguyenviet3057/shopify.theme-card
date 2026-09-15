@@ -8,10 +8,37 @@
   @param {boolean} [should_render_clear] - Whether to render the clear button
   @param {boolean} [show_swatch_label] - Whether to show the swatch label
   @param {boolean} [in_drawer] - Whether the filter is in a drawer
+  @param {string} [searchable_filter_labels] - Comma-separated filter labels that use a search select
 {%- enddoc -%}
 
 {% render 'variant-picker-styles' %}
 
+{% comment %}
+  Map a product metafield filter (plain text) to a metaobject so filter pills can show image + label.
+
+  maps_config: one mapping per line, comma-separated values, in this order:
+    1. metafield_key     Product metafield namespace.key, e.g. custom.game_title
+    2. metaobject_type   Metaobject type HANDLE (lowercase), e.g. game not Game
+    3. name_field        Metaobject field matched to the filter value. Default: name
+    4. image_field       Metaobject image/file field rendered in the pill. Default: logo
+
+  Matching: the filter option text (e.g. Pokemon) is compared to name_field, case-insensitive.
+  The metaobject entry handle should usually be the handleized name.
+
+  Common examples:
+    custom.game_title,game,name,logo
+    custom.character,character,name,avatar
+    custom.publisher,publisher
+
+  Columns 3 and 4 may be omitted when they are name and logo.
+  Add more mappings on new lines, or separate them with ; on one line.
+  The metaobject definition must be storefront-accessible.
+  Draft/inactive entries are skipped by Shopify Liquid (nil); the filter still shows the text label without an image.
+{% endcomment %}
+{% capture maps_config -%}
+custom.game_title,game,name,logo
+{%- endcapture %}
+{% capture mapping_pipe %}|{% endcapture %}
 {% liquid
   assign is_swatch = false
   assign swatch_index = filter.values | find_index: 'swatch'
@@ -25,13 +52,82 @@
     assign is_image = true
   endif
 
+  assign mapped_metaobject_type = ''
+  assign mapped_match_field = ''
+  assign mapped_image_field = ''
+  if maps_config != blank
+    assign mapping_rows = maps_config | replace: mapping_pipe, ',' | newline_to_br | replace: '<br />', '~~' | replace: '<br>', '~~' | replace: ';', '~~' | split: '~~'
+    for mapping_row in mapping_rows
+      assign mapping_row = mapping_row | strip
+      if mapping_row != blank
+        assign mapping_parts = mapping_row | split: ','
+        if mapping_parts.size >= 2
+          assign mapping_key = mapping_parts[0] | strip
+          assign mapping_key_down = mapping_key | downcase
+          assign param_down = filter.param_name | downcase
+          assign label_down = filter.label | downcase | strip
+          assign key_matched = false
+          if param_down == mapping_key_down or label_down == mapping_key_down
+            assign key_matched = true
+          endif
+          if key_matched == false
+            assign key_size = mapping_key_down | size
+            assign param_size = param_down | size
+            if param_size >= key_size
+              assign tail_start = param_size | minus: key_size
+              assign param_tail = param_down | slice: tail_start, key_size
+              if param_tail == mapping_key_down
+                assign key_matched = true
+              endif
+            endif
+          endif
+          if key_matched
+            assign mapped_metaobject_type = mapping_parts[1] | strip | handleize
+            assign mapped_match_field = 'name'
+            assign mapped_image_field = 'logo'
+            if mapping_parts.size >= 3
+              assign mapped_match_part = mapping_parts[2] | strip
+              if mapped_match_part != blank
+                assign mapped_match_field = mapped_match_part
+              endif
+            endif
+            if mapping_parts.size >= 4
+              assign mapped_image_part = mapping_parts[3] | strip
+              if mapped_image_part != blank
+                assign mapped_image_field = mapped_image_part
+              endif
+            endif
+          endif
+        endif
+      endif
+    endfor
+  endif
+
   assign use_icon_pills = false
   if is_image
+    assign use_icon_pills = true
+  endif
+  if is_swatch == false and mapped_metaobject_type != blank
+    assign is_image = true
     assign use_icon_pills = true
   endif
   if is_swatch and show_swatch_label
     assign use_icon_pills = true
   endif
+
+  assign use_search_select = false
+  unless use_icon_pills or is_image or is_swatch
+    if searchable_filter_labels != blank
+      assign searchable_names = searchable_filter_labels | downcase | split: ','
+      assign current_filter_label = filter.label | downcase | strip
+      for searchable_name in searchable_names
+        assign searchable_name_stripped = searchable_name | strip
+        if searchable_name_stripped != blank and searchable_name_stripped == current_filter_label
+          assign use_search_select = true
+        endif
+      endfor
+    endif
+  endunless
 %}
 
 {%- liquid
@@ -68,7 +164,11 @@
           if use_icon_pills
             assign should_render_for_swatch = false
           endif
-          if filter.values.size > max_visible_values and should_render_for_swatch == false
+          assign should_use_pills = true
+          if use_search_select
+            assign should_use_pills = false
+          endif
+          if use_search_select == false and filter.values.size > max_visible_values and should_render_for_swatch == false
             assign render_show_more = true
           endif
         %}
@@ -80,13 +180,39 @@
               echo '<show-more-component class="show-more" data-expanded="false" data-skip-node-update="true">'
             endif
           endif
-          assign should_use_pills = true
         %}
 
         <div
-          class="facets__inputs-wrapper{% if is_swatch or is_image or should_use_pills %} facets__inputs-wrapper--row{% endif %}"
+          class="facets__inputs-wrapper{% unless use_search_select %}{% if is_swatch or is_image or should_use_pills %} facets__inputs-wrapper--row{% endif %}{% endunless %}"
           ref="showMoreContent"
         >
+          {% if use_search_select %}
+            {%- assign search_label = filter.label | downcase -%}
+            <facet-search-select-component class="facet-search-select">
+              <div class="facet-search-select__field">
+                <input
+                  type="text"
+                  class="facet-search-select__input"
+                  placeholder="{{ 'content.search_filter' | t: label: search_label }}"
+                  autocomplete="off"
+                  autocorrect="off"
+                  spellcheck="false"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-controls="filters-list-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+                  aria-label="{{ 'content.search_filter' | t: label: search_label }}"
+                  on:change="/stopSearchEvent"
+                >
+                <span class="svg-wrapper facet-search-select__caret" aria-hidden="true">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </div>
+              <p class="facet-search-select__empty" hidden>
+                {{ 'content.no_results_found' | t }}
+              </p>
+          {% endif %}
           {% liquid
             if is_swatch
               assign swatch_columns = filter.values.size
@@ -115,7 +241,7 @@
           %}
           <ul
             id="filters-list-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
-            class="facets__inputs-list list-unstyled{% if is_swatch %} facets__inputs-list--swatches{% if show_swatch_label %} facets__inputs-list--swatches-grid{% endif %}{% endif %}{% if use_icon_pills or should_use_pills %} facets__inputs-list--swatch-pills{% elsif is_image %} facets__inputs-list--images{% endif %}"
+            class="facets__inputs-list list-unstyled{% if is_swatch %} facets__inputs-list--swatches{% if show_swatch_label %} facets__inputs-list--swatches-grid{% endif %}{% endif %}{% if use_icon_pills or should_use_pills %} facets__inputs-list--swatch-pills{% elsif is_image %} facets__inputs-list--images{% endif %}{% if use_search_select %} facet-search-select__list{% endif %}"
             {% if is_swatch %}
               style="--swatch-columns: {{ swatch_columns }};"
             {% endif %}
@@ -140,7 +266,10 @@
                 endif
               %}
               <li
-                data-skip-node-update="true"
+                {% if render_show_more %}
+                  data-skip-node-update="true"
+                {% endif %}
+                data-label="{{ value.label }}"
                 class="
                   facets__inputs-list-item
                   {% if hidden_class %} {{ hidden_class }}{% endif %}
@@ -178,6 +307,13 @@
                     >
                       {% if value.image %}
                         {{ value.image | image_url: width: 48 | image_tag: class: 'facets__icon-pill-image', alt: '', width: 24, height: 24 }}
+                      {% elsif mapped_metaobject_type != blank %}
+                        {% render 'filter-metaobject-image',
+                          value: value,
+                          metaobject_type: mapped_metaobject_type,
+                          match_field: mapped_match_field,
+                          image_field: mapped_image_field
+                        %}
                       {% endif %}
                       <span class="facets__icon-pill-text">{{- value.label -}}</span>
                     </label>
@@ -291,6 +427,9 @@
               </li>
             {%- endfor -%}
           </ul>
+          {% if use_search_select %}
+            </facet-search-select-component>
+          {% endif %}
         </div>
         {% if render_show_more %}
           <button
@@ -1094,6 +1233,118 @@
     height: 100%;
     stroke-width: var(--border-width);
     stroke: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  .facet-search-select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .facet-search-select__field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid #c0dff6;
+    border-radius: 8px;
+    cursor: text;
+  }
+
+  .facet-search-select__field:focus-within {
+    outline: 1px solid #c0dff6;
+    outline-offset: 1px;
+  }
+
+  .facet-search-select__input {
+    appearance: none;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #1d1a17;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .facet-search-select__input::placeholder {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+  }
+
+  .facet-search-select__caret {
+    display: flex;
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    color: #5c554c;
+    pointer-events: none;
+  }
+
+  .facet-search-select.is-open .facet-search-select__caret {
+    transform: rotate(180deg);
+  }
+
+  .facet-search-select__empty {
+    display: none;
+    margin: 4px 0 0;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+    background: #fff;
+    border: 1px solid #c0dff6;
+    border-radius: 8px;
+  }
+
+  .facet-search-select.is-open.is-empty .facet-search-select__empty {
+    display: block;
+  }
+
+  .facet-search-select__list {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-height: 240px;
+    margin-block-start: 4px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #c0dff6;
+    border-radius: 8px;
+  }
+
+  .facet-search-select:not(.is-open) .facet-search-select__list,
+  .facet-search-select.is-empty .facet-search-select__list,
+  .facets__inputs-wrapper .facet-search-select:not(.is-open) .facet-search-select__list,
+  .facets__inputs-wrapper .facet-search-select.is-empty .facet-search-select__list {
+    display: none;
+  }
+
+  .facet-search-select.is-open:not(.is-empty) .facet-search-select__list,
+  .facets__inputs-wrapper .facet-search-select.is-open:not(.is-empty) .facet-search-select__list {
+    display: flex;
+  }
+
+  .facet-search-select .facets__inputs-list-item {
+    padding: 0;
+  }
+
+  .facet-search-select .checkbox {
+    padding: 10px 12px;
+  }
+
+  .facet-search-select .checkbox:hover {
+    background: #ecf7ff;
+  }
+
+  .facet-search-select .facet-search-select__item--hidden {
+    display: none;
   }
 
   /* Position label text and handle overflow */

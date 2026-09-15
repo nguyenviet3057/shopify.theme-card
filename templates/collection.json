@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "custom_breadcrumbs_KaqLDm": {
       "type": "custom-breadcrumbs",
@@ -34,6 +34,7 @@
             "text_label_case": "default",
             "show_swatch_label": true,
             "show_filter_label": false,
+            "searchable_filter_labels": "Sets",
             "enable_sorting": true,
             "enable_grid_density": false,
             "background_color": "",

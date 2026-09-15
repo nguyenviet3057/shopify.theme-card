@@ -248,7 +248,7 @@
                         else
                           assign should_render_clear = false
                         endif
-                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id
+                        render 'list-filter', filter: filter, filter_style: block_settings.filter_style, active_value_count: active_value_count, should_render_clear: should_render_clear, show_swatch_label: block_settings.show_swatch_label, searchable_filter_labels: block_settings.searchable_filter_labels, sectionId: section.id
                       %}
                   {% endcase %}
                 {%- endfor -%}
@@ -540,7 +540,7 @@
 
                         assign active_value_count = filter.active_values | size
                         assign total_active_values = total_active_values | plus: active_value_count
-                        render 'list-filter', filter: filter, filter_style: 'vertical', active_value_count: active_value_count, should_render_clear: false, in_drawer: true, show_swatch_label: block_settings.show_swatch_label, sectionId: section.id
+                        render 'list-filter', filter: filter, filter_style: 'vertical', active_value_count: active_value_count, should_render_clear: false, in_drawer: true, show_swatch_label: block_settings.show_swatch_label, searchable_filter_labels: block_settings.searchable_filter_labels, sectionId: section.id
                       %}
                   {% endcase %}
                 {%- endfor -%}
@@ -602,7 +602,7 @@
       background-color: #fff;
       padding: 16px;
       border-radius: 12px;
-      grid-row: 1 / span 2;
+      grid-row: 1;
       align-self: start;
       height: max-content;
       min-height: 0;
@@ -904,9 +904,11 @@
       align-items: center;
       gap: var(--gap-sm);
       padding-block: 0;
-      margin-bottom: 24px;
-      min-height: 0;
-      height: auto;
+      margin-bottom: 0;
+      min-height: var(--collection-toolbar-height, 44px);
+      height: max-content;
+      position: relative;
+      z-index: 2;
     }
   }
 
@@ -1076,6 +1078,11 @@
     @media screen and (min-width: 750px) {
       gap: var(--gap-sm);
     }
+  }
+
+  .facets__inputs-wrapper .facet-search-select:not(.is-open) .facet-search-select__list,
+  .facets__inputs-wrapper .facet-search-select.is-empty .facet-search-select__list {
+    display: none;
   }
 
   @media screen and (min-width: 750px) {
@@ -1611,6 +1618,14 @@
       "id": "show_swatch_label",
       "label": "t:settings.show_swatch_label",
       "default": false,
+      "visible_if": "{{ block.settings.enable_filtering == true }}"
+    },
+    {
+      "type": "text",
+      "id": "searchable_filter_labels",
+      "label": "t:settings.searchable_filter_labels",
+      "info": "t:info.searchable_filter_labels",
+      "default": "Sets",
       "visible_if": "{{ block.settings.enable_filtering == true }}"
     },
     {
