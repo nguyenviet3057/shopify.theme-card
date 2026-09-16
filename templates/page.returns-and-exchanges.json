@@ -7,473 +7,473 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
-  "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+ {
+    "sections": {
+      "main": {
+        "type": "main-page",
+        "blocks": {
+          "heading": {
+            "type": "text",
+            "name": "t:names.title",
+            "settings": {
+              "text": "<h1>{{ closest.page.title }}</h1>",
+              "width": "100%",
+              "max_width": "normal",
+              "alignment": "left",
+              "type_preset": "h2",
+              "font": "var(--font-body--family)",
+              "font_size": "1rem",
+              "line_height": "normal",
+              "letter_spacing": "normal",
+              "case": "none",
+              "wrap": "pretty",
+              "text_color": "",
+              "background": false,
+              "background_color": "#00000026",
+              "corner_radius": 0,
+              "padding-block-start": 0,
+              "padding-block-end": 0,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0
+            },
+            "blocks": {}
           },
-          "blocks": {}
+          "page-content": {
+            "type": "page-content",
+            "settings": {
+              "text_color": ""
+            },
+            "blocks": {}
+          }
         },
-        "page-content": {
-          "type": "page-content",
-          "settings": {
-            "text_color": ""
-          },
-          "blocks": {}
+        "block_order": [
+          "heading",
+          "page-content"
+        ],
+        "disabled": true,
+        "settings": {
+          "content_direction": "column",
+          "gap": 32,
+          "background_color": "{{ settings.color_palette.background }}",
+          "padding-block-start": 40,
+          "padding-block-end": 80
         }
       },
-      "block_order": [
-        "heading",
-        "page-content"
-      ],
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 80
+      "section_Gqbbdp": {
+        "type": "section",
+        "blocks": {
+          "container_yYqHfj": {
+            "type": "container",
+            "name": "RETURNS AND EXCHANGES",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "8px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 0,
+              "padding-block-end": 0,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_4xeiax": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>RETURNS AND EXCHANGES</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h3",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_kk4jpU": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<p>Choose Carefully, we <strong>do not</strong> refund for incorrect choice / change of mind.<br/>You can exchange new, unopened items sold and fulfilled by The Games Cube PTY LTD within 14 days of delivery/ Purchase.</p>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 8,
+                  "padding-block-end": 8,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              }
+            },
+            "block_order": [
+              "text_4xeiax",
+              "text_kk4jpU"
+            ]
+          },
+          "container_3LNiJd": {
+            "type": "container",
+            "name": "Non-Returnable Items",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "16px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 8,
+              "padding-block-end": 8,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_RcJAMK": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>Non-Returnable Items</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h4",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_KWBdA4": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<p>Change of mind returns will not be provided for: </p><ul><li>Gift cards</li><li>TCG singles</li><li>Event entry fees</li><li>Clearance or sale items</li></ul>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              }
+            },
+            "block_order": [
+              "text_RcJAMK",
+              "text_KWBdA4"
+            ]
+          },
+          "container_wbiWRm": {
+            "type": "container",
+            "name": "Banned List Guarantee",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "16px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 8,
+              "padding-block-end": 8,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_zJGykg": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>Banned List Guarantee</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h4",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_9r6PLP": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<p> If you purchase a card and it is banned up to 14 days afterwards, you may return the card to us for a full refund in store credit within 14 days of the ban announcement. Alternatively, we may offer a partial refund in store credit if you prefer to keep the card.</p>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              }
+            },
+            "block_order": [
+              "text_zJGykg",
+              "text_9r6PLP"
+            ]
+          },
+          "container_GnR8Km": {
+            "type": "container",
+            "name": "Faulty Goods",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "16px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 8,
+              "padding-block-end": 8,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_zLeJFm": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>Faulty Goods</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h4",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_RUyNcx": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<p>If you believe an item is faulty, you may have rights to a remedy under the Australian Consumer Law (ACL).  You can choose a refund or exchange if an item has a major problem. This is when the item:</p><ul><li> has a problem that would have stopped someone from buying the item if they had known about it;</li><li> is unsafe; </li><li> is significantly different from the sample or description; or</li><li>doesn’t do what we said it would, or what you asked for and can’t be easily fixed.</li></ul><p>Alternatively, you can choose to keep the item, and we will compensate you for any drop in value.  If the problem is not major, we will repair / replace the item within a reasonable time.  Please keep your proof of purchase – e.g. your receipt.<br/><br/>** If we make an exception we will refund your order minus any fees from your original transaction.</p>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              }
+            },
+            "block_order": [
+              "text_zLeJFm",
+              "text_RUyNcx"
+            ]
+          }
+        },
+        "block_order": [
+          "container_yYqHfj",
+          "container_3LNiJd",
+          "container_wbiWRm",
+          "container_GnR8Km"
+        ],
+        "name": "t:names.custom_section",
+        "settings": {
+          "content_direction": "column",
+          "vertical_on_mobile": true,
+          "horizontal_alignment": "flex-start",
+          "vertical_alignment": "center",
+          "align_baseline": false,
+          "horizontal_alignment_flex_direction_column": "flex-start",
+          "vertical_alignment_flex_direction_column": "center",
+          "gap": 8,
+          "section_width": "page-width",
+          "section_height": "small",
+          "section_height_custom": 50,
+          "background_media": "none",
+          "background_color": "{{ settings.color_palette.color3 }}",
+          "video_position": "cover",
+          "background_image_position": "cover",
+          "toggle_overlay": false,
+          "overlay_color": "#00000026",
+          "overlay_style": "solid",
+          "gradient_direction": "to top",
+          "border": "none",
+          "border_width": 1,
+          "border_opacity": 100,
+          "border_color": "",
+          "border_radius": 0,
+          "padding-block-start": 32,
+          "padding-block-end": 32
+        }
       }
     },
-    "section_Gqbbdp": {
-      "type": "section",
-      "blocks": {
-        "container_yYqHfj": {
-          "type": "container",
-          "name": "RETURNS AND EXCHANGES",
-          "settings": {
-            "layout": "flex",
-            "content_width": "full-width",
-            "custom_width": "",
-            "custom_height": "",
-            "direction": "column",
-            "justify_content": "start",
-            "align_items": "stretch",
-            "columns": 3,
-            "rows": 2,
-            "gap": "8px",
-            "auto_flow": "row",
-            "justify_items": "stretch",
-            "grid_align_items": "stretch",
-            "wrap": "nowrap",
-            "background_color": "",
-            "overlay_color": "transparent",
-            "overlay_opacity": 100,
-            "border_width": "",
-            "border_style": "none",
-            "border_color": "",
-            "border_radius": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "margin-block-start": 0,
-            "margin-block-end": 0,
-            "margin-inline-start": 0,
-            "margin-inline-end": 0
-          },
-          "blocks": {
-            "text_4xeiax": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p><strong>RETURNS AND EXCHANGES</strong></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_kk4jpU": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Choose Carefully, we <strong>do not</strong> refund for incorrect choice / change of mind.<br/>You can exchange new, unopened items sold and fulfilled by The Games Cube PTY LTD within 14 days of delivery/ Purchase.</p>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 8,
-                "padding-block-end": 8,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_4xeiax",
-            "text_kk4jpU"
-          ]
-        },
-        "container_3LNiJd": {
-          "type": "container",
-          "name": "Non-Returnable Items",
-          "settings": {
-            "layout": "flex",
-            "content_width": "full-width",
-            "custom_width": "",
-            "custom_height": "",
-            "direction": "column",
-            "justify_content": "start",
-            "align_items": "stretch",
-            "columns": 3,
-            "rows": 2,
-            "gap": "16px",
-            "auto_flow": "row",
-            "justify_items": "stretch",
-            "grid_align_items": "stretch",
-            "wrap": "nowrap",
-            "background_color": "",
-            "overlay_color": "transparent",
-            "overlay_opacity": 100,
-            "border_width": "",
-            "border_style": "none",
-            "border_color": "",
-            "border_radius": "",
-            "padding-block-start": 8,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "margin-block-start": 0,
-            "margin-block-end": 0,
-            "margin-inline-start": 0,
-            "margin-inline-end": 0
-          },
-          "blocks": {
-            "text_RcJAMK": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p><strong>Non-Returnable Items</strong></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_KWBdA4": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>Change of mind returns will not be provided for: </p><ul><li>Gift cards</li><li>TCG singles</li><li>Event entry fees</li><li>Clearance or sale items</li></ul>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_RcJAMK",
-            "text_KWBdA4"
-          ]
-        },
-        "container_wbiWRm": {
-          "type": "container",
-          "name": "Banned List Guarantee",
-          "settings": {
-            "layout": "flex",
-            "content_width": "full-width",
-            "custom_width": "",
-            "custom_height": "",
-            "direction": "column",
-            "justify_content": "start",
-            "align_items": "stretch",
-            "columns": 3,
-            "rows": 2,
-            "gap": "16px",
-            "auto_flow": "row",
-            "justify_items": "stretch",
-            "grid_align_items": "stretch",
-            "wrap": "nowrap",
-            "background_color": "",
-            "overlay_color": "transparent",
-            "overlay_opacity": 100,
-            "border_width": "",
-            "border_style": "none",
-            "border_color": "",
-            "border_radius": "",
-            "padding-block-start": 8,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "margin-block-start": 0,
-            "margin-block-end": 0,
-            "margin-inline-start": 0,
-            "margin-inline-end": 0
-          },
-          "blocks": {
-            "text_zJGykg": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p><strong>Banned List Guarantee</strong></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_9r6PLP": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p> If you purchase a card and it is banned up to 14 days afterwards, you may return the card to us for a full refund in store credit within 14 days of the ban announcement. Alternatively, we may offer a partial refund in store credit if you prefer to keep the card.</p>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_zJGykg",
-            "text_9r6PLP"
-          ]
-        },
-        "container_GnR8Km": {
-          "type": "container",
-          "name": "Faulty Goods",
-          "settings": {
-            "layout": "flex",
-            "content_width": "full-width",
-            "custom_width": "",
-            "custom_height": "",
-            "direction": "column",
-            "justify_content": "start",
-            "align_items": "stretch",
-            "columns": 3,
-            "rows": 2,
-            "gap": "16px",
-            "auto_flow": "row",
-            "justify_items": "stretch",
-            "grid_align_items": "stretch",
-            "wrap": "nowrap",
-            "background_color": "",
-            "overlay_color": "transparent",
-            "overlay_opacity": 100,
-            "border_width": "",
-            "border_style": "none",
-            "border_color": "",
-            "border_radius": "",
-            "padding-block-start": 8,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0,
-            "margin-block-start": 0,
-            "margin-block-end": 0,
-            "margin-inline-start": 0,
-            "margin-inline-end": 0
-          },
-          "blocks": {
-            "text_zLeJFm": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<p><strong>Faulty Goods</strong></p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_RUyNcx": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>If you believe an item is faulty, you may have rights to a remedy under the Australian Consumer Law (ACL).  You can choose a refund or exchange if an item has a major problem. This is when the item:</p><ul><li> has a problem that would have stopped someone from buying the item if they had known about it;</li><li> is unsafe; </li><li> is significantly different from the sample or description; or</li><li>doesn’t do what we said it would, or what you asked for and can’t be easily fixed.</li></ul><p>Alternatively, you can choose to keep the item, and we will compensate you for any drop in value.  If the problem is not major, we will repair / replace the item within a reasonable time.  Please keep your proof of purchase – e.g. your receipt.<br/><br/>** If we make an exception we will refund your order minus any fees from your original transaction.</p>",
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_zLeJFm",
-            "text_RUyNcx"
-          ]
-        }
-      },
-      "block_order": [
-        "container_yYqHfj",
-        "container_3LNiJd",
-        "container_wbiWRm",
-        "container_GnR8Km"
-      ],
-      "name": "t:names.custom_section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 8,
-        "section_width": "page-width",
-        "section_height": "small",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.color3 }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 32,
-        "padding-block-end": 32
-      }
-    }
-  },
-  "order": [
-    "main",
-    "section_Gqbbdp"
-  ]
-}
+    "order": [
+      "main",
+      "section_Gqbbdp"
+    ]
+  }

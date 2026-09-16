@@ -29,7 +29,7 @@
     }
 
     .breadcrumbs__link {
-      text-decoration: underline;
+      /* text-decoration: underline; */
       color: {{ section.settings.link_color }};
     }
 
@@ -85,22 +85,20 @@
               <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
             </li>
           {%- when 'collection' -%}
-            {%- if collection.handle -%}
-              {%- if current_tags -%}
-                <li class="breadcrumbs__item">
-                  {{ collection.title | link_to: collection.url }}
-                </li>
-                <li class="breadcrumbs__item">
-                  {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
-                  <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">
-                    {{- current_tags | join: ' + ' -}}
-                  </a>
-                </li>
-              {%- else -%}
-                <li class="breadcrumbs__item">
-                  <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
-                </li>
-              {%- endif -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item">
+                {{ collection.title | link_to: collection.url }}
+              </li>
+              <li class="breadcrumbs__item">
+                {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">
+                  {{- current_tags | join: ' + ' -}}
+                </a>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+              </li>
             {%- endif -%}
           {%- when 'blog' -%}
             {%- if current_tags -%}
@@ -206,3 +204,13 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'collection' and collection.handle -%}"
+  to: "{%- when 'collection' -%}"
+  position: 2869..2894
+{% endcomment %}

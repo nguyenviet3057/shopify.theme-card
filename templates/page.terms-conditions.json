@@ -1485,7 +1485,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>14. Website Information</strong></p>",
+                "text": "<p><strong>13. Website Information</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1578,7 +1578,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>15. Limitation of Liability</strong></p>",
+                "text": "<p><strong>14. Limitation of Liability</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1671,7 +1671,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>16. Privacy</strong></p>",
+                "text": "<p><strong>15. Privacy</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1764,7 +1764,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>17. Changes to These Terms</strong></p>",
+                "text": "<p><strong>16. Changes to These Terms</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1857,7 +1857,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>18. Governing Law</strong></p>",
+                "text": "<p><strong>17. Governing Law</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1950,7 +1950,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p><strong>19. Australian Consumer Law</strong></p>",
+                "text": "<p><strong>18. Australian Consumer Law</strong></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",

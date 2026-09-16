@@ -44,10 +44,10 @@
   endif
 %}
 
-{% render 'contrast-override',
-  background_color: block.settings.background_color,
-  section_id: block.id,
-  skip_contrast: skip_contrast
+{% render 'contrast-override'
+  , background_color: block.settings.background_color
+  , section_id: block.id
+  , skip_contrast: skip_contrast
 %}
 
 <div
@@ -101,8 +101,7 @@
       --margin-inline-end: {{ block.settings['margin-inline-end'] }}px;
     {% endif %}
   "
-  {{ block.shopify_attributes }}
->
+  {{ block.shopify_attributes }}>
   {%- if block.settings.background_image != blank -%}
     <div class="container-block__media">
       {% liquid
@@ -116,14 +115,7 @@
         endif
       %}
       {{
-        block.settings.background_image
-        | image_url: width: 3840
-        | image_tag:
-          widths: '832, 1200, 1600, 1920, 2560, 3840',
-          sizes: '100vw',
-          loading: loading,
-          fetchpriority: fetch_priority,
-          class: 'container-block__image'
+        block.settings.background_image | image_url: width: 3840 | image_tag: widths: '832, 1200, 1600, 1920, 2560, 3840', sizes: '100vw', loading: loading, fetchpriority: fetch_priority, class: 'container-block__image'
       }}
     </div>
   {%- endif -%}
@@ -152,10 +144,7 @@
   }
 
   .container-block--page-width {
-    width: min(
-      var(--page-width) - var(--page-margin) * 2,
-      calc(100% - var(--page-margin) * 2)
-    );
+    width: min(var(--page-width) - var(--page-margin) * 2, calc(100% - var(--page-margin) * 2));
     margin-inline: var(--margin-inline-start, auto) var(--margin-inline-end, auto);
   }
 
@@ -227,439 +216,439 @@
 {% endstylesheet %}
 
 {% schema %}
-{
-  "name": "Container",
-  "tag": null,
-  "blocks": [
-    {
-      "type": "@theme"
-    },
-    {
-      "type": "@app"
-    },
-    {
-      "type": "_divider"
-    }
-  ],
-  "settings": [
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "options": [
-        {
-          "value": "flex",
-          "label": "Flexbox"
-        },
-        {
-          "value": "grid",
-          "label": "Grid"
-        }
-      ],
-      "default": "flex"
-    },
-    {
-      "type": "select",
-      "id": "content_width",
-      "label": "Content width",
-      "options": [
-        {
-          "value": "page-width",
-          "label": "Page width"
-        },
-        {
-          "value": "full-width",
-          "label": "Full width"
-        }
-      ],
-      "default": "full-width"
-    },
-    {
-      "type": "text",
-      "id": "custom_width",
-      "label": "Custom width",
-      "info": "Accepts px, %, vw, or clamp(). Leave empty to skip."
-    },
-    {
-      "type": "text",
-      "id": "custom_height",
-      "label": "Custom height",
-      "info": "Accepts px, %, vh, or clamp(). Leave empty to skip."
-    },
-    {
-      "type": "header",
-      "content": "Flexbox",
-      "visible_if": "{{ block.settings.layout == 'flex' }}"
-    },
-    {
-      "type": "select",
-      "id": "direction",
-      "label": "Direction",
-      "options": [
-        {
-          "value": "row",
-          "label": "Row - horizontal"
-        },
-        {
-          "value": "column",
-          "label": "Column - vertical"
-        },
-        {
-          "value": "row-reverse",
-          "label": "Row - reversed"
-        },
-        {
-          "value": "column-reverse",
-          "label": "Column - reversed"
-        }
-      ],
-      "default": "column",
-      "visible_if": "{{ block.settings.layout == 'flex' }}"
-    },
-    {
-      "type": "select",
-      "id": "justify_content",
-      "label": "Justify content",
-      "options": [
-        {
-          "value": "start",
-          "label": "Start"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "end",
-          "label": "End"
-        },
-        {
-          "value": "space-between",
-          "label": "Space between"
-        },
-        {
-          "value": "space-around",
-          "label": "Space around"
-        },
-        {
-          "value": "space-evenly",
-          "label": "Space evenly"
-        }
-      ],
-      "default": "start",
-      "visible_if": "{{ block.settings.layout == 'flex' }}"
-    },
-    {
-      "type": "select",
-      "id": "align_items",
-      "label": "Align items",
-      "options": [
-        {
-          "value": "start",
-          "label": "Start"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "end",
-          "label": "End"
-        },
-        {
-          "value": "stretch",
-          "label": "Stretch"
-        }
-      ],
-      "default": "stretch",
-      "visible_if": "{{ block.settings.layout == 'flex' }}"
-    },
-    {
-      "type": "header",
-      "content": "Grid",
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "number",
-      "id": "columns",
-      "label": "Columns",
-      "default": 3,
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "number",
-      "id": "rows",
-      "label": "Rows",
-      "default": 2,
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "text",
-      "id": "gap",
-      "label": "Gap",
-      "info": "Accepts px, %, vw, or clamp(). Leave empty for 0px."
-    },
-    {
-      "type": "select",
-      "id": "auto_flow",
-      "label": "Auto flow",
-      "options": [
-        {
-          "value": "row",
-          "label": "Row"
-        },
-        {
-          "value": "column",
-          "label": "Column"
-        }
-      ],
-      "default": "row",
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "select",
-      "id": "justify_items",
-      "label": "Justify items",
-      "options": [
-        {
-          "value": "start",
-          "label": "Start"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "end",
-          "label": "End"
-        },
-        {
-          "value": "stretch",
-          "label": "Stretch"
-        }
-      ],
-      "default": "stretch",
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "select",
-      "id": "grid_align_items",
-      "label": "Align items",
-      "options": [
-        {
-          "value": "start",
-          "label": "Start"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "end",
-          "label": "End"
-        },
-        {
-          "value": "stretch",
-          "label": "Stretch"
-        }
-      ],
-      "default": "stretch",
-      "visible_if": "{{ block.settings.layout == 'grid' }}"
-    },
-    {
-      "type": "select",
-      "id": "wrap",
-      "label": "Wrap",
-      "options": [
-        {
-          "value": "nowrap",
-          "label": "No wrap"
-        },
-        {
-          "value": "wrap",
-          "label": "Wrap"
-        }
-      ],
-      "default": "nowrap",
-      "visible_if": "{{ block.settings.layout == 'flex' }}"
-    },
-    {
-      "type": "header",
-      "content": "Background"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "alpha": true
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
-    },
-    {
-      "type": "color_background",
-      "id": "overlay_color",
-      "label": "Overlay color",
-      "default": "transparent"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Overlay opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 100
-    },
-    {
-      "type": "header",
-      "content": "Border"
-    },
-    {
-      "type": "text",
-      "id": "border_width",
-      "label": "Border width"
-    },
-    {
-      "type": "select",
-      "id": "border_style",
-      "label": "Border style",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "solid",
-          "label": "Solid"
-        },
-        {
-          "value": "dashed",
-          "label": "Dashed"
-        },
-        {
-          "value": "dotted",
-          "label": "Dotted"
-        },
-        {
-          "value": "double",
-          "label": "Double"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border color",
-      "alpha": true
-    },
-    {
-      "type": "text",
-      "id": "border_radius",
-      "label": "Border radius"
-    },
-    {
-      "type": "header",
-      "content": "Padding"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start",
-      "label": "Top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-block-end",
-      "label": "Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-inline-start",
-      "label": "Left",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "padding-inline-end",
-      "label": "Right",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Margin"
-    },
-    {
-      "type": "range",
-      "id": "margin-block-start",
-      "label": "Top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin-block-end",
-      "label": "Bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin-inline-start",
-      "label": "Left",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin-inline-end",
-      "label": "Right",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    }
-  ],
-  "presets": [
-    {
-      "name": "Container",
-      "category": "Layout"
-    }
-  ]
-}
-{% endschema %}
+  {
+    "name": "Container",
+    "tag": null,
+    "blocks": [
+      {
+        "type": "@theme"
+      },
+      {
+        "type": "@app"
+      },
+      {
+        "type": "_divider"
+      }
+    ],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "options": [
+          {
+            "value": "flex",
+            "label": "Flexbox"
+          },
+          {
+            "value": "grid",
+            "label": "Grid"
+          }
+        ],
+        "default": "flex"
+      },
+      {
+        "type": "select",
+        "id": "content_width",
+        "label": "Content width",
+        "options": [
+          {
+            "value": "page-width",
+            "label": "Page width"
+          },
+          {
+            "value": "full-width",
+            "label": "Full width"
+          }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "text",
+        "id": "custom_width",
+        "label": "Custom width",
+        "info": "Accepts px, %, vw, or clamp(). Leave empty to skip."
+      },
+      {
+        "type": "text",
+        "id": "custom_height",
+        "label": "Custom height",
+        "info": "Accepts px, %, vh, or clamp(). Leave empty to skip."
+      },
+      {
+        "type": "header",
+        "content": "Flexbox",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "select",
+        "id": "direction",
+        "label": "Direction",
+        "options": [
+          {
+            "value": "row",
+            "label": "Row - horizontal"
+          },
+          {
+            "value": "column",
+            "label": "Column - vertical"
+          },
+          {
+            "value": "row-reverse",
+            "label": "Row - reversed"
+          },
+          {
+            "value": "column-reverse",
+            "label": "Column - reversed"
+          }
+        ],
+        "default": "column",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "select",
+        "id": "justify_content",
+        "label": "Justify content",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          },
+          {
+            "value": "space-between",
+            "label": "Space between"
+          },
+          {
+            "value": "space-around",
+            "label": "Space around"
+          },
+          {
+            "value": "space-evenly",
+            "label": "Space evenly"
+          }
+        ],
+        "default": "start",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "select",
+        "id": "align_items",
+        "label": "Align items",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          }
+        ],
+        "default": "stretch",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "header",
+        "content": "Grid",
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "number",
+        "id": "columns",
+        "label": "Columns",
+        "default": 3,
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "number",
+        "id": "rows",
+        "label": "Rows",
+        "default": 2,
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "text",
+        "id": "gap",
+        "label": "Gap",
+        "info": "Accepts px, %, vw, or clamp(). Leave empty for 0px."
+      },
+      {
+        "type": "select",
+        "id": "auto_flow",
+        "label": "Auto flow",
+        "options": [
+          {
+            "value": "row",
+            "label": "Row"
+          },
+          {
+            "value": "column",
+            "label": "Column"
+          }
+        ],
+        "default": "row",
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "select",
+        "id": "justify_items",
+        "label": "Justify items",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          }
+        ],
+        "default": "stretch",
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "select",
+        "id": "grid_align_items",
+        "label": "Align items",
+        "options": [
+          {
+            "value": "start",
+            "label": "Start"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "End"
+          },
+          {
+            "value": "stretch",
+            "label": "Stretch"
+          }
+        ],
+        "default": "stretch",
+        "visible_if": "{{ block.settings.layout == 'grid' }}"
+      },
+      {
+        "type": "select",
+        "id": "wrap",
+        "label": "Wrap",
+        "options": [
+          {
+            "value": "nowrap",
+            "label": "No wrap"
+          },
+          {
+            "value": "wrap",
+            "label": "Wrap"
+          }
+        ],
+        "default": "nowrap",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "alpha": true
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background image"
+      },
+      {
+        "type": "color_background",
+        "id": "overlay_color",
+        "label": "Overlay color",
+        "default": "transparent"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Overlay opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Border"
+      },
+      {
+        "type": "text",
+        "id": "border_width",
+        "label": "Border width"
+      },
+      {
+        "type": "select",
+        "id": "border_style",
+        "label": "Border style",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "solid",
+            "label": "Solid"
+          },
+          {
+            "value": "dashed",
+            "label": "Dashed"
+          },
+          {
+            "value": "dotted",
+            "label": "Dotted"
+          },
+          {
+            "value": "double",
+            "label": "Double"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border color",
+        "alpha": true
+      },
+      {
+        "type": "text",
+        "id": "border_radius",
+        "label": "Border radius"
+      },
+      {
+        "type": "header",
+        "content": "Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding-block-start",
+        "label": "Top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-block-end",
+        "label": "Bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-inline-start",
+        "label": "Left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-inline-end",
+        "label": "Right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin-block-start",
+        "label": "Top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin-block-end",
+        "label": "Bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin-inline-start",
+        "label": "Left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin-inline-end",
+        "label": "Right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "Container",
+        "category": "Layout"
+      }
+    ]
+  }
+  {% endschema %}

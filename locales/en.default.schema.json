@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "categories": {
     "banners": "Banners",
     // Category for fundamental content blocks (text, images, buttons)
@@ -391,6 +391,7 @@
     "quick_order_list": "Quick order list",
     "row": "Row",
     "search": "Search",
+    "searchable_filter_labels": "Searchable select filters",
     "search_input": "Search input",
     "search_results": "Search results",
     "section": "Section",
@@ -1054,9 +1055,7 @@
     "row": "Row",
     "scroll_speed": "Time to next announcement",
     "search": "Search",
-    "searchable_filter_labels": "Searchable select filters",
     "search_icon": "Search icon",
-    // Setting for search bar placement in header
     "search_position": "Position",
     "search_row": "Row",
     "row_height": "Row height",
