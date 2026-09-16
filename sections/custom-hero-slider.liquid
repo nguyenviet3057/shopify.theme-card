@@ -1,23 +1,41 @@
 <style>
   .hero-carousel {
     position: relative;
-    overflow: hidden;
     width: 100%;
+    overflow: hidden;
+    display: grid;
+    container-type: inline-size;
   }
 
   .hero-carousel__track {
     display: flex;
+    grid-column: 1 / -1;
+    grid-row: 1;
     transition: transform 0.5s ease;
     will-change: transform;
   }
 
   .hero-carousel__slide {
-    position: relative;
     flex: 0 0 100%;
-    min-height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'media'
+      'content';
+    align-items: stretch;
+    gap: 16px 0;
+    aspect-ratio: auto;
+  }
+
+  .hero-carousel__media {
+    grid-area: media;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 8px;
   }
 
   .hero-carousel__image {
@@ -26,26 +44,39 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
-    border-radius: 8px;
+  }
+
+  .hero-carousel__image--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8e4dc;
+  }
+
+  .hero-carousel__image--placeholder svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero-carousel__content {
+    grid-area: content;
     position: relative;
     z-index: 1;
-    max-width: 450px;
-    padding: 2rem 2rem 4rem;
-    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    color: #1d1a17;
     text-align: center;
-    background: #4A4A4A80;
+    background: transparent;
   }
 
   .hero-carousel__content--left {
-    margin-right: auto;
     text-align: left;
   }
+
   .hero-carousel__content--right {
-    margin-left: auto;
     text-align: right;
   }
 
@@ -53,222 +84,236 @@
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
-    color: #f7f1e4;
-    {% comment %} margin: 0 0 1rem;
-  {% endcomment %}
-  {% comment %} text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-{% endcomment %}
-}
-
-.hero-carousel__heading {
-  font-size: 44px;
-  font-weight: 600;
-  margin: 0;
-  color: #f7f1e4;
-  padding-bottom: 16px;
-}
-
-.hero-carousel__description {
-  font-size: 14px;
-  color: #f7f1e4;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0 0 2rem;
-  text-align: left;
-}
-
-.hero-carousel__buttons {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-carousel__content--left .hero-carousel__buttons {
-  justify-content: flex-start;
-}
-.hero-carousel__content--right .hero-carousel__buttons {
-  justify-content: flex-end;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 32px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 14px;
-  {% comment %} letter-spacing: 0.04em;
-{% endcomment %}
-border-radius: 8px;
-text-decoration: none;
-transition: background 0.2s ease
-, color 0.2s ease
-, gap 0.2s ease;
-}
-
-.button--primary {
-  background: #1D1A17;
-  color: #F7F1E4;
-}
-
-.button--secondary {
-  background: transparent;
-  color: #F7F1E4;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.button--secondary svg {
-  transition: transform 0.2s ease;
-}
-
-.button--secondary:hover svg {
-  transform: translateX(3px);
-}
-
-/* --- Individual progress bars --- */
-.hero-carousel__dots {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 2;
-}
-
-.hero-carousel__dot {
-  width: 64px;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.35);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-carousel__dot-fill {
-  display: block;
-  height: 100%;
-  width: 100%;
-  background: #ffffff;
-  border-radius: inherit;
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-/* Active slide without autoplay: show filled */
-.hero-carousel__dot.is-active:not(.is-progressing) .hero-carousel__dot-fill {
-  transform: scaleX(1);
-}
-
-.hero-carousel__dot.is-progressing .hero-carousel__dot-fill {
-  animation: hero-dot-progress var(--hero-progress-ms, 5000ms) linear forwards;
-}
-
-.hero-carousel__dot.is-paused .hero-carousel__dot-fill {
-  animation-play-state: paused;
-}
-
-@keyframes hero-dot-progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-/* Tablet */
-@media screen and (min-width: 750px) {
-  .hero-carousel__slide {
-    min-height: 420px;
-  }
-}
-
-/* Desktop */
-{% comment %} @media screen and (min-width: 990px) {
-  .hero-carousel__slide {
-    min-height: 480px;
-  }
-}
-{% endcomment %}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .hero-carousel__track {
-    transition: none;
-  }
-  .hero-carousel__dot-fill {
-    animation: none !important;
-  }
-
-  .hero-carousel__dot.is-active .hero-carousel__dot-fill {
-    transform: scaleX(1);
-  }
-}
-
-/* --- Mobile: buttons move below the image, dots stay on the image --- */
-.hero-carousel__buttons-mobile {
-  display: none;
-}
-
-@media screen and (max-width: 750px) {
-  .hero-carousel__slide {
-    min-height: 320px;
-  }
-
-  .hero-carousel__content {
-    padding: 1.25rem;
+    color: #1d1a17;
+    margin: 0 0 0.5rem;
   }
 
   .hero-carousel__heading {
-    /* font-size: 26px; */
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: #1d1a17;
     padding-bottom: 10px;
   }
 
   .hero-carousel__description {
-    font-size: 13px;
-    line-height: 1.6;
-    margin: 0 0 0.5rem;
+    font-size: 14px;
+    color: #1d1a17;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0 0 1.25rem;
   }
 
-  /* hide the inline buttons that sit on top of the image */
-  .hero-carousel__content .hero-carousel__buttons {
-    display: none;
+  .hero-carousel__content--center .hero-carousel__description {
+    text-align: center;
+  }
+
+  .hero-carousel__content--left .hero-carousel__description {
+    text-align: left;
+  }
+
+  .hero-carousel__content--right .hero-carousel__description {
+    text-align: right;
+  }
+
+  .hero-carousel__buttons {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-carousel__content--left .hero-carousel__buttons {
+    justify-content: flex-start;
+  }
+
+  .hero-carousel__content--right .hero-carousel__buttons {
+    justify-content: flex-end;
+  }
+
+  .hero-carousel .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, gap 0.2s ease;
+  }
+
+  .hero-carousel .button--primary {
+    background: #1d1a17;
+    color: #f7f1e4;
+  }
+
+  .hero-carousel .button--secondary {
+    background: transparent;
+    color: #1d1a17;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-carousel .button--secondary svg {
+    transition: transform 0.2s ease;
+  }
+
+  .hero-carousel .button--secondary:hover svg {
+    transform: translateX(3px);
   }
 
   .hero-carousel__dots {
-    {% comment %} bottom: 16px;
-  {% endcomment %}
-}
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    z-index: 2;
+    transform: translateY(calc(100cqw * 10 / 16 - 16px - 100%));
+  }
 
-/* show the separate buttons block below the image instead */
-.hero-carousel__buttons-mobile {
-  display: block;
-  padding: 12px 0 0;
-}
+  .hero-carousel__dot {
+    width: 64px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+  }
 
-.mble-btn {
-  color: #000000;
-}
+  .hero-carousel__dot-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    border-radius: inherit;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
 
-.hero-carousel__buttons-mobile-slide {
-  display: none;
-}
+  .hero-carousel__dot.is-active:not(.is-progressing) .hero-carousel__dot-fill {
+    transform: scaleX(1);
+  }
 
-.hero-carousel__buttons-mobile-slide.is-active {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-}
-}
+  .hero-carousel__dot.is-progressing .hero-carousel__dot-fill {
+    animation: hero-dot-progress var(--hero-progress-ms, 5000ms) linear forwards;
+  }
+
+  .hero-carousel__dot.is-paused .hero-carousel__dot-fill {
+    animation-play-state: paused;
+  }
+
+  @keyframes hero-dot-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .hero-carousel {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0;
+    }
+
+    .hero-carousel__dots {
+      grid-column: 2;
+      align-self: end;
+      transform: none;
+      margin-bottom: 16px;
+    }
+
+    .hero-carousel__slide {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'content media';
+      gap: 16px 0;
+      min-height: 360px;
+      background-color: var(--hero-slide-bg);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .hero-carousel__media {
+      aspect-ratio: auto;
+      min-height: 360px;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .hero-carousel__content {
+      max-width: none;
+      padding-block: 1rem;
+      padding-inline: 12px;
+    }
+
+    .hero-carousel__heading {
+      font-size: 32px;
+      padding-bottom: 12px;
+    }
+
+    .hero-carousel__description,
+    .hero-carousel__content--center .hero-carousel__description,
+    .hero-carousel__content--right .hero-carousel__description {
+      margin: 0 0 1.5rem;
+      text-align: left;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-carousel {
+      grid-template-columns: 1fr 2fr;
+      column-gap: 0;
+    }
+
+    .hero-carousel__slide {
+      grid-template-columns: 1fr 2fr;
+      gap: 16px 0;
+      min-height: 420px;
+    }
+
+    .hero-carousel__media {
+      min-height: 420px;
+    }
+
+    .hero-carousel__content {
+      padding-block: 1.5rem;
+      padding-inline: 12px;
+    }
+
+    .hero-carousel__heading {
+      font-size: 44px;
+      padding-bottom: 16px;
+    }
+
+    .hero-carousel__description {
+      margin: 0 0 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-carousel__track {
+      transition: none;
+    }
+
+    .hero-carousel__dot-fill {
+      animation: none !important;
+    }
+
+    .hero-carousel__dot.is-active .hero-carousel__dot-fill {
+      transform: scaleX(1);
+    }
+  }
 </style>
 
 {% liquid
@@ -284,30 +329,32 @@ transition: background 0.2s ease
     id="hero-carousel-{{ section.id }}"
     data-autoplay="{{ section.settings.autoplay }}"
     data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
-    style="--hero-progress-ms: {{ section.settings.autoplay_speed | times: 1000 }}ms;">
+    style="--hero-progress-ms: {{ section.settings.autoplay_speed | times: 1000 }}ms; --hero-slide-bg: {{ section.settings.slide_background_color }};">
     <div class="hero-carousel__track">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
           <div class="hero-carousel__slide" {{ block.shopify_attributes }}>
-            {% if block.settings.image %}
-              <img
-                class="hero-carousel__image"
-                src="{{ block.settings.image | image_url: width: 1600 }}"
-                srcset="
-                  {{ block.settings.image | image_url: width: 800 }} 800w,
-                  {{ block.settings.image | image_url: width: 1200 }} 1200w,
-                  {{ block.settings.image | image_url: width: 1600 }} 1600w
-                "
-                sizes="100vw"
-                width="{{ block.settings.image.width }}"
-                height="{{ block.settings.image.height }}"
-                alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
-                loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}">
-            {% else %}
-              <div class="hero-carousel__image hero-carousel__image--placeholder">
-                {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              </div>
-            {% endif %}
+            <div class="hero-carousel__media">
+              {% if block.settings.image %}
+                <img
+                  class="hero-carousel__image"
+                  src="{{ block.settings.image | image_url: width: 1600 }}"
+                  srcset="
+                    {{ block.settings.image | image_url: width: 800 }} 800w,
+                    {{ block.settings.image | image_url: width: 1200 }} 1200w,
+                    {{ block.settings.image | image_url: width: 1600 }} 1600w
+                  "
+                  sizes="(min-width: 990px) 66vw, (min-width: 750px) 50vw, 100vw"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
+                  loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}">
+              {% else %}
+                <div class="hero-carousel__image hero-carousel__image--placeholder">
+                  {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
 
             <div class="hero-carousel__content hero-carousel__content--{{ block.settings.text_align }}">
               {% if block.settings.subheading != blank %}
@@ -361,38 +408,6 @@ transition: background 0.2s ease
       </div>
     {% endif %}
   </div>
-
-  <div class="hero-carousel__buttons-mobile">
-    {% for block in section.blocks %}
-      {% if block.type == 'slide' %}
-        <div class="hero-carousel__buttons-mobile-slide{% if forloop.first %} is-active{% endif %}" data-buttons-index="{{ forloop.index0 }}">
-          {% if block.settings.button_label != blank %}
-            <a href="{{ block.settings.button_link | default: '#' }}" class="button button--primary">
-              {{- block.settings.button_label -}}
-            </a>
-          {% endif %}
-          {% if block.settings.button_label_2 != blank %}
-            <a href="{{ block.settings.button_link_2 | default: '#' }}" class="
-                button mble-btn
-                mble-btn button--secondary
-              ">
-              {{ block.settings.button_label_2 }}
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </a>
-          {% endif %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
 </div>
 
 <script>
@@ -403,7 +418,6 @@ transition: background 0.2s ease
     var track = root.querySelector('.hero-carousel__track');
     var slides = root.querySelectorAll('.hero-carousel__slide');
     var dots = root.querySelectorAll('.hero-carousel__dot');
-    var mobileButtonSlides = root.parentElement.querySelectorAll('.hero-carousel__buttons-mobile-slide');
     var total = slides.length;
     var current = 0;
     var autoplay = root.dataset.autoplay === 'true';
@@ -445,10 +459,6 @@ transition: background 0.2s ease
         resetProgress(dot);
         dot.classList.toggle('is-active', isActive);
         if (isActive) startProgress(dot);
-      });
-  
-      mobileButtonSlides.forEach(function (slide) {
-        slide.classList.toggle('is-active', parseInt(slide.dataset.buttonsIndex, 10) === current);
       });
     }
   
@@ -499,6 +509,13 @@ transition: background 0.2s ease
         "id": "background_color",
         "label": "t:settings.background_color",
         "placeholder": "t:settings.default"
+      },
+      {
+        "type": "color",
+        "id": "slide_background_color",
+        "label": "t:settings.slide_background_color",
+        "placeholder": "t:settings.default",
+        "default": "{{ settings.color_palette.background }}"
       },
       {
         "type": "select",

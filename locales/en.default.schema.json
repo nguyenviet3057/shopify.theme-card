@@ -756,6 +756,7 @@
     "autoplay": "Autoplay",
     "background": "Background",
     "background_color": "Background color",
+    "slide_background_color": "Slide background",
     "background_overlay": "Background overlay",
     "badge_corner_radius": "Corner radius",
     "background_media": "Background media",
