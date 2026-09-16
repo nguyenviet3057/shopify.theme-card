@@ -1,0 +1,49 @@
+{%- doc -%}
+  Renders a metaobject image for a collection filter value by matching a text field.
+
+  @param {object} value - The filter value
+  @param {string} metaobject_type - Metaobject type handle, e.g. game
+  @param {string} match_field - Field key to compare with the filter value, e.g. name
+  @param {string} image_field - Image field key, e.g. logo
+{%- enddoc -%}
+
+{% liquid
+  if metaobject_type != blank and value != blank
+    assign match_label = value.label | strip
+    assign match_value = value.value | strip
+    assign handle_from_label = match_label | handleize
+    assign handle_from_value = match_value | handleize
+    assign match_label_down = match_label | downcase
+    assign match_value_down = match_value | downcase
+    assign definition = shop.metaobjects[metaobject_type]
+
+    if definition != blank
+      for candidate in definition.values
+        assign candidate_field = candidate[match_field]
+        assign candidate_match = candidate_field.value | default: candidate_field | append: '' | strip
+        assign candidate_match_down = candidate_match | downcase
+        assign candidate_handle = candidate.system.handle
+        if candidate_match == match_label or candidate_match == match_value or candidate_match_down == match_label_down or candidate_match_down == match_value_down or candidate_handle == handle_from_label or candidate_handle == handle_from_value
+          assign entry = candidate
+          break
+        endif
+      endfor
+    endif
+
+    if entry == blank and definition != blank and handle_from_label != blank
+      assign entry = definition[handle_from_label]
+    endif
+
+    if entry == blank and definition != blank and handle_from_value != blank and handle_from_value != handle_from_label
+      assign entry = definition[handle_from_value]
+    endif
+
+    if entry != blank
+      assign image_drop = entry[image_field]
+      assign image = image_drop.value | default: image_drop
+      if image != blank
+        echo image | image_url: width: 48 | image_tag: class: 'facets__icon-pill-image', alt: '', width: 24, height: 24
+      endif
+    endif
+  endif
+%}

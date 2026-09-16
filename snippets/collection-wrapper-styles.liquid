@@ -48,10 +48,26 @@
     }
   }
 
+  /*
+    Keep filters and results on one row so the left column can grow
+    (open dropdowns, extra options) without stretching the toolbar row
+    or adding space above the product list.
+  */
   .collection-wrapper:has(.facets-product-toolbar) {
     @media screen and (min-width: 750px) {
-      grid-template-rows: max-content auto;
+      --collection-toolbar-height: 44px;
+      --collection-toolbar-gap: 24px;
+
+      grid-template-rows: auto;
       align-items: start;
+    }
+  }
+
+  .collection-wrapper:has(.facets--vertical):has(.facets-product-toolbar) .main-collection-grid {
+    @media screen and (min-width: 750px) {
+      grid-row: 1;
+      align-self: start;
+      padding-block-start: calc(var(--collection-toolbar-height) + var(--collection-toolbar-gap));
     }
   }
 

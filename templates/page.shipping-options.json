@@ -1,0 +1,520 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "sections": {
+      "main": {
+        "type": "main-page",
+        "blocks": {
+          "heading": {
+            "type": "text",
+            "name": "t:names.title",
+            "settings": {
+              "text": "<h1>{{ closest.page.title }}</h1>",
+              "width": "100%",
+              "max_width": "normal",
+              "alignment": "left",
+              "type_preset": "h2",
+              "font": "var(--font-body--family)",
+              "font_size": "1rem",
+              "line_height": "normal",
+              "letter_spacing": "normal",
+              "case": "none",
+              "wrap": "pretty",
+              "text_color": "",
+              "background": false,
+              "background_color": "#00000026",
+              "corner_radius": 0,
+              "padding-block-start": 0,
+              "padding-block-end": 0,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0
+            },
+            "blocks": {}
+          },
+          "page-content": {
+            "type": "page-content",
+            "settings": {
+              "text_color": ""
+            },
+            "blocks": {}
+          }
+        },
+        "block_order": [
+          "heading",
+          "page-content"
+        ],
+        "disabled": true,
+        "settings": {
+          "content_direction": "column",
+          "gap": 32,
+          "background_color": "{{ settings.color_palette.background }}",
+          "padding-block-start": 40,
+          "padding-block-end": 80
+        }
+      },
+      "section_aJJKhm": {
+        "type": "section",
+        "blocks": {
+          "container_amGgPr": {
+            "type": "container",
+            "name": "SHIPPING OPTIONS",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "8px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 0,
+              "padding-block-end": 0,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_cyY9HR": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>SHIPPING OPTIONS</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h3",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "container_Jy9aBd": {
+                "type": "container",
+                "name": "Container",
+                "settings": {
+                  "layout": "flex",
+                  "content_width": "full-width",
+                  "custom_width": "",
+                  "custom_height": "",
+                  "direction": "column",
+                  "justify_content": "start",
+                  "align_items": "stretch",
+                  "columns": 3,
+                  "rows": 2,
+                  "gap": "16px",
+                  "auto_flow": "row",
+                  "justify_items": "stretch",
+                  "grid_align_items": "stretch",
+                  "wrap": "nowrap",
+                  "background_color": "",
+                  "overlay_color": "transparent",
+                  "overlay_opacity": 100,
+                  "border_width": "",
+                  "border_style": "none",
+                  "border_color": "",
+                  "border_radius": "",
+                  "padding-block-start": 8,
+                  "padding-block-end": 8,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0,
+                  "margin-block-start": 0,
+                  "margin-block-end": 0,
+                  "margin-inline-start": 0,
+                  "margin-inline-end": 0
+                },
+                "blocks": {
+                  "text_WdDiyU": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>If items are ordered before 12pm, they will be shipped same day!!</strong></p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_QGDHte": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p>For our standard domestic shipping, letters and parcels are sent via Australia Post.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_bNVTg3": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>Regular Postage: </strong>Orders within Australia can be expected approximately 1-7 working days after the order is dispatched. Regular post is at buyer's risk.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_i7RqW6": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>Express Postage: </strong>When you need an item delivered fast, a prepaid Express Post envelope can get it there the next business day. Next business day delivery to remote areas and roadside delivery addresses is not guaranteed.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_NwHgzc": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>Signature of Delivery:  </strong>Want to know your item has been delivered and signed for? Signature on Delivery captures a signature of the recipient once the item has been delivered.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_f7pqtA": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>2hr Click and Collect: </strong>Pick up your items after 2 hours instore.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  },
+                  "text_PrgHnD": {
+                    "type": "text",
+                    "name": "t:names.text",
+                    "settings": {
+                      "text": "<p><strong>30mins Click and Collect: </strong>Pick up in store after 30 mins.</p>",
+                      "width": "100%",
+                      "max_width": "none",
+                      "alignment": "left",
+                      "type_preset": "rte",
+                      "font": "var(--font-body--family)",
+                      "font_size": "1rem",
+                      "line_height": "normal",
+                      "letter_spacing": "normal",
+                      "case": "none",
+                      "wrap": "pretty",
+                      "text_color": "",
+                      "background": false,
+                      "background_color": "#00000026",
+                      "corner_radius": 0,
+                      "padding-block-start": 0,
+                      "padding-block-end": 0,
+                      "padding-inline-start": 0,
+                      "padding-inline-end": 0
+                    },
+                    "blocks": {}
+                  }
+                },
+                "block_order": [
+                  "text_WdDiyU",
+                  "text_QGDHte",
+                  "text_bNVTg3",
+                  "text_i7RqW6",
+                  "text_NwHgzc",
+                  "text_f7pqtA",
+                  "text_PrgHnD"
+                ]
+              }
+            },
+            "block_order": [
+              "text_cyY9HR",
+              "container_Jy9aBd"
+            ]
+          },
+          "container_pGFxwe": {
+            "type": "container",
+            "name": "What we want",
+            "settings": {
+              "layout": "flex",
+              "content_width": "full-width",
+              "custom_width": "",
+              "custom_height": "",
+              "direction": "column",
+              "justify_content": "start",
+              "align_items": "stretch",
+              "columns": 3,
+              "rows": 2,
+              "gap": "16px",
+              "auto_flow": "row",
+              "justify_items": "stretch",
+              "grid_align_items": "stretch",
+              "wrap": "nowrap",
+              "background_color": "",
+              "overlay_color": "transparent",
+              "overlay_opacity": 100,
+              "border_width": "",
+              "border_style": "none",
+              "border_color": "",
+              "border_radius": "",
+              "padding-block-start": 8,
+              "padding-block-end": 8,
+              "padding-inline-start": 0,
+              "padding-inline-end": 0,
+              "margin-block-start": 0,
+              "margin-block-end": 0,
+              "margin-inline-start": 0,
+              "margin-inline-end": 0
+            },
+            "blocks": {
+              "text_nYMyir": {
+                "type": "text",
+                "name": "t:names.heading",
+                "settings": {
+                  "text": "<p><strong>What we want</strong></p>",
+                  "width": "fit-content",
+                  "max_width": "normal",
+                  "alignment": "left",
+                  "type_preset": "h4",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_DcTHtm": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<ul><li>Regular Post Envelope inc Tracking: $6</li><li>Registered Post Envelope inc Tracking: $8</li><li>Express Post Envelope inc Tracking: $10</li><li>PARCELS: $10 FLAT RATE</li><li>PARCELS REGISTERED Signature on Delivery: $15</li><li>PARCELS EXPRESS: $20</li></ul>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              },
+              "text_3U6iMp": {
+                "type": "text",
+                "name": "t:names.text",
+                "settings": {
+                  "text": "<p>We would like the ability to add on Insurance:</p><ul><li>$5 Insurance for $300 Value</li><li>$10 insurance for $500 Value</li><li>$20 Insurance for $1000 Value</li></ul>",
+                  "width": "100%",
+                  "max_width": "none",
+                  "alignment": "left",
+                  "type_preset": "rte",
+                  "font": "var(--font-body--family)",
+                  "font_size": "1rem",
+                  "line_height": "normal",
+                  "letter_spacing": "normal",
+                  "case": "none",
+                  "wrap": "pretty",
+                  "text_color": "",
+                  "background": false,
+                  "background_color": "#00000026",
+                  "corner_radius": 0,
+                  "padding-block-start": 0,
+                  "padding-block-end": 0,
+                  "padding-inline-start": 0,
+                  "padding-inline-end": 0
+                },
+                "blocks": {}
+              }
+            },
+            "block_order": [
+              "text_nYMyir",
+              "text_DcTHtm",
+              "text_3U6iMp"
+            ]
+          }
+        },
+        "block_order": [
+          "container_amGgPr",
+          "container_pGFxwe"
+        ],
+        "name": "t:names.custom_section",
+        "settings": {
+          "content_direction": "column",
+          "vertical_on_mobile": true,
+          "horizontal_alignment": "flex-start",
+          "vertical_alignment": "center",
+          "align_baseline": false,
+          "horizontal_alignment_flex_direction_column": "flex-start",
+          "vertical_alignment_flex_direction_column": "center",
+          "gap": 8,
+          "section_width": "page-width",
+          "section_height": "small",
+          "section_height_custom": 50,
+          "background_media": "none",
+          "background_color": "{{ settings.color_palette.color3 }}",
+          "video_position": "cover",
+          "background_image_position": "cover",
+          "toggle_overlay": false,
+          "overlay_color": "#00000026",
+          "overlay_style": "solid",
+          "gradient_direction": "to top",
+          "border": "none",
+          "border_width": 1,
+          "border_opacity": 100,
+          "border_color": "",
+          "border_radius": 0,
+          "padding-block-start": 32,
+          "padding-block-end": 32
+        }
+      }
+    },
+    "order": [
+      "main",
+      "section_aJJKhm"
+    ]
+  }

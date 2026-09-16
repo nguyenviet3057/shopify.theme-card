@@ -45,13 +45,10 @@
         "slide_AFF4jW",
         "slide_EGKQmr"
       ],
-      "custom_css": [
-        ".hero-carousel__slide {aspect-ratio: 1320 / 280; max-width: 100%;}",
-        "@media (max-width: 749px) {.hero-carousel__slide {aspect-ratio: 1/1; }}"
-      ],
       "name": "Hero carousel",
       "settings": {
         "background_color": "{{ settings.color_palette.background }}",
+        "slide_background_color": "{{ settings.color_palette.color3 }}",
         "section_width": "page-width",
         "padding-block-start": 32,
         "padding-block-end": 32,
@@ -214,6 +211,7 @@
         "background_color_box": "{{ settings.color_palette.color3 }}",
         "image_color_picker": "#eaf2ff",
         "section_width": "page-width",
+        "mobile_layout": "grid",
         "padding-block-start": 0,
         "padding-block-end": 32
       }
@@ -417,7 +415,8 @@
       ],
       "custom_css": [
         ".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}",
-        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}"
+        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}",
+        "@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) / 2); }}"
       ],
       "name": "t:names.collections_carousel",
       "settings": {
@@ -2080,7 +2079,8 @@
       ],
       "custom_css": [
         ".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}",
-        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}"
+        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}",
+        "@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) / 2); }}"
       ],
       "name": "t:names.collections_carousel",
       "settings": {

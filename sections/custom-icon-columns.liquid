@@ -58,9 +58,27 @@
   }
 
   @media (max-width: 749px) {
-    .icon-columns__track > .icon-columns__item,
-    .icon-columns__track > .icon-columns__dialog {
+    .icon-columns--mobile-carousel .icon-columns__track > .icon-columns__item,
+    .icon-columns--mobile-carousel .icon-columns__track > .icon-columns__dialog {
       flex: 1 0 60cqw;
+    }
+
+    .icon-columns--mobile-grid .icon-columns__track {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow-x: visible;
+      scroll-snap-type: none;
+      justify-content: initial;
+      padding-bottom: 0;
+    }
+
+    .icon-columns--mobile-grid .icon-columns__track > .icon-columns__item,
+    .icon-columns--mobile-grid .icon-columns__track > .icon-columns__dialog {
+      flex: none;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      scroll-snap-align: none;
     }
   }
 
@@ -239,6 +257,11 @@
 </style>
 
 {% liquid
+  assign mobile_layout = section.settings.mobile_layout
+  if mobile_layout != 'grid'
+    assign mobile_layout = 'carousel'
+  endif
+
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
@@ -252,7 +275,11 @@
   style="{% render 'spacing-padding', settings: section.settings %}"
 >
   <div class="" style="{% render 'spacing-padding', settings: section.settings %}">
-    <div class="icon-columns" id="icon-columns-{{ section.id }}" data-slider-mobile="true">
+    <div
+      class="icon-columns icon-columns--mobile-{{ mobile_layout }}"
+      id="icon-columns-{{ section.id }}"
+      data-slider-mobile="{% if mobile_layout == 'carousel' %}true{% else %}false{% endif %}"
+    >
       <div class="icon-columns__track">
         {% for block in section.blocks %}
           {% if block.type == 'item' %}
@@ -574,6 +601,22 @@
       "default": "page-width"
     },
     {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "t:content.mobile_layout",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "t:options.carousel"
+        },
+        {
+          "value": "grid",
+          "label": "t:options.grid"
+        }
+      ],
+      "default": "carousel"
+    },
+    {
       "type": "header",
       "content": "t:content.padding"
     },
@@ -887,6 +930,9 @@
   "presets": [
     {
       "name": "Icon columns",
+      "settings": {
+        "mobile_layout": "carousel"
+      },
       "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" }]
     }
   ]
