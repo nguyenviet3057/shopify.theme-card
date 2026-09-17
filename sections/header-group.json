@@ -1,1 +1,321 @@
-{"type":"header","name":"t:names.header","sections":{"header_announcements_9jGBFp":{"type":"header-announcements","blocks":{"announcement_BxgCk9":{"type":"_announcement","settings":{"text":"Free next-day delivery on Singles orders over $200","link":"","font":"var(--font-body--family)","font_size":"0.75rem","weight":"","letter_spacing":"normal","case":"none","text_color":""},"blocks":{}}},"block_order":["announcement_BxgCk9"],"name":"t:names.announcement_bar","settings":{"speed":5,"section_width":"page-width","background_color":"#121011","divider_width":0,"divider_color":"","padding-block-start":16,"padding-block-end":16}},"header_section":{"type":"header","blocks":{"header-logo":{"type":"_header-logo","static":true,"settings":{"hide_logo_on_home_page":false,"padding-block-start":0,"padding-block-end":0},"blocks":{}},"header-menu":{"type":"_header-menu","static":true,"settings":{"menu":"main-menu","background_color":"{{ settings.color_palette.background }}","text_color":"","type_font_primary_size":"0.875rem","menu_font_style":"inverse","type_font_primary_link":"body","type_case_primary_link":"none","menu_style":"featured_products","featured_products_aspect_ratio":"4 \/ 5","featured_collections_aspect_ratio":"16 \/ 9","image_border_radius":0,"navigation_bar":false,"background_color_navigation_bar":"{{ settings.color_palette.background }}","text_color_navigation_bar":"","drawer_accordion":false,"drawer_accordion_expand_first":false,"drawer_dividers":false},"blocks":{}}},"disabled":true,"settings":{"logo_position":"left","menu_position":"left","menu_row":"top","customer_account_menu":"customer-account-main-menu","show_search":true,"search_position":"right","search_row":"top","show_country":true,"country_selector_style":false,"show_language":true,"localization_font":"heading","localization_font_size":"0.875rem","localization_position":"right","localization_row":"top","section_width":"page-width","section_height":"standard","enable_sticky_header":"always","divider_width":0,"divider_size":"page-width","divider_color":"","border_width":0,"bottom_border_color":"","actions_display_style":"icon","actions_font_size":"0.875rem","actions_font":"body","actions_text_case":"none","background_color_top":"{{ settings.color_palette.background }}","text_color_top":"","background_color_bottom":"","text_color_bottom":"","bubble_style":"default","bubble_background_color":"","bubble_text_color":"","enable_transparent_header_home":false,"home_inverse_logo":false,"text_color_transparent_home":"","enable_transparent_header_product":false,"product_inverse_logo":false,"text_color_transparent_product":"","enable_transparent_header_collection":false,"collection_inverse_logo":false,"text_color_transparent_collection":""}},"custom_header_k3BA7T":{"type":"custom-header","blocks":{"mega_image_Wf6NTb":{"type":"mega_image","settings":{"parent_label":"MAGIC BOOSTER BOXES","image_1":"shopify:\/\/shop_images\/Media.png","title_1":"","link_1":"","image_2":"shopify:\/\/shop_images\/Media_1.png","title_2":"","link_2":""}},"search_scope_cALrA4":{"type":"search_scope","settings":{"label":"Buy List","filter_type":"","redirect_url":""}}},"block_order":["mega_image_Wf6NTb","search_scope_cALrA4"],"name":"Custom Header","settings":{"main_menu":"main-menu","logo":"shopify:\/\/shop_images\/Logo_1.png","logo_width":120,"search_placeholder":"Search store","cta_button_text":"Buylist","cta_button_link":"https:\/\/dev-kiosk.gamelocker.co\/melbourne\/store","show_currency_selector":true,"show_language_selector":false,"color_top_bg":"#b91c1c","color_top_text":"#ffffff","color_nav_bg":"#161616","color_nav_text":"#ffffff","color_accent":"#2d7dd2"}},"custom_cart_drawer":{"type":"cart-drawer-v2","blocks":{"cart-shipping-options":{"type":"shipping-options","static":true,"settings":{},"blocks":{"group_letters":{"type":"_shipping-group","settings":{"title":"Letters"},"blocks":{"opt_regular_post":{"type":"_shipping-option","settings":{"title":"Regular Post","description":"Tracked envelope · 2–6 business days","price":"$6.00"},"blocks":{}},"opt_registered_post":{"type":"_shipping-option","settings":{"title":"Registered Post","description":"Signature required on delivery · extra protection for your cards · 2–6 business days","price":"$8.00"},"blocks":{}},"opt_express_post":{"type":"_shipping-option","settings":{"title":"Express Post","description":"Next business day · fully tracked","price":"$10.00"},"blocks":{}}},"block_order":["opt_regular_post","opt_registered_post","opt_express_post"]},"group_parcels":{"type":"_shipping-group","settings":{"title":"Parcels"},"blocks":{"opt_standard_parcel":{"type":"_shipping-option","settings":{"title":"Standard Parcel","description":"Flat rate tracked shipping · 3–8 business days","price":"$10.00"},"blocks":{}},"opt_registered_parcel":{"type":"_shipping-option","settings":{"title":"Registered Parcel","description":"Signature required on delivery · 3–8 business days","price":"$15.00"},"blocks":{}},"opt_express_parcel":{"type":"_shipping-option","settings":{"title":"Express Parcel","description":"Next business day · fully tracked","price":"$20.00"},"blocks":{}}},"block_order":["opt_standard_parcel","opt_registered_parcel","opt_express_parcel"]},"group_insurance":{"type":"_shipping-group","settings":{"title":"Add-on — Shipping insurance"},"blocks":{"opt_basic_cover":{"type":"_shipping-option","settings":{"title":"Basic cover","description":"Covers your order up to $300","price":"+$5.00"},"blocks":{}},"opt_standard_cover":{"type":"_shipping-option","settings":{"title":"Standard cover","description":"Covers your order up to $500","price":"+$10.00"},"blocks":{}},"opt_premium_cover":{"type":"_shipping-option","settings":{"title":"Premium cover","description":"Covers your order up to $1000","price":"+$20.00"},"blocks":{}}},"block_order":["opt_basic_cover","opt_standard_cover","opt_premium_cover"]}},"block_order":["group_letters","group_parcels","group_insurance"]}},"settings":{}}},"order":["header_announcements_9jGBFp","header_section","custom_header_k3BA7T","custom_cart_drawer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:names.header",
+  "sections": {
+    "header_announcements_9jGBFp": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_BxgCk9": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Free next-day delivery on Singles orders over $200",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_BxgCk9"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "background_color": "#121011",
+        "divider_width": 0,
+        "divider_color": "",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
+    "header_section": {
+      "type": "header",
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "main-menu",
+            "background_color": "{{ settings.color_palette.background }}",
+            "text_color": "",
+            "type_font_primary_size": "0.875rem",
+            "menu_font_style": "inverse",
+            "type_font_primary_link": "body",
+            "type_case_primary_link": "none",
+            "menu_style": "featured_products",
+            "featured_products_aspect_ratio": "4 / 5",
+            "featured_collections_aspect_ratio": "16 / 9",
+            "image_border_radius": 0,
+            "navigation_bar": false,
+            "background_color_navigation_bar": "{{ settings.color_palette.background }}",
+            "text_color_navigation_bar": "",
+            "drawer_accordion": false,
+            "drawer_accordion_expand_first": false,
+            "drawer_dividers": false
+          },
+          "blocks": {}
+        }
+      },
+      "disabled": true,
+      "settings": {
+        "logo_position": "left",
+        "menu_position": "left",
+        "menu_row": "top",
+        "customer_account_menu": "customer-account-main-menu",
+        "show_search": true,
+        "search_position": "right",
+        "search_row": "top",
+        "show_country": true,
+        "country_selector_style": false,
+        "show_language": true,
+        "localization_font": "heading",
+        "localization_font_size": "0.875rem",
+        "localization_position": "right",
+        "localization_row": "top",
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": "always",
+        "divider_width": 0,
+        "divider_size": "page-width",
+        "divider_color": "",
+        "border_width": 0,
+        "bottom_border_color": "",
+        "actions_display_style": "icon",
+        "actions_font_size": "0.875rem",
+        "actions_font": "body",
+        "actions_text_case": "none",
+        "background_color_top": "{{ settings.color_palette.background }}",
+        "text_color_top": "",
+        "background_color_bottom": "",
+        "text_color_bottom": "",
+        "bubble_style": "default",
+        "bubble_background_color": "",
+        "bubble_text_color": "",
+        "enable_transparent_header_home": false,
+        "home_inverse_logo": false,
+        "text_color_transparent_home": "",
+        "enable_transparent_header_product": false,
+        "product_inverse_logo": false,
+        "text_color_transparent_product": "",
+        "enable_transparent_header_collection": false,
+        "collection_inverse_logo": false,
+        "text_color_transparent_collection": ""
+      }
+    },
+    "custom_header_k3BA7T": {
+      "type": "custom-header",
+      "blocks": {
+        "mega_image_Wf6NTb": {
+          "type": "mega_image",
+          "settings": {
+            "parent_label": "MAGIC BOOSTER BOXES",
+            "image_1": "shopify://shop_images/Media.png",
+            "title_1": "",
+            "link_1": "",
+            "image_2": "shopify://shop_images/Media_1.png",
+            "title_2": "",
+            "link_2": ""
+          }
+        },
+        "search_scope_cALrA4": {
+          "type": "search_scope",
+          "disabled": true,
+          "settings": {
+            "label": "Buy List",
+            "filter_type": "",
+            "redirect_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_image_Wf6NTb",
+        "search_scope_cALrA4"
+      ],
+      "name": "Custom Header",
+      "settings": {
+        "main_menu": "main-menu",
+        "logo": "shopify://shop_images/Logo_1.png",
+        "logo_width": 120,
+        "search_placeholder": "Search store",
+        "cta_button_text": "Buylist",
+        "cta_button_link": "https://dev-kiosk.gamelocker.co/melbourne/store",
+        "show_currency_selector": true,
+        "show_language_selector": false,
+        "color_top_bg": "#b91c1c",
+        "color_top_text": "#ffffff",
+        "color_nav_bg": "#161616",
+        "color_nav_text": "#ffffff",
+        "color_accent": "#2d7dd2"
+      }
+    },
+    "custom_cart_drawer": {
+      "type": "cart-drawer-v2",
+      "blocks": {
+        "cart-shipping-options": {
+          "type": "shipping-options",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "group_letters": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Letters"
+              },
+              "blocks": {
+                "opt_regular_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Regular Post",
+                    "description": "Tracked envelope · 2–6 business days",
+                    "price": "$6.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_registered_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Post",
+                    "description": "Signature required on delivery · extra protection for your cards · 2–6 business days",
+                    "price": "$8.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_express_post": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Post",
+                    "description": "Next business day · fully tracked",
+                    "price": "$10.00"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "opt_regular_post",
+                "opt_registered_post",
+                "opt_express_post"
+              ]
+            },
+            "group_parcels": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Parcels"
+              },
+              "blocks": {
+                "opt_standard_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard Parcel",
+                    "description": "Flat rate tracked shipping · 3–8 business days",
+                    "price": "$10.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_registered_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Registered Parcel",
+                    "description": "Signature required on delivery · 3–8 business days",
+                    "price": "$15.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_express_parcel": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Express Parcel",
+                    "description": "Next business day · fully tracked",
+                    "price": "$20.00"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "opt_standard_parcel",
+                "opt_registered_parcel",
+                "opt_express_parcel"
+              ]
+            },
+            "group_insurance": {
+              "type": "_shipping-group",
+              "settings": {
+                "title": "Add-on — Shipping insurance"
+              },
+              "blocks": {
+                "opt_basic_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Basic cover",
+                    "description": "Covers your order up to $300",
+                    "price": "+$5.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_standard_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Standard cover",
+                    "description": "Covers your order up to $500",
+                    "price": "+$10.00"
+                  },
+                  "blocks": {}
+                },
+                "opt_premium_cover": {
+                  "type": "_shipping-option",
+                  "settings": {
+                    "title": "Premium cover",
+                    "description": "Covers your order up to $1000",
+                    "price": "+$20.00"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "opt_basic_cover",
+                "opt_standard_cover",
+                "opt_premium_cover"
+              ]
+            }
+          },
+          "block_order": [
+            "group_letters",
+            "group_parcels",
+            "group_insurance"
+          ]
+        }
+      },
+      "settings": {}
+    }
+  },
+  "order": [
+    "header_announcements_9jGBFp",
+    "header_section",
+    "custom_header_k3BA7T",
+    "custom_cart_drawer"
+  ]
+}
