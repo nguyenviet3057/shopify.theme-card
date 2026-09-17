@@ -69,6 +69,7 @@
           {% when 'MP' %} {% assign display_value = 'Moderately Played' %}
           {% when 'HP' %} {% assign display_value = 'Heavily Played' %}
           {% when 'DMG' %} {% assign display_value = 'Damaged' %}
+          {% when 'FS' %} {% assign display_value = 'Factory Sealed' %}
           {% else %} {% assign display_value = value %}
         {% endcase %}
         <option value="{{ value | escape }}" {% if variant.options[option_index] == value %}selected{% endif %}>
