@@ -509,6 +509,7 @@
             "accordion_jFc9Jf": {
               "type": "accordion",
               "name": "t:names.accordion",
+              "disabled": true,
               "settings": {
                 "icon": "caret",
                 "dividers": false,
@@ -611,6 +612,99 @@
                 "accordion_row_3yer6W",
                 "accordion_row_DME3Lk"
               ]
+            },
+            "container_pTrTdD": {
+              "type": "container",
+              "name": "Container",
+              "settings": {
+                "layout": "flex",
+                "content_width": "full-width",
+                "custom_width": "",
+                "custom_height": "",
+                "direction": "column",
+                "justify_content": "start",
+                "align_items": "stretch",
+                "columns": 3,
+                "rows": 2,
+                "gap": "16px",
+                "auto_flow": "row",
+                "justify_items": "stretch",
+                "grid_align_items": "stretch",
+                "wrap": "nowrap",
+                "background_color": "{{ settings.color_palette.color3 }}",
+                "overlay_color": "transparent",
+                "overlay_opacity": 100,
+                "border_width": "",
+                "border_style": "solid",
+                "border_color": "",
+                "border_radius": "12px",
+                "padding-block-start": 20,
+                "padding-block-end": 20,
+                "padding-inline-start": 20,
+                "padding-inline-end": 20,
+                "margin-block-start": 0,
+                "margin-block-end": 0,
+                "margin-inline-start": 0,
+                "margin-inline-end": 0
+              },
+              "blocks": {
+                "text_ChJw9Y": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<p><strong>DESCRIPTION</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_8hRNMh": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ closest.product.description }}",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ChJw9Y",
+                "text_8hRNMh"
+              ]
             }
           },
           "block_order": [
@@ -619,7 +713,8 @@
             "custom_liquid_yY8Dyg",
             "variant_picker_KLEfTD",
             "group_Hatiai",
-            "accordion_jFc9Jf"
+            "accordion_jFc9Jf",
+            "container_pTrTdD"
           ]
         }
       },
@@ -631,7 +726,8 @@
         ".add-to-cart-icon {display: none;}",
         ".compare-at-price {text-decoration-color: inherit; color: #5c554c; font-size: 20px; font-weight: 800;}",
         ".price {font-weight: 800;}",
-        "[ref=\"priceContainer\"] {display: flex; justify-content: center; align-items: center; gap: 8px;}"
+        "[ref=\"priceContainer\"] {display: flex; justify-content: center; align-items: center; gap: 8px;}",
+        ".product-form-buttons button {text-transform: uppercase; font-weight: bold;}"
       ],
       "settings": {
         "content_width": "content-center-aligned",
@@ -1016,6 +1112,7 @@
         ".quantity-selector-wrapper {flex: 1 1 auto;}",
         ".text-block--background {padding-block-start: 4px; padding-block-end: 4px; padding-inline-start: 12px; padding-inline-end: 12px; flex: none;}",
         ".text-block--background p {font-weight: 700;}",
+        ".force-full-width {grid-column: 2 / 3;}",
         "@media screen and (max-width: 749px) {.product-grid__card .group-block > * {flex-direction: row; }}"
       ],
       "name": "t:names.product_recommendations",
@@ -1023,7 +1120,7 @@
         "product": "{{ closest.product }}",
         "recommendation_type": "complementary",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "carousel_on_mobile": true,
         "max_products": 5,
         "columns": 3,
         "tablet_columns": "2",
@@ -1410,6 +1507,7 @@
         ".quantity-selector-wrapper {flex: 1 1 auto;}",
         ".text-block--background {padding-block-start: 4px; padding-block-end: 4px; padding-inline-start: 12px; padding-inline-end: 12px; flex: none;}",
         ".text-block--background p {font-weight: 700 !important;}",
+        ".force-full-width {grid-column: 2 / 3;}",
         "@media screen and (max-width: 749px) {.product-grid__card .group-block > * {flex-direction: row; }}"
       ],
       "name": "t:names.product_recommendations",
@@ -1417,7 +1515,7 @@
         "product": "{{ closest.product }}",
         "recommendation_type": "related",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "carousel_on_mobile": true,
         "max_products": 5,
         "columns": 3,
         "tablet_columns": "3",
