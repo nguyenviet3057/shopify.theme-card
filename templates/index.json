@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "custom_hero_slider_CyxXjd": {
       "type": "custom-hero-slider",
@@ -1866,7 +1866,7 @@
         "view_all_label": "View all",
         "accent_color": "#207fc4",
         "heading_color": "#1d1a17",
-        "layout_type": "carousel",
+        "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 5,
         "mobile_columns": "2",
