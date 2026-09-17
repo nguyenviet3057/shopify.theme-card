@@ -423,6 +423,9 @@
     var autoplay = root.dataset.autoplay === 'true';
     var speed = parseInt(root.dataset.speed, 10) || 5000;
     var timer = null;
+    var remaining = speed;
+    var startedAt = 0;
+    var paused = false;
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
     if (!total) return;
@@ -442,14 +445,6 @@
       dot.classList.add('is-progressing');
     }
   
-    function pauseProgress() {
-      dots.forEach(function (dot) {
-        if (dot.classList.contains('is-progressing')) {
-          dot.classList.add('is-paused');
-        }
-      });
-    }
-  
     function goTo(index) {
       current = (index + total) % total;
       track.style.transform = 'translateX(-' + current * 100 + '%)';
@@ -462,25 +457,54 @@
       });
     }
   
-    function startAutoplay() {
-      if (!autoplay || total < 2) return;
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-      var activeDot = root.querySelector('.hero-carousel__dot.is-active');
-      if (activeDot) startProgress(activeDot);
-      timer = setInterval(function () {
-        goTo(current + 1);
-      }, speed);
+    function clearTimer() {
+      if (!timer) return;
+      clearTimeout(timer);
+      timer = null;
     }
   
-    function stopAutoplay() {
-      if (timer) {
-        clearInterval(timer);
+    function scheduleNext() {
+      if (!autoplay || total < 2 || paused || timer) return;
+      startedAt = Date.now();
+      timer = setTimeout(function () {
         timer = null;
+        remaining = speed;
+        goTo(current + 1);
+        scheduleNext();
+      }, remaining);
+    }
+  
+    function startAutoplay() {
+      if (!autoplay || total < 2) return;
+      paused = false;
+      remaining = speed;
+      clearTimer();
+      var activeDot = root.querySelector('.hero-carousel__dot.is-active');
+      if (activeDot) startProgress(activeDot);
+      scheduleNext();
+    }
+  
+    function pauseAutoplay() {
+      if (!autoplay || total < 2 || paused) return;
+      paused = true;
+      if (timer) {
+        remaining = Math.max(50, remaining - (Date.now() - startedAt));
+        clearTimer();
       }
-      pauseProgress();
+      dots.forEach(function (dot) {
+        if (dot.classList.contains('is-progressing')) {
+          dot.classList.add('is-paused');
+        }
+      });
+    }
+  
+    function resumeAutoplay() {
+      if (!autoplay || total < 2 || !paused) return;
+      paused = false;
+      dots.forEach(function (dot) {
+        dot.classList.remove('is-paused');
+      });
+      scheduleNext();
     }
   
     dots.forEach(function (dot) {
@@ -490,8 +514,8 @@
       });
     });
   
-    root.addEventListener('mouseenter', stopAutoplay);
-    root.addEventListener('mouseleave', startAutoplay);
+    root.addEventListener('mouseenter', pauseAutoplay);
+    root.addEventListener('mouseleave', resumeAutoplay);
   
     goTo(0);
     startAutoplay();

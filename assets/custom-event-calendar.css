@@ -196,7 +196,7 @@ gl-event-calendar,
 }
 
 .gl-event-calendar__grid-wrapper {
-  border: 1px solid var(--gl-cal-border);
+  border: 1px solid #5C554C;
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
@@ -205,7 +205,7 @@ gl-event-calendar,
 .gl-event-calendar__day-headers {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: #fff;
+  background: rgba(247, 247, 247, 0.60);
   border-bottom: 1px solid var(--gl-cal-border);
 }
 
