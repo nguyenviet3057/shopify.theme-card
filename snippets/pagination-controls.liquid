@@ -165,7 +165,7 @@
   .pagination {
     --pagination-size: 36px;
     --pagination-inset: 2px;
-    --pagination-radius: 6;
+    --pagination-radius: 8;
 
     display: flex;
     justify-content: center;
@@ -197,7 +197,7 @@
     border: none;
   }
 
-  .pagination__link {
+  .pagination__link:not(.pagination__link--arrow) {
     display: grid;
     place-items: center;
     color: var(--color-foreground);
@@ -222,7 +222,7 @@
     outline-offset: 2px;
   }
 
-  .pagination__link--current {
+  .pagination__link--current:not(.pagination__link--arrow) {
     /* color: var(--color-background); */
     color: #207FC4;
     font-weight: var(--font-weight-medium);
@@ -233,6 +233,7 @@
   .pagination__link--gap {
     cursor: default;
     pointer-events: none;
+    background: transparent;
   }
 
   .pagination__link--arrow {
