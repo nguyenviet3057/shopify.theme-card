@@ -2084,11 +2084,10 @@ body:has(:is(.product-grid, .resource-list) .add-to-cart-button.is-loading) .act
     .volume-pricing,
     .product-form-text__error
   ) {
-  flex: 1 1 calc(50% - var(--gap-sm, 0.5rem)) !important;
-  flex-basis: calc(50% - var(--gap-sm, 0.5rem)) !important;
+  flex: 1 1 0 !important;
   min-width: 0 !important;
-  max-width: calc(50% - var(--gap-sm, 0.5rem) / 2);
-  width: calc(50% - var(--gap-sm, 0.5rem) / 2);
+  max-width: none;
+  width: auto;
 }
 
 .product-details .product-form-buttons > span:has(.add-to-cart-button) {
