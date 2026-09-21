@@ -480,6 +480,34 @@ gl-event-calendar,
   margin-top: 16px;
 }
 
+.gl-event-calendar__drawer-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.25rem 1.5rem;
+}
+
+.gl-event-calendar__drawer-ticket {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: #1d1a17;
+  color: #f7f1e4;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.gl-event-calendar__drawer-ticket:hover {
+  color: #f7f1e4;
+  filter: brightness(1.12);
+}
+
 .gl-event-calendar__overflow-list {
   display: flex;
   flex-direction: column;

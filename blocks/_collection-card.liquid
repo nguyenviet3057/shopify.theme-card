@@ -54,6 +54,10 @@
       "content": "t:content.text"
     },
     {
+      "type": "paragraph",
+      "content": "t:info.collection_card_text_placement"
+    },
+    {
       "type": "select",
       "id": "placement",
       "label": "t:settings.placement",
@@ -66,7 +70,8 @@
           "value": "below_image",
           "label": "t:options.below_image"
         }
-      ]
+      ],
+      "visible_if": "{{ false }}"
     },
     {
       "type": "select",
@@ -107,7 +112,7 @@
         }
       ],
       "default": "center",
-      "visible_if": "{{ block.settings.placement == \"on_image\" }}"
+      "visible_if": "{{ section.settings.card_text_placement == \"on_image\" }}"
     },
     {
       "type": "range",

@@ -32,6 +32,8 @@
             {%- assign event_fg = event.text_color.value | default: event.text_color -%}
             {%- assign event_image = event.image.value | default: event.image -%}
             {%- assign tag_list = event.tags.value | default: event.tags -%}
+            {%- assign ticket_product = event.ticket_product.value | default: event.ticket_product -%}
+            {%- assign event_ticket = ticket_product.url | default: '' -%}
             {%- assign event_description = '' -%}
             {%- if event.description != blank -%}
               {%- capture event_description -%}
@@ -48,6 +50,7 @@
               "descriptionHtml": {{ event_description | strip | json }},
               "image": {% if event_image != blank %}{{ event_image | image_url: width: 1200 | json }}{% else %}null{% endif %},
               "time": {{ event_time | date: '%Y-%m-%dT%H:%M:%S' | json }},
+              "ticketUrl": {{ event_ticket | append: '' | json }},
               "textColor": {{ event_fg | append: '' | json }},
               "backgroundColor": {{ event_bg | append: '' | json }},
               "tags": [
@@ -135,6 +138,7 @@
         </button>
       </div>
       <div class="gl-event-calendar__drawer-body" data-drawer-body></div>
+      <div class="gl-event-calendar__drawer-footer" data-drawer-footer hidden></div>
     </div>
     <div class="gl-event-calendar__backdrop" data-backdrop hidden></div>
   </gl-event-calendar>
@@ -168,7 +172,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Events are pulled from the Upcoming Event metaobject. Chip colours use each event's tags when present, then the event's own colours."
+      "content": "Events are pulled from the Upcoming Event metaobject. Chip colours use each event's tags when present, then the event's own colours. If an event has a ticket_product, a Buy Ticket button links to that product."
     },
     {
       "type": "color",
