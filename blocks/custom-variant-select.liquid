@@ -1,186 +1,223 @@
-{% comment %}
-  BLOCK: Variant selects (Condition + Location)
-  ------------------------------------------------------------
-  Uses `closest.product` so this works when nested inside ANY
-  product card group in the customizer — no hardcoded variable
-  name dependency.
+{% liquid
+  assign product_resource = closest.product
+  if request.visual_preview_mode and product_resource == blank
+    assign product_resource = collections.all.products.first
+  endif
+  assign selected_variant = product_resource.selected_or_first_available_variant
+%}
 
-  - "Condition" dropdown pulls from a real product OPTION
-    (matched by name, set below) and updates the hidden variant
-    id input on this same card when changed, so the card's
-    native "Add" button adds the correct variant.
-  - "Location" dropdown is tag-based (product tags formatted
-    "Location: Melbourne"), informational only — does not
-    affect variant/price, matching your existing store-location
-    logic.
-{% endcomment %}
-
-
-{% render 'text-block-styles' %}
-
-<style>
-  .variant-selects {
+{% stylesheet %}
+  .card-variant-selects {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     width: 100%;
+    padding-top: 4px;
   }
 
-  .variant-selects__select {
+  .card-variant-selects__select {
     width: 100%;
     height: 48px;
-    padding: 0.5rem 0.9rem;
-    border: 1px solid #C0DFF6;
+    margin-bottom: 4px;
+    padding: 0.5rem 30px 0.5rem 0.6rem;
+    border: 1px solid #c0dff6;
     border-radius: 8px;
     font-size: 15px;
-    color: #1D1A17;
-    background: #fff;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    color: #1d1a17;
+    background-color: #fff;
     background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%235C554C'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 14px center;
+    background-position: right 12px center;
     background-size: 12px 8px;
-    padding-right: 34px;
+    appearance: none;
     cursor: pointer;
   }
 
-  .variant-selects__select:focus-visible {
+  .card-variant-selects__select:focus-visible {
     outline: none;
-    border-color: #8FB8DC;
+    border-color: #8fb8dc;
   }
-</style>
+{% endstylesheet %}
 
-<div class="variant-selects" {{ block.shopify_attributes }}>
-  {% assign product = closest.product %}
-  {% assign variant = product.selected_or_first_available_variant %}
-
-  {% comment %} --- Condition (or any option name you set below) --- {% endcomment %}
-  {% assign target_option = product.options_with_values | where: 'name', block.settings.option_name | first %}
-
-  {% if target_option %}
-    {% assign option_index = target_option.position | minus: 1 %}
-    <select class="variant-selects__select" data-option-name="{{ target_option.name | escape }}" data-option-position="{{ target_option.position }}" data-variant-select>
-      {% for value in target_option.values %}
-        {% case value %}
-          {% when 'NM' %} {% assign display_value = 'Near Mint' %}
-          {% when 'LP' %} {% assign display_value = 'Lightly Played' %}
-          {% when 'MP' %} {% assign display_value = 'Moderately Played' %}
-          {% when 'HP' %} {% assign display_value = 'Heavily Played' %}
-          {% when 'DMG' %} {% assign display_value = 'Damaged' %}
-          {% when 'FS' %} {% assign display_value = 'Factory Sealed' %}
-          {% else %} {% assign display_value = value %}
-        {% endcase %}
-        <option value="{{ value | escape }}" {% if variant.options[option_index] == value %}selected{% endif %}>
-          {{ display_value }}
-        </option>
-      {% endfor %}
-    </select>
-  {% endif %}
-
-  {% comment %} --- Location (tag-based, informational) --- {% endcomment %}
-  {% assign all_locations = block.settings.locations | split: ',' %}
-
-  {% if all_locations.size > 0 %}
-    {% assign product_location_names = '' %}
-    {% for tag in product.tags %}
-      {% assign tag_prefix = tag | slice: 0, 9 %}
-      {% if tag_prefix == 'Location:' %}
-        {% assign location_name = tag | remove_first: 'Location:' | strip %}
-        {% assign product_location_names = product_location_names | append: location_name | append: '||' %}
-      {% endif %}
-    {% endfor %}
-    {% assign product_locations = product_location_names | split: '||' %}
-
-    <select class="variant-selects__select" data-store-select>
-      {% for location in all_locations %}
-        {% assign location = location | strip %}
-        {% assign is_available = false %}
-        {% for product_location in product_locations %}
-          {% if product_location == location %}
-            {% assign is_available = true %}
-            {% break %}
-          {% endif %}
+{% unless product_resource == blank %}
+  <div
+    class="card-variant-selects trending__selects"
+    data-card-variant-selects
+    {{ block.shopify_attributes }}
+  >
+    {% for option in product_resource.options_with_values %}
+      <select
+        class="card-variant-selects__select trending__select"
+        aria-label="{{ option.name | escape }}"
+        data-option-name="{{ option.name | escape }}"
+        data-option-position="{{ forloop.index }}"
+        data-variant-option
+      >
+        {% for value in option.values %}
+          {% liquid
+            case value
+              when 'MI'
+                assign display_value = 'Minor Imperfections'
+              when 'FS'
+                assign display_value = 'Factory Sealed'
+              when 'NM'
+                assign display_value = 'Near Mint'
+              when 'LP'
+                assign display_value = 'Lightly Played'
+              when 'MP'
+                assign display_value = 'Moderately Played'
+              when 'HP'
+                assign display_value = 'Heavily Played'
+              when 'DMG'
+                assign display_value = 'Damaged'
+              else
+                assign display_value = value
+            endcase
+          %}
+          <option
+            value="{{ value | escape }}"
+            {% if selected_variant.options[forloop.parentloop.index0] == value %}
+              selected
+            {% endif %}
+          >
+            {{ display_value }}
+          </option>
         {% endfor %}
-        <option value="{{ location | escape }}" {% if is_available %}selected{% else %}disabled{% endif %}>
-          {{ location }}{% unless is_available %} (Unavailable){% endunless %}
-        </option>
-      {% endfor %}
-    </select>
-  {% endif %}
+      </select>
+    {% endfor %}
 
-  {% comment %} Embed variants for client-side matching, scoped to THIS block instance {% endcomment %}
-  <script type="application/json" data-variants-json-{{ block.id }}>
-    [
-      {% for v in product.variants %}
-        {
-          "id": {{ v.id | json }},
-          "options": {{ v.options | json }},
-          "available": {{ v.available | json }}
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  </script>
-</div>
+    {% comment %}
+      Store locations dropdown — product tags must be formatted as "Location: Melbourne".
+      Re-enable with a comma-separated `locations` setting on this block.
 
-<script>
-(function () {
-  var container = document.currentScript.previousElementSibling;
-  if (!container) return;
+      {% liquid
+        assign show_locations = false
+        if block.settings.locations != blank
+          assign all_locations = block.settings.locations | split: ','
+          assign show_locations = true
+        endif
+      %}
 
-  var blockId = '{{ block.id }}';
-  var variantsScript = document.querySelector('[data-variants-json-' + blockId + ']');
-  var variants = variantsScript ? JSON.parse(variantsScript.textContent) : [];
-  var select = container.querySelector('[data-variant-select]');
+      {% if show_locations %}
+        {% liquid
+          assign product_location_names = ''
+          for tag in product_resource.tags
+            assign tag_prefix = tag | slice: 0, 9
+            if tag_prefix == 'Location:'
+              assign location_name = tag | remove_first: 'Location:' | strip
+              assign product_location_names = product_location_names | append: location_name | append: '||'
+            endif
+          endfor
+          assign product_locations = product_location_names | split: '||'
+        %}
 
-  if (!select || !variants.length) return;
+        <select class="card-variant-selects__select trending__select" data-store-select aria-label="{{ 'content.store' | t }}">
+          {% for location in all_locations %}
+            {% assign location_name = location | strip %}
+            {% if location_name != blank %}
+              {% liquid
+                assign is_available = false
+                for product_location in product_locations
+                  if product_location == location_name
+                    assign is_available = true
+                    break
+                  endif
+                endfor
+              %}
+              <option
+                value="{{ location_name | escape }}"
+                {% if is_available %}
+                  selected
+                {% else %}
+                  disabled
+                {% endif %}
+              >
+                {{ location_name }}
+                {%- unless is_available %} ({{ 'products.product.unavailable' | t }}){% endunless %}
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% endif %}
+    {% endcomment %}
 
-  function findVariant(value) {
-    var position = parseInt(select.dataset.optionPosition, 10) - 1;
-    return variants.find(function (v) {
-      return v.options[position] === value;
+    <script type="application/json" data-variants-json>
+      [
+        {%- for variant_item in product_resource.variants -%}
+          {
+            "id": {{ variant_item.id | json }},
+            "options": {{ variant_item.options | json }},
+            "available": {{ variant_item.available | json }}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    </script>
+  </div>
+{% endunless %}
+
+{% javascript %}
+  if (!window.__cardVariantSelectsBound) {
+    window.__cardVariantSelectsBound = true;
+
+    document.addEventListener('change', function (event) {
+      var select = event.target;
+      if (!select || !select.hasAttribute || !select.hasAttribute('data-variant-option')) return;
+
+      var container = select.closest('[data-card-variant-selects]');
+      if (!container) return;
+
+      var variantsScript = container.querySelector('[data-variants-json]');
+      var variants = [];
+      if (variantsScript) {
+        try {
+          variants = JSON.parse(variantsScript.textContent);
+        } catch (error) {
+          return;
+        }
+      }
+
+      var optionSelects = container.querySelectorAll('[data-variant-option]');
+      if (!variants.length || !optionSelects.length) return;
+
+      var chosenOptions = [];
+      optionSelects.forEach(function (optionSelect) {
+        var position = parseInt(optionSelect.dataset.optionPosition, 10) - 1;
+        chosenOptions[position] = optionSelect.value;
+      });
+
+      var match = variants.find(function (variant) {
+        return chosenOptions.every(function (value, index) {
+          return variant.options[index] === value;
+        });
+      });
+      if (!match) return;
+
+      var card = container.closest('product-card, [data-product-id]');
+      if (!card) return;
+
+      var hiddenInput = card.querySelector('input[name="id"]');
+      if (hiddenInput) hiddenInput.value = match.id;
     });
   }
+{% endjavascript %}
 
-  select.addEventListener('change', function () {
-    var match = findVariant(select.value);
-    if (!match) return;
-
-    var card = container.closest('product-card, [data-product-id]');
-    if (!card) return;
-
-    var hiddenInput = card.querySelector('input[name="id"]');
-    if (hiddenInput) {
-      hiddenInput.value = match.id;
-    }
-  });
-})();
-</script>
+{% comment %}
+  Store locations setting — JSON schema cannot be commented, so this is parked here.
+  {
+    "type": "textarea",
+    "id": "locations",
+    "label": "t:settings.store_locations",
+    "info": "t:info.store_locations"
+  }
+{% endcomment %}
 
 {% schema %}
 {
-  "name": "Variant selects",
+  "name": "t:names.card_variant_selects",
   "tag": null,
-  "settings": [
-    {
-      "type": "text",
-      "id": "option_name",
-      "label": "Product option to show as dropdown",
-      "default": "Condition",
-      "info": "Must match the exact option name on your products, e.g. \"Condition\""
-    },
-    {
-      "type": "textarea",
-      "id": "locations",
-      "label": "Store locations (comma-separated)",
-      "default": "Melbourne, Sydney, Frankston",
-      "info": "Product tags must be formatted exactly as \"Location: Melbourne\" to match"
-    }
-  ],
+  "settings": [],
   "presets": [
     {
-      "name": "Variant selects",
+      "name": "t:names.card_variant_selects",
       "category": "t:categories.product"
     }
   ]
