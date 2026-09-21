@@ -100,6 +100,7 @@
         gameSelect: this.querySelector('[data-game-select]'),
         drawer: this.querySelector('[data-drawer]'),
         drawerBody: this.querySelector('[data-drawer-body]'),
+        drawerFooter: this.querySelector('[data-drawer-footer]'),
         drawerTitle: this.querySelector('[data-drawer-title]'),
         backdrop: this.querySelector('[data-backdrop]'),
       };
@@ -127,6 +128,7 @@
               descriptionHtml: event.descriptionHtml || '',
               image: event.image || '',
               time: date,
+              ticketUrl: asString(event.ticketUrl),
               textColor: asString(event.textColor),
               backgroundColor: asString(event.backgroundColor),
               tags: Array.isArray(event.tags) ? event.tags : [],
@@ -453,6 +455,14 @@
           ? '<div class="gl-event-calendar__drawer-description">' + event.descriptionHtml + '</div>'
           : '');
 
+      this.setDrawerFooter(
+        event.ticketUrl
+          ? '<a class="gl-event-calendar__drawer-ticket" href="' +
+            escapeHtml(event.ticketUrl) +
+            '" target="_blank" rel="noopener noreferrer">Buy Ticket</a>'
+          : ''
+      );
+
       this.openDrawer();
     }
 
@@ -478,6 +488,7 @@
           })
           .join('') +
         '</div>';
+      this.setDrawerFooter('');
       this.openDrawer();
       this.els.drawerBody.querySelectorAll('[data-event-id]').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -487,6 +498,13 @@
           if (event) self.openEvent(event);
         });
       });
+    }
+
+    setDrawerFooter(html) {
+      var footer = this.els.drawerFooter;
+      if (!footer) return;
+      footer.innerHTML = html || '';
+      footer.hidden = !html;
     }
 
     openDrawer() {

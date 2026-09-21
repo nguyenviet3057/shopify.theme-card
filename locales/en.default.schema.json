@@ -251,7 +251,8 @@
     "video_autoplay": "Videos will be muted by default",
     "video_external": "Use a YouTube or Vimeo URL",
     "pills_usage": "Used for applied filters, discount codes, and search suggestions",
-    "media_type_info": "Features are populated from your menu links"
+    "media_type_info": "Features are populated from your menu links",
+    "collection_card_text_placement": "Applies to every card in this section. Choose whether titles sit on the image or below it."
   },
   "names": {
     "column": "Column",

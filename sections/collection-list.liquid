@@ -1,6 +1,8 @@
 
 
 {% liquid
+  assign card_text_placement = section.settings.card_text_placement | default: 'below_image'
+
   if section.settings.collection_list != blank
     assign section_collections = section.settings.collection_list
     assign max_items = section.settings.collection_list.count
@@ -33,7 +35,9 @@
     section-resource-list
     spacing-style
     gap-style
+    gl-collection-list
   "
+  data-card-text="{{ card_text_placement }}"
   style="
     {% render 'spacing-style', settings: section.settings %}
     {% render 'gap-style', value: section.settings.gap %}
@@ -78,6 +82,75 @@
     test_id: 'collections-list-grid'
   %}
 </div>
+
+{% comment %}
+  Placement is owned by this section, not the static card block.
+  Styles are inlined against the section id so they update when the setting
+  changes, even if Shopify does not re-render the cached collection cards.
+{% endcomment %}
+{% style %}
+  {% if card_text_placement == 'on_image' %}
+    #shopify-section-{{ section.id }} .collection-card {
+      aspect-ratio: var(--ratio) !important;
+      height: 100% !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__inner {
+      height: 100% !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__image,
+    #shopify-section-{{ section.id }} .resource-image {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-height: none !important;
+      flex: none !important;
+      z-index: 0 !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__content {
+      position: relative !important;
+      z-index: 1 !important;
+      height: 100% !important;
+      flex: none !important;
+      padding: 0 !important;
+    }
+  {% else %}
+    #shopify-section-{{ section.id }} .resource-list__item {
+      height: auto !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card {
+      aspect-ratio: auto !important;
+      height: 100% !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__inner {
+      height: auto !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__image,
+    #shopify-section-{{ section.id }} .resource-image {
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      flex: 0 0 auto !important;
+      z-index: auto !important;
+    }
+
+    #shopify-section-{{ section.id }} .collection-card__content {
+      position: relative !important;
+      z-index: auto !important;
+      height: auto !important;
+      flex: 0 0 auto !important;
+      padding: 0 !important;
+    }
+  {% endif %}
+{% endstyle %}
 
 {% schema %}
 {
@@ -127,6 +200,23 @@
     {
       "type": "header",
       "content": "t:content.cards_layout"
+    },
+    {
+      "type": "select",
+      "id": "card_text_placement",
+      "label": "t:settings.placement",
+      "info": "t:info.collection_card_text_placement",
+      "options": [
+        {
+          "value": "on_image",
+          "label": "t:options.on_image"
+        },
+        {
+          "value": "below_image",
+          "label": "t:options.below_image"
+        }
+      ],
+      "default": "below_image"
     },
     {
       "type": "select",
@@ -368,6 +458,7 @@
       "category": "t:categories.collections",
       "settings": {
         "layout_type": "bento",
+        "card_text_placement": "on_image",
         "bento_gap": 8,
         "section_width": "page-width",
         "carousel_on_mobile": false,
@@ -589,6 +680,7 @@
       "settings": {
         "collection_list": [],
         "layout_type": "grid",
+        "card_text_placement": "on_image",
         "carousel_on_mobile": false,
         "columns": 3,
         "mobile_columns": "2",
@@ -710,6 +802,7 @@
       "settings": {
         "collection_list": [],
         "layout_type": "carousel",
+        "card_text_placement": "below_image",
         "carousel_on_mobile": false,
         "columns": 3,
         "mobile_columns": "2",
@@ -853,6 +946,7 @@
       "settings": {
         "collection_list": [],
         "layout_type": "editorial",
+        "card_text_placement": "below_image",
         "carousel_on_mobile": false,
         "columns": 3,
         "mobile_columns": "2",
