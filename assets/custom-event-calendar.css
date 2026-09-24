@@ -106,7 +106,7 @@ gl-event-calendar,
 .gl-event-calendar__game-select {
   height: 44px;
   padding: 0 40px 0 16px;
-  border: 1px solid #d7dde5;
+  border: 1px solid #C0DFF6;
   border-radius: 12px;
   background: #fff;
   color: var(--gl-cal-text);

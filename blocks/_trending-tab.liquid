@@ -43,7 +43,7 @@
     test_id: 'trending-resource-list'
   %}
 
-  {% if block.settings.collection != blank %}
+  {% if block.settings.collection != blank and section.settings.view_all_label != blank %}
     <div class="trending__view-all" data-trending-view-all>
       <a class="button button--primary" href="{{ block.settings.collection.url }}">
         {{ section.settings.view_all_label | default: 'View all' }}
