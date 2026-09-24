@@ -1,1 +1,1478 @@
-{"sections":{"custom_hero_slider_CyxXjd":{"type":"custom-hero-slider","blocks":{"slide_AFF4jW":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/banner_1.jpg","heading":"RIFTBOUND: ORIGINS","subheading":"Pre-order now","description":"The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.","text_align":"center","button_label":"Shop now","button_link":"","button_label_2":"","button_link_2":""}},"slide_EGKQmr":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/banner_2.jpg","heading":"RIFTBOUND: ORIGINS","subheading":"Pre-order now","description":"The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.","text_align":"center","button_label":"Shop now","button_link":"","button_label_2":"","button_link_2":""}},"slide_MDDMjp":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/banner_3.jpg","heading":"RIFTBOUND: ORIGINS","subheading":"Pre-order now","description":"The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.","text_align":"center","button_label":"Shop now","button_link":"","button_label_2":"","button_link_2":""}}},"block_order":["slide_AFF4jW","slide_EGKQmr","slide_MDDMjp"],"name":"Hero carousel","settings":{"background_color":"{{ settings.color_palette.background }}","slide_background_color":"{{ settings.color_palette.color3 }}","section_width":"page-width","padding-block-start":32,"padding-block-end":32,"autoplay":true,"autoplay_speed":5}},"custom_icon_columns_kDcKV4":{"type":"custom-icon-columns","blocks":{"item_XQcigM":{"type":"item","settings":{"icon":"shopify:\/\/shop_images\/message_icon_bdfae177-b103-44b6-8299-8c71564279e9.png","icon_svg":"","heading":"Have a question","text":"Email or call (02) 8677 1966","modal_enabled":true,"modal_heading":"Got a question?","modal_heading_preset":"h4","modal_heading_size":"1rem","modal_content":"<p style=\"margin:0 0 14px 0;\">\n    Talk to real players, not a script. Whether it's card condition,<br>\n    a ruling, or what's coming up next — just ask. Our team (including a<br>\n    Level 3 judge) usually replies same day.\n  <\/p>\n\n  <div style=\"display:flex; align-items:center; margin-bottom:10px;\">\n    <span style=\"display:inline-flex; width:18px; margin-right:8px;\">\n      <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M15.8333 10C15.8333 8.375 15.2674 6.99653 14.1354 5.86458C13.0035 4.73264 11.625 4.16667 10 4.16667V2.5C11.0417 2.5 12.0174 2.69792 12.9271 3.09375C13.8368 3.48958 14.6285 4.02431 15.3021 4.69792C15.9757 5.37153 16.5104 6.16319 16.9062 7.07292C17.3021 7.98264 17.5 8.95833 17.5 10H15.8333ZM12.5 10C12.5 9.30556 12.2569 8.71528 11.7708 8.22917C11.2847 7.74306 10.6944 7.5 10 7.5V5.83333C11.1528 5.83333 12.1354 6.23958 12.9479 7.05208C13.7604 7.86458 14.1667 8.84722 14.1667 10H12.5ZM16.625 17.5C14.8889 17.5 13.1736 17.1215 11.4792 16.3646C9.78472 15.6076 8.24306 14.5347 6.85417 13.1458C5.46528 11.7569 4.39236 10.2153 3.63542 8.52083C2.87847 6.82639 2.5 5.11111 2.5 3.375C2.5 3.125 2.58333 2.91667 2.75 2.75C2.91667 2.58333 3.125 2.5 3.375 2.5H6.75C6.94444 2.5 7.11806 2.56597 7.27083 2.69792C7.42361 2.82986 7.51389 2.98611 7.54167 3.16667L8.08333 6.08333C8.11111 6.30556 8.10417 6.49306 8.0625 6.64583C8.02083 6.79861 7.94444 6.93056 7.83333 7.04167L5.8125 9.08333C6.09028 9.59722 6.42014 10.0938 6.80208 10.5729C7.18403 11.0521 7.60417 11.5139 8.0625 11.9583C8.49306 12.3889 8.94444 12.7882 9.41667 13.1562C9.88889 13.5243 10.3889 13.8611 10.9167 14.1667L12.875 12.2083C13 12.0833 13.1632 11.9896 13.3646 11.9271C13.566 11.8646 13.7639 11.8472 13.9583 11.875L16.8333 12.4583C17.0278 12.5139 17.1875 12.6146 17.3125 12.7604C17.4375 12.9062 17.5 13.0694 17.5 13.25V16.625C17.5 16.875 17.4167 17.0833 17.25 17.25C17.0833 17.4167 16.875 17.5 16.625 17.5ZM5.02083 7.5L6.39583 6.125L6.04167 4.16667H4.1875C4.25694 4.73611 4.35417 5.29861 4.47917 5.85417C4.60417 6.40972 4.78472 6.95833 5.02083 7.5ZM12.4792 14.9583C13.0208 15.1944 13.5729 15.3819 14.1354 15.5208C14.6979 15.6597 15.2639 15.75 15.8333 15.7917V13.9583L13.875 13.5625L12.4792 14.9583Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <\/span>\n    <a href=\"tel:+61286771966\" style=\"text-decoration:none;\">\n      (02) 8677 1966\n    <\/a>\n  <\/div>\n\n  <div style=\"display:flex; align-items:center;\">\n    <span style=\"display:inline-flex; width:18px; margin-right:8px;\">\n      <svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M4 20C3.45 20 2.97917 19.8042 2.5875 19.4125C2.19583 19.0208 2 18.55 2 18V6C2 5.45 2.19583 4.97917 2.5875 4.5875C2.97917 4.19583 3.45 4 4 4H20C20.55 4 21.0208 4.19583 21.4125 4.5875C21.8042 4.97917 22 5.45 22 6V18C22 18.55 21.8042 19.0208 21.4125 19.4125C21.0208 19.8042 20.55 20 20 20H4ZM12 13L4 8V18H20V8L12 13ZM12 11L20 6H4L12 11ZM4 8V6V18V8Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <\/span>\n    <a href=\"mailto:info@thegamescube.com\" style=\"text-decoration:none;\">\n      info@thegamescube.com\n    <\/a>\n  <\/div>","button_1_label":"CALL US","button_1_link":"","button_1_open_in_new_tab":false,"button_1_style_class":"button-secondary","button_1_custom_background":"{{ settings.color_palette.foreground }}","button_1_custom_text":"{{ settings.color_palette.background }}","button_1_custom_border":"{{ settings.color_palette.background }}","button_1_link_text_color":"","button_1_default_action":"none","button_1_custom_action":"window.location.href = 'tel:+61286771966';","button_2_label":"EMAIL US","button_2_link":"","button_2_open_in_new_tab":false,"button_2_style_class":"button","button_2_custom_background":"{{ settings.color_palette.foreground }}","button_2_custom_text":"{{ settings.color_palette.background }}","button_2_custom_border":"{{ settings.color_palette.background }}","button_2_link_text_color":"","button_2_default_action":"none","button_2_custom_action":"window.location.href = 'mailto:info@thegamescube.com';"}},"item_YgXcxF":{"type":"item","settings":{"icon":"shopify:\/\/shop_images\/storefront_icon_4de8c74d-2ef8-4f0b-a784-cfae47adb669.png","icon_svg":"","heading":"STORE PICKUP AVAILABLE","text":"Card singles from Frankston only","modal_enabled":true,"modal_heading":"Pickup at Parramatta","modal_heading_preset":"h4","modal_heading_size":"1rem","modal_content":"<p style=\"margin: 0 0 20px 0; font-size: 15px; line-height: 1.5;\">\n    Skip the wait — grab your singles the same day. Pickup at our Parramatta store is available for card singles only.\n  <\/p>\n  \n  <div style=\"margin-bottom: 12px; font-size: 15px; display: flex; align-items: flex-start; gap: 8px;\">\n    <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M11.1772 9.51044C11.5036 9.18405 11.6668 8.79169 11.6668 8.33335C11.6668 7.87502 11.5036 7.48266 11.1772 7.15627C10.8509 6.82988 10.4585 6.66669 10.0002 6.66669C9.54183 6.66669 9.14947 6.82988 8.82308 7.15627C8.49669 7.48266 8.3335 7.87502 8.3335 8.33335C8.3335 8.79169 8.49669 9.18405 8.82308 9.51044C9.14947 9.83683 9.54183 10 10.0002 10C10.4585 10 10.8509 9.83683 11.1772 9.51044ZM10.0002 16.125C11.6946 14.5695 12.9516 13.1563 13.771 11.8854C14.5904 10.6146 15.0002 9.48613 15.0002 8.50002C15.0002 6.98613 14.5175 5.74655 13.5522 4.78127C12.587 3.81599 11.4029 3.33335 10.0002 3.33335C8.59738 3.33335 7.41336 3.81599 6.44808 4.78127C5.4828 5.74655 5.00016 6.98613 5.00016 8.50002C5.00016 9.48613 5.40989 10.6146 6.22933 11.8854C7.04877 13.1563 8.30572 14.5695 10.0002 16.125ZM10.0002 18.3334C7.76405 16.4306 6.09391 14.6632 4.98975 13.0313C3.88558 11.3993 3.3335 9.88891 3.3335 8.50002C3.3335 6.41669 4.00363 4.75696 5.34391 3.52085C6.68419 2.28474 8.23627 1.66669 10.0002 1.66669C11.7641 1.66669 13.3161 2.28474 14.6564 3.52085C15.9967 4.75696 16.6668 6.41669 16.6668 8.50002C16.6668 9.88891 16.1147 11.3993 15.0106 13.0313C13.9064 14.6632 12.2363 16.4306 10.0002 18.3334Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <span>16 Hunter St, Parramatta NSW 2150. <a href=\"https:\/\/www.google.com\/maps\/place\/The+Games+Cube+PTY+LTD\/data=!4m2!3m1!1s0x0:0x401095bc0851d766?sa=X&amp;ved=1t:2428&amp;ictx=111\" style=\"color: #007ace; font-weight: 700; text-decoration: underline;\" target=\"_blank\">Get direction<\/a><\/span>\n  <\/div>\n  \n  <div style=\"font-size: 15px;display: flex; align-items: flex-start; gap: 8px;\">\n    <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M7.07292 17.7396C6.16319 17.3437 5.37153 16.809 4.69792 16.1354C4.02431 15.4618 3.48958 14.6701 3.09375 13.7604C2.69792 12.8507 2.5 11.875 2.5 10.8333C2.5 9.79165 2.69792 8.81595 3.09375 7.90623C3.48958 6.99651 4.02431 6.20484 4.69792 5.53123C5.37153 4.85762 6.16319 4.3229 7.07292 3.92706C7.98264 3.53123 8.95833 3.33331 10 3.33331C11.0417 3.33331 12.0174 3.53123 12.9271 3.92706C13.8368 4.3229 14.6285 4.85762 15.3021 5.53123C15.9757 6.20484 16.5104 6.99651 16.9062 7.90623C17.3021 8.81595 17.5 9.79165 17.5 10.8333C17.5 11.875 17.3021 12.8507 16.9062 13.7604C16.5104 14.6701 15.9757 15.4618 15.3021 16.1354C14.6285 16.809 13.8368 17.3437 12.9271 17.7396C12.0174 18.1354 11.0417 18.3333 10 18.3333C8.95833 18.3333 7.98264 18.1354 7.07292 17.7396ZM12.3333 14.3333L13.5 13.1666L10.8333 10.5V6.66665H9.16667V11.1666L12.3333 14.3333ZM4.66667 1.95831L5.83333 3.12498L2.29167 6.66665L1.125 5.49998L4.66667 1.95831ZM15.3333 1.95831L18.875 5.49998L17.7083 6.66665L14.1667 3.12498L15.3333 1.95831ZM10 16.6666C11.625 16.6666 13.0035 16.1007 14.1354 14.9687C15.2674 13.8368 15.8333 12.4583 15.8333 10.8333C15.8333 9.20831 15.2674 7.82984 14.1354 6.6979C13.0035 5.56595 11.625 4.99998 10 4.99998C8.375 4.99998 6.99653 5.56595 5.86458 6.6979C4.73264 7.82984 4.16667 9.20831 4.16667 10.8333C4.16667 12.4583 4.73264 13.8368 5.86458 14.9687C6.99653 16.1007 8.375 16.6666 10 16.6666Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <div>\n      <div style=\"line-height: 1.6;\">Opening hours:<\/div>\n      <div style=\"line-height: 1.6;\">Mon: 11am – 5pm<\/div>\n      <div style=\"line-height: 1.6;\">Tue: 11am – 6pm<\/div>\n      <div style=\"line-height: 1.6;\">Wed – Fri: 11am – 10pm<\/div>\n      <div style=\"line-height: 1.6;\">Sat: 10am – 5pm<\/div>\n      <div style=\"line-height: 1.6;\">Sun: 10am – 4pm<\/div>\n    <\/div>\n  <\/div>","button_1_label":"GOT IT","button_1_link":"","button_1_open_in_new_tab":false,"button_1_style_class":"button-secondary","button_1_custom_background":"{{ settings.color_palette.foreground }}","button_1_custom_text":"{{ settings.color_palette.background }}","button_1_custom_border":"{{ settings.color_palette.background }}","button_1_link_text_color":"","button_1_default_action":"close","button_1_custom_action":"","button_2_label":"","button_2_link":"","button_2_open_in_new_tab":false,"button_2_style_class":"button-secondary","button_2_custom_background":"{{ settings.color_palette.foreground }}","button_2_custom_text":"{{ settings.color_palette.background }}","button_2_custom_border":"{{ settings.color_palette.background }}","button_2_link_text_color":"","button_2_default_action":"none","button_2_custom_action":""}},"item_c6bXp7":{"type":"item","settings":{"icon":"shopify:\/\/shop_images\/delivery_icon_0ed23049-4d69-493e-a267-6e47385395fa.png","icon_svg":"","heading":"EXPRESS SHIPPING","text":"Express shipping available — view options","modal_enabled":true,"modal_heading":"Fast, Tracked Shipping","modal_heading_preset":"h4","modal_heading_size":"1rem","modal_content":"<p style=\"margin: 0 0 16px 0;\">Every order ships with tracking. Choose your speed at checkout:<\/p>\n  \n  <p style=\"margin: 0 0 12px 0; font-weight: 700;\">Singles only<\/p>\n  \n  <ul style=\"margin: 0 0 20px 0; padding-left: 20px; list-style-type: disc;\">\n    <li style=\"margin-bottom: 8px;\">Regular Post — $6<\/li>\n    <li style=\"margin-bottom: 8px;\">Registered Post — $8<\/li>\n    <li style=\"margin-bottom: 0;\">Express Post — $10<\/li>\n  <\/ul>\n  \n  <p style=\"margin: 0 0 12px 0; font-weight: 700;\">All other products<\/p>\n  \n  <ul style=\"margin: 0 0 20px 0; padding-left: 20px; list-style-type: disc;\">\n    <li style=\"margin-bottom: 8px;\">Parcel (flat rate) — $10<\/li>\n    <li style=\"margin-bottom: 8px;\">Parcel Registered (signature) — $15<\/li>\n    <li style=\"margin-bottom: 0;\">Parcel Express — $20<\/li>\n  <\/ul>\n  \n  <p style=\"margin: 0;\">\n    Insurance available: $5 (up to $300) · $10 (up to $500) · $20 (up to $1000)\n  <\/p>","button_1_label":"GOT IT","button_1_link":"","button_1_open_in_new_tab":false,"button_1_style_class":"button-secondary","button_1_custom_background":"{{ settings.color_palette.foreground }}","button_1_custom_text":"{{ settings.color_palette.background }}","button_1_custom_border":"{{ settings.color_palette.background }}","button_1_link_text_color":"","button_1_default_action":"close","button_1_custom_action":"","button_2_label":"","button_2_link":"","button_2_open_in_new_tab":false,"button_2_style_class":"button-secondary","button_2_custom_background":"{{ settings.color_palette.foreground }}","button_2_custom_text":"{{ settings.color_palette.background }}","button_2_custom_border":"{{ settings.color_palette.background }}","button_2_link_text_color":"","button_2_default_action":"none","button_2_custom_action":""}},"item_NR8yPE":{"type":"item","settings":{"icon":"shopify:\/\/shop_images\/magic_icon_3e258cf3-3472-48c0-8ff6-739cba9011fc.png","icon_svg":"","heading":"DECK BUILDER","text":"Got a list, paste it in here","modal_enabled":true,"modal_heading":"Paste Your List. We'll Find It.","modal_heading_preset":"h4","modal_heading_size":"1rem","modal_content":"<p style=\"margin: 0 0 16px 0;\">\n    Building a deck or chasing down a wishlist? Drop your list in below and we'll match it against our live stock — singles, sets, the lot. No manual searching, no tab-switching. Just paste and go.\n  <\/p>\n\n  <p style=\"margin: 0 0 16px 0;\">\n    Paste your list below and hit Search — any of the 3 formats below works fine.\n  <\/p>\n\n  <textarea id=\"decklistInput\" placeholder=\"Paste your decklist here...\" style=\"width: 100%; height: 120px; padding: 12px 16px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; outline: none;\"><\/textarea>\n\n  <div style=\"display: flex; gap: 24px; flex-wrap: wrap;\">\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 1:<\/div>\n      <div>Forest<\/div>\n      <div>Mox Emerald<\/div>\n    <\/div>\n\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 2:<\/div>\n      <div>12 Forest<\/div>\n      <div>3 Mox Emerald<\/div>\n    <\/div>\n\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 3:<\/div>\n      <div>12x Forest<\/div>\n      <div>3x Mox Emerald<\/div>\n    <\/div>\n  <\/div>","button_1_label":"CANCEL","button_1_link":"","button_1_open_in_new_tab":false,"button_1_style_class":"button-secondary","button_1_custom_background":"{{ settings.color_palette.foreground }}","button_1_custom_text":"{{ settings.color_palette.background }}","button_1_custom_border":"{{ settings.color_palette.background }}","button_1_link_text_color":"","button_1_default_action":"close","button_1_custom_action":"","button_2_label":"SEARCH","button_2_link":"","button_2_open_in_new_tab":false,"button_2_style_class":"button","button_2_custom_background":"{{ settings.color_palette.foreground }}","button_2_custom_text":"{{ settings.color_palette.background }}","button_2_custom_border":"{{ settings.color_palette.background }}","button_2_link_text_color":"","button_2_default_action":"none","button_2_custom_action":"const text = document.getElementById('decklistInput').value;\nif (text.trim()) {\n  window.location.href = '\/search?q=' + encodeURIComponent(text);\n}"}}},"block_order":["item_XQcigM","item_YgXcxF","item_c6bXp7","item_NR8yPE"],"custom_css":[".icon-columns-modal__buttons button {flex: 1; border-radius: 8px; justify-content: center;}"],"name":"Icon columns","settings":{"background_color":"{{ settings.color_palette.background }}","background_color_box":"{{ settings.color_palette.color3 }}","image_color_picker":"#eaf2ff","section_width":"page-width","mobile_layout":"grid","padding-block-start":0,"padding-block-end":32}},"collection_list_Tp6wpc":{"type":"collection-list","blocks":{"group_7kjtCj":{"type":"group","name":"t:names.header","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":8,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_X33cmy":{"type":"text","name":"t:names.text","settings":{"text":"<p><strong>SHOP BY GAME<\/strong><\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-body--family)","font_size":"0.75rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#207fc4","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_phWTAa":{"type":"text","name":"t:names.text","settings":{"text":"<h3>MOST WANTED TCG'S<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"2rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#1d1a17","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_dCc6VG":{"type":"text","name":"t:names.text","settings":{"text":"<p>Beyond Magic — here's everything else our shelves are stacked with.<\/p>","width":"100%","max_width":"none","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#5c554c","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_X33cmy","text_phWTAa","text_dCc6VG"]},"static-collection-card":{"type":"_collection-card","name":"t:names.collection_card","static":true,"settings":{"placement":"below_image","horizontal_alignment":"center","vertical_alignment":"flex-end","collection_card_gap":0,"background_color":"{{ settings.color_palette.foreground }}","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":12},"blocks":{"collection_title_CTk3L3":{"type":"collection-title","name":"t:names.collection_title","settings":{"width":"100%","max_width":"none","alignment":"center","type_preset":"custom","font":"var(--font-heading--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":true,"background_color":"{{ settings.color_palette.foreground }}","text_color":"#f7f1e4","corner_radius":0,"padding-block-start":8,"padding-block-end":8,"padding-inline-start":16,"padding-inline-end":16},"blocks":{}},"collection-card-image":{"type":"_collection-card-image","name":"t:names.collection_card_image","static":true,"settings":{"image_ratio":"adapt","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0},"blocks":{}}},"block_order":["collection_title_CTk3L3"]}},"block_order":["group_7kjtCj"],"custom_css":[".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}",".collection-card {--ratio: 1.225 !important;}","slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}","@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(6, 1fr) !important; }}","@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 \/ -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) \/ 2); }}"],"name":"t:names.collections_carousel","settings":{"collection_list":["magic-the-gathering","one-piece-tcg","pokemon","riftbound","yu-gi-oh","disney-lorcana"],"card_text_placement":"below_image","layout_type":"grid","carousel_on_mobile":false,"columns":3,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":24,"bento_gap":8,"rows_gap":8,"max_collections":4,"icons_style":"none","icons_shape":"circle","section_width":"page-width","gap":16,"background_color":"","padding-block-start":32,"padding-block-end":32}},"custom_products_tabs_VjGWXx":{"type":"custom-products-tabs","blocks":{"tab_NdgepX":{"type":"_trending-tab","settings":{"collection":"singles","tab_label":"Singles","product_limit":5},"blocks":{"static-product-card":{"type":"_product-card","static":true,"settings":{"product_card_gap":0,"background_color":"{{ settings.color_palette.color3 }}","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":8,"padding-block-start":8,"padding-block-end":8,"padding-inline-start":12,"padding-inline-end":12},"blocks":{"image_8YaKbk":{"type":"image","name":"t:names.image","settings":{"image":"{{ closest.product.featured_image }}","link":"{{ closest.product.url }}","image_ratio":"portrait","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_card_group_B6EMCt":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":6,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":16,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_BgEtyG":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>{{ closest.product.title }}<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"1.25rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#1d1a17","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_UBgrY6":{"type":"text","name":"t:names.text","settings":{"text":"<p>{{ closest.product.metafields.custom.variant.value }}<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-body--family)","font_size":"0.75rem","line_height":"tight","letter_spacing":"tight","case":"none","wrap":"pretty","text_color":"#46626f","background":true,"background_color":"{{ settings.color_palette.background }}","corner_radius":50,"padding-block-start":4,"padding-block-end":4,"padding-inline-start":8,"padding-inline-end":12},"blocks":{}}},"block_order":["text_BgEtyG","text_UBgrY6"]},"product_card_group_TwcWjB":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":6,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":8,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"price_ncyQNg":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"custom","width":"fit-content","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","text_color":"#207fc4","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"custom_liquid_a8tqiA":{"type":"custom-liquid","name":"t:names.custom_liquid","settings":{"full_width":false,"custom_liquid":"{% assign variant = closest.product.selected_or_first_available_variant %}\n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %}\n    <span style=\"color:red;\">DEBUG: closest.product also blank<\/span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \"{{ variant.inventory_management }}\"<\/span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left<\/span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\">{{ variant.inventory_quantity }} left<\/span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %}\n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder<\/span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock<\/span>\n      {% endif %}\n    {% endif %}\n  {% endif %}\n<\/div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n<\/style>"},"blocks":{}}},"block_order":["price_ncyQNg","custom_liquid_a8tqiA"]},"product_card_group_jNdink":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"card_variant_selects_mUdjFV":{"type":"custom-variant-select","name":"t:names.card_variant_selects","settings":{},"blocks":{}}},"block_order":["card_variant_selects_mUdjFV"]},"buy_buttons_Mchxnh":{"type":"buy-buttons","name":"t:names.product_buy_buttons","settings":{"stacking":true,"text_color":"","show_pickup_availability":true,"gift_card_form":true,"recipient_button_style":"default","recipient_button_background":"{{ settings.color_palette.background }}","recipient_button_text":"{{ settings.color_palette.foreground }}","recipient_button_border":"{{ settings.color_palette.foreground }}","selected_recipient_button_style":"default","selected_recipient_button_background":"{{ settings.color_palette.foreground }}","selected_recipient_button_text":"{{ settings.color_palette.background }}","selected_recipient_button_border":"{{ settings.color_palette.foreground }}","input_style":"default","input_background_color":"{{ settings.color_palette.background }}","input_text_color":"{{ settings.color_palette.foreground }}","input_border_color":"{{ settings.color_palette.foreground }}","border_width":1,"border_radius":0,"padding-block-start":8,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"quantity":{"type":"quantity","static":true,"settings":{"input_style":"custom","input_background_color":"{{ settings.color_palette.color3 }}","input_text_color":"{{ settings.color_palette.foreground }}","input_border_color":"#c0dff6","border_width":1,"border_radius":8},"blocks":{}},"add-to-cart":{"type":"add-to-cart","static":true,"settings":{"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.foreground }}","custom_button_text":"{{ settings.color_palette.background }}","custom_button_border":"rgba(0,0,0,0)"},"blocks":{}},"accelerated-checkout":{"type":"accelerated-checkout","disabled":true,"static":true,"settings":{},"blocks":{}}},"block_order":[]}},"block_order":["image_8YaKbk","product_card_group_B6EMCt","product_card_group_TwcWjB","product_card_group_jNdink","buy_buttons_Mchxnh"]}},"block_order":[]},"trending_tab_zymFR6":{"type":"_trending-tab","settings":{"collection":"sealed","tab_label":"Sealed","product_limit":5},"blocks":{"static-product-card":{"type":"_product-card","static":true,"settings":{"product_card_gap":0,"background_color":"{{ settings.color_palette.color3 }}","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":8,"padding-block-start":8,"padding-block-end":8,"padding-inline-start":12,"padding-inline-end":12},"blocks":{"image_DwtEFT":{"type":"image","name":"t:names.image","settings":{"image":"{{ closest.product.featured_image }}","link":"{{ closest.product.url }}","image_ratio":"portrait","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_card_group_DtBNyN":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":6,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":16,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_RjYJd7":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>{{ closest.product.title }}<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"1.25rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#1d1a17","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_qiX9wk":{"type":"text","name":"t:names.text","settings":{"text":"<p>{{ closest.product.metafields.custom.variant.value }}<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"custom","font":"var(--font-body--family)","font_size":"0.75rem","line_height":"tight","letter_spacing":"tight","case":"none","wrap":"pretty","text_color":"#46626f","background":true,"background_color":"{{ settings.color_palette.background }}","corner_radius":50,"padding-block-start":4,"padding-block-end":4,"padding-inline-start":8,"padding-inline-end":12},"blocks":{}}},"block_order":["text_RjYJd7","text_qiX9wk"]},"product_card_group_AXPQf6":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":6,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":8,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"price_mgwGip":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"custom","width":"fit-content","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","text_color":"#207fc4","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"custom_liquid_LMMVLE":{"type":"custom-liquid","name":"t:names.custom_liquid","settings":{"full_width":false,"custom_liquid":"{% assign variant = closest.product.selected_or_first_available_variant %}\n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %}\n    <span style=\"color:red;\">DEBUG: closest.product also blank<\/span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \"{{ variant.inventory_management }}\"<\/span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left<\/span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\">{{ variant.inventory_quantity }} left<\/span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %}\n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder<\/span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock<\/span>\n      {% endif %}\n    {% endif %}\n  {% endif %}\n<\/div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n<\/style>"},"blocks":{}}},"block_order":["price_mgwGip","custom_liquid_LMMVLE"]},"product_card_group_pqf9RK":{"type":"_product-card-group","name":"t:names.group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"card_variant_selects_3zAndU":{"type":"custom-variant-select","name":"t:names.card_variant_selects","settings":{},"blocks":{}}},"block_order":["card_variant_selects_3zAndU"]},"buy_buttons_pVnEpe":{"type":"buy-buttons","name":"t:names.product_buy_buttons","settings":{"stacking":true,"text_color":"","show_pickup_availability":true,"gift_card_form":true,"recipient_button_style":"default","recipient_button_background":"{{ settings.color_palette.background }}","recipient_button_text":"{{ settings.color_palette.foreground }}","recipient_button_border":"{{ settings.color_palette.foreground }}","selected_recipient_button_style":"default","selected_recipient_button_background":"{{ settings.color_palette.foreground }}","selected_recipient_button_text":"{{ settings.color_palette.background }}","selected_recipient_button_border":"{{ settings.color_palette.foreground }}","input_style":"default","input_background_color":"{{ settings.color_palette.background }}","input_text_color":"{{ settings.color_palette.foreground }}","input_border_color":"{{ settings.color_palette.foreground }}","border_width":1,"border_radius":0,"padding-block-start":8,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"quantity":{"type":"quantity","static":true,"settings":{"input_style":"custom","input_background_color":"{{ settings.color_palette.color3 }}","input_text_color":"{{ settings.color_palette.foreground }}","input_border_color":"#c0dff6","border_width":1,"border_radius":8},"blocks":{}},"add-to-cart":{"type":"add-to-cart","static":true,"settings":{"style_class":"button-custom","custom_button_background":"{{ settings.color_palette.foreground }}","custom_button_text":"{{ settings.color_palette.background }}","custom_button_border":"rgba(0,0,0,0)"},"blocks":{}},"accelerated-checkout":{"type":"accelerated-checkout","disabled":true,"static":true,"settings":{},"blocks":{}}},"block_order":[]}},"block_order":["image_DwtEFT","product_card_group_DtBNyN","product_card_group_AXPQf6","product_card_group_pqf9RK","buy_buttons_pVnEpe"]}},"block_order":[]}},"block_order":["tab_NdgepX","trending_tab_zymFR6"],"custom_css":[".trending .resource-list__slide {min-width: calc( (100% - (var(--column-count) - 1) * 1rem) \/ var(--column-count) );}",".image-block {border-radius: 8px; overflow: hidden;}","@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}"],"name":"Products Tabs","settings":{"eyebrow":"Fresh off the shelf","heading":"Trending now","subheading":"Priced and verified by the crew who actually play these games.","view_all_label":"","accent_color":"#207fc4","heading_color":"#1d1a17","layout_type":"grid","carousel_on_mobile":false,"columns":3,"mobile_columns":"2","mobile_card_size":"44cqw","columns_gap":16,"rows_gap":16,"icons_style":"arrow","icons_shape":"circle","section_width":"page-width","padding-block-start":32,"padding-block-end":32}},"collection_list_93zjHF":{"type":"collection-list","blocks":{"group_6Xr9Gf":{"type":"group","name":"t:names.header","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":8,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","background_color":"","video_position":"cover","background_image_position":"cover","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0,"link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_cePRiQ":{"type":"text","name":"t:names.text","settings":{"text":"<p>HANDPICKED BY THE CREW<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-body--family)","font_size":"0.75rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#207fc4","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_QV8ep4":{"type":"text","name":"t:names.text","settings":{"text":"<h3>BEST SELLING TCG ACCESSORIES<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"2rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#1d1a17","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_aj3Ad3":{"type":"text","name":"t:names.text","settings":{"text":"<p>The gear our own staff actually use at the tables every week.<\/p>","width":"100%","max_width":"none","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","text_color":"#5c554c","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_cePRiQ","text_QV8ep4","text_aj3Ad3"]},"static-collection-card":{"type":"_collection-card","name":"t:names.collection_card","static":true,"settings":{"placement":"below_image","horizontal_alignment":"center","vertical_alignment":"flex-end","collection_card_gap":0,"background_color":"{{ settings.color_palette.foreground }}","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":12},"blocks":{"collection_title_A47Wpe":{"type":"collection-title","name":"t:names.collection_title","settings":{"width":"100%","max_width":"none","alignment":"center","type_preset":"custom","font":"var(--font-heading--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":true,"background_color":"{{ settings.color_palette.foreground }}","text_color":"#f7f1e4","corner_radius":0,"padding-block-start":8,"padding-block-end":8,"padding-inline-start":16,"padding-inline-end":16},"blocks":{}},"collection-card-image":{"type":"_collection-card-image","name":"t:names.collection_card_image","static":true,"settings":{"image_ratio":"adapt","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","border":"none","border_width":1,"border_opacity":100,"border_color":"","border_radius":0},"blocks":{}}},"block_order":["collection_title_A47Wpe"]}},"block_order":["group_6Xr9Gf"],"custom_css":[".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}","slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}","@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}","@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 \/ -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) \/ 2); }}"],"name":"t:names.collections_carousel","settings":{"collection_list":["sleeves","deck-boxes","play-mats","folders","games-cube-accessories"],"card_text_placement":"below_image","layout_type":"grid","carousel_on_mobile":false,"columns":3,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":24,"bento_gap":8,"rows_gap":8,"max_collections":4,"icons_style":"none","icons_shape":"circle","section_width":"page-width","gap":16,"background_color":"","padding-block-start":32,"padding-block-end":32}},"custom_event_calendar_h8yr7U":{"type":"custom-event-calendar","name":"Event calendar","settings":{"heading":"Event Calendar","subtitle":"See what's on at Game Locker","empty_message":"No events this month.","background_color":"#ECF7FF","section_width":"page-width","padding-block-start":32,"padding-block-end":32}},"custom_stats_banner_XzUWxB":{"type":"custom-stats-banner","blocks":{"stat_peWb6L":{"type":"stat","settings":{"value":"4.5 ⭐","show_star":false,"label":"Average rating on Google"}},"stat_X3nWGL":{"type":"stat","settings":{"value":"165+","show_star":false,"label":"Verified customer reviews"}},"stat_9nCUqN":{"type":"stat","settings":{"value":"98%","show_star":false,"label":"Would shop with us again"}}},"block_order":["stat_peWb6L","stat_X3nWGL","stat_9nCUqN"],"name":"Testimonial with stats","settings":{"background_color":"{{ settings.color_palette.foreground }}","section_width":"page-width","padding-block-start":32,"padding-block-end":32,"subheading":"What players say","quote":"You can tell they actually play. Every recommendation just... made sense.","attribution":"Sarah T., Google Reviews"}},"custom_team_slider_NkUJ67":{"type":"custom-team-slider","blocks":{"member_LyUA6A":{"type":"member","settings":{"image":"shopify:\/\/shop_images\/Photo.png","heading":"Lindsay Heming","badge_text":"Level 3 MTG Judge","description":"Lindsay has been playing Magic since 1995 and has head-judged two Grand Prix events for Wizards of the Coast. If a ruling gets complicated, he's the one everyone calls."}},"member_ppYNaQ":{"type":"member","settings":{"image":"shopify:\/\/shop_images\/Photo.png","heading":"Lindsay Heming 2","badge_text":"Level 3 MTG Judge","description":"Lindsay has been playing Magic since 1995 and has head-judged two Grand Prix events for Wizards of the Coast. If a ruling gets complicated, he's the one everyone calls."}}},"block_order":["member_LyUA6A","member_ppYNaQ"],"name":"Meet the team","settings":{"eyebrow":"Meet the team","background_color":"#e8f1fb","accent_color":"#207fc4","button_border":"#d6edfe","heading_color":"#1d1a17","section_width":"page-width","padding-block-start":32,"padding-block-end":32}}},"order":["custom_hero_slider_CyxXjd","custom_icon_columns_kDcKV4","collection_list_Tp6wpc","custom_products_tabs_VjGWXx","collection_list_93zjHF","custom_event_calendar_h8yr7U","custom_stats_banner_XzUWxB","custom_team_slider_NkUJ67"]}
+{
+  "sections": {
+    "custom_hero_slider_CyxXjd": {
+      "type": "custom-hero-slider",
+      "blocks": {
+        "slide_AFF4jW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner_1.jpg",
+            "heading": "RIFTBOUND: ORIGINS",
+            "subheading": "Pre-order now",
+            "description": "The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.",
+            "text_align": "center",
+            "button_label": "Shop now",
+            "button_link": "",
+            "button_label_2": "",
+            "button_link_2": ""
+          }
+        },
+        "slide_EGKQmr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner_2.jpg",
+            "heading": "RIFTBOUND: ORIGINS",
+            "subheading": "Pre-order now",
+            "description": "The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.",
+            "text_align": "center",
+            "button_label": "Shop now",
+            "button_link": "",
+            "button_label_2": "",
+            "button_link_2": ""
+          }
+        },
+        "slide_MDDMjp": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner_3.jpg",
+            "heading": "RIFTBOUND: ORIGINS",
+            "subheading": "Pre-order now",
+            "description": "The Runeterra you know, now in your hands. Build your legend with Champions like Ahri, Yasuo and Jinx in Riot Games' first-ever TCG.",
+            "text_align": "center",
+            "button_label": "Shop now",
+            "button_link": "",
+            "button_label_2": "",
+            "button_link_2": ""
+          }
+        }
+      },
+      "block_order": ["slide_AFF4jW", "slide_EGKQmr", "slide_MDDMjp"],
+      "name": "Hero carousel",
+      "settings": {
+        "background_color": "{{ settings.color_palette.background }}",
+        "slide_background_color": "{{ settings.color_palette.color3 }}",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32,
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "custom_icon_columns_kDcKV4": {
+      "type": "custom-icon-columns",
+      "blocks": {
+        "item_XQcigM": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/message_icon_bdfae177-b103-44b6-8299-8c71564279e9.png",
+            "icon_svg": "",
+            "heading": "Have a question",
+            "text": "Email or call (02) 8677 1966",
+            "modal_enabled": true,
+            "modal_heading": "Got a question?",
+            "modal_heading_preset": "h4",
+            "modal_heading_size": "1rem",
+            "modal_content": "<p style=\"margin:0 0 14px 0;\">\n    Talk to real players, not a script. Whether it's card condition,<br>\n    a ruling, or what's coming up next — just ask. Our team (including a<br>\n    Level 3 judge) usually replies same day.\n  <\/p>\n\n  <div style=\"display:flex; align-items:center; margin-bottom:10px;\">\n    <span style=\"display:inline-flex; width:18px; margin-right:8px;\">\n      <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M15.8333 10C15.8333 8.375 15.2674 6.99653 14.1354 5.86458C13.0035 4.73264 11.625 4.16667 10 4.16667V2.5C11.0417 2.5 12.0174 2.69792 12.9271 3.09375C13.8368 3.48958 14.6285 4.02431 15.3021 4.69792C15.9757 5.37153 16.5104 6.16319 16.9062 7.07292C17.3021 7.98264 17.5 8.95833 17.5 10H15.8333ZM12.5 10C12.5 9.30556 12.2569 8.71528 11.7708 8.22917C11.2847 7.74306 10.6944 7.5 10 7.5V5.83333C11.1528 5.83333 12.1354 6.23958 12.9479 7.05208C13.7604 7.86458 14.1667 8.84722 14.1667 10H12.5ZM16.625 17.5C14.8889 17.5 13.1736 17.1215 11.4792 16.3646C9.78472 15.6076 8.24306 14.5347 6.85417 13.1458C5.46528 11.7569 4.39236 10.2153 3.63542 8.52083C2.87847 6.82639 2.5 5.11111 2.5 3.375C2.5 3.125 2.58333 2.91667 2.75 2.75C2.91667 2.58333 3.125 2.5 3.375 2.5H6.75C6.94444 2.5 7.11806 2.56597 7.27083 2.69792C7.42361 2.82986 7.51389 2.98611 7.54167 3.16667L8.08333 6.08333C8.11111 6.30556 8.10417 6.49306 8.0625 6.64583C8.02083 6.79861 7.94444 6.93056 7.83333 7.04167L5.8125 9.08333C6.09028 9.59722 6.42014 10.0938 6.80208 10.5729C7.18403 11.0521 7.60417 11.5139 8.0625 11.9583C8.49306 12.3889 8.94444 12.7882 9.41667 13.1562C9.88889 13.5243 10.3889 13.8611 10.9167 14.1667L12.875 12.2083C13 12.0833 13.1632 11.9896 13.3646 11.9271C13.566 11.8646 13.7639 11.8472 13.9583 11.875L16.8333 12.4583C17.0278 12.5139 17.1875 12.6146 17.3125 12.7604C17.4375 12.9062 17.5 13.0694 17.5 13.25V16.625C17.5 16.875 17.4167 17.0833 17.25 17.25C17.0833 17.4167 16.875 17.5 16.625 17.5ZM5.02083 7.5L6.39583 6.125L6.04167 4.16667H4.1875C4.25694 4.73611 4.35417 5.29861 4.47917 5.85417C4.60417 6.40972 4.78472 6.95833 5.02083 7.5ZM12.4792 14.9583C13.0208 15.1944 13.5729 15.3819 14.1354 15.5208C14.6979 15.6597 15.2639 15.75 15.8333 15.7917V13.9583L13.875 13.5625L12.4792 14.9583Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <\/span>\n    <a href=\"tel:+61286771966\" style=\"text-decoration:none;\">\n      (02) 8677 1966\n    <\/a>\n  <\/div>\n\n  <div style=\"display:flex; align-items:center;\">\n    <span style=\"display:inline-flex; width:18px; margin-right:8px;\">\n      <svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M4 20C3.45 20 2.97917 19.8042 2.5875 19.4125C2.19583 19.0208 2 18.55 2 18V6C2 5.45 2.19583 4.97917 2.5875 4.5875C2.97917 4.19583 3.45 4 4 4H20C20.55 4 21.0208 4.19583 21.4125 4.5875C21.8042 4.97917 22 5.45 22 6V18C22 18.55 21.8042 19.0208 21.4125 19.4125C21.0208 19.8042 20.55 20 20 20H4ZM12 13L4 8V18H20V8L12 13ZM12 11L20 6H4L12 11ZM4 8V6V18V8Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <\/span>\n    <a href=\"mailto:info@thegamescube.com\" style=\"text-decoration:none;\">\n      info@thegamescube.com\n    <\/a>\n  <\/div>",
+            "button_1_label": "CALL US",
+            "button_1_link": "",
+            "button_1_open_in_new_tab": false,
+            "button_1_style_class": "button-secondary",
+            "button_1_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_1_custom_text": "{{ settings.color_palette.background }}",
+            "button_1_custom_border": "{{ settings.color_palette.background }}",
+            "button_1_link_text_color": "",
+            "button_1_default_action": "none",
+            "button_1_custom_action": "window.location.href = 'tel:+61286771966';",
+            "button_2_label": "EMAIL US",
+            "button_2_link": "",
+            "button_2_open_in_new_tab": false,
+            "button_2_style_class": "button",
+            "button_2_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_2_custom_text": "{{ settings.color_palette.background }}",
+            "button_2_custom_border": "{{ settings.color_palette.background }}",
+            "button_2_link_text_color": "",
+            "button_2_default_action": "none",
+            "button_2_custom_action": "window.location.href = 'mailto:info@thegamescube.com';"
+          }
+        },
+        "item_YgXcxF": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/storefront_icon_4de8c74d-2ef8-4f0b-a784-cfae47adb669.png",
+            "icon_svg": "",
+            "heading": "STORE PICKUP AVAILABLE",
+            "text": "Card singles from Frankston only",
+            "modal_enabled": true,
+            "modal_heading": "Pickup at Parramatta",
+            "modal_heading_preset": "h4",
+            "modal_heading_size": "1rem",
+            "modal_content": "<p style=\"margin: 0 0 20px 0; font-size: 15px; line-height: 1.5;\">\n    Skip the wait — grab your singles the same day. Pickup at our Parramatta store is available for card singles only.\n  <\/p>\n  \n  <div style=\"margin-bottom: 12px; font-size: 15px; display: flex; align-items: flex-start; gap: 8px;\">\n    <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M11.1772 9.51044C11.5036 9.18405 11.6668 8.79169 11.6668 8.33335C11.6668 7.87502 11.5036 7.48266 11.1772 7.15627C10.8509 6.82988 10.4585 6.66669 10.0002 6.66669C9.54183 6.66669 9.14947 6.82988 8.82308 7.15627C8.49669 7.48266 8.3335 7.87502 8.3335 8.33335C8.3335 8.79169 8.49669 9.18405 8.82308 9.51044C9.14947 9.83683 9.54183 10 10.0002 10C10.4585 10 10.8509 9.83683 11.1772 9.51044ZM10.0002 16.125C11.6946 14.5695 12.9516 13.1563 13.771 11.8854C14.5904 10.6146 15.0002 9.48613 15.0002 8.50002C15.0002 6.98613 14.5175 5.74655 13.5522 4.78127C12.587 3.81599 11.4029 3.33335 10.0002 3.33335C8.59738 3.33335 7.41336 3.81599 6.44808 4.78127C5.4828 5.74655 5.00016 6.98613 5.00016 8.50002C5.00016 9.48613 5.40989 10.6146 6.22933 11.8854C7.04877 13.1563 8.30572 14.5695 10.0002 16.125ZM10.0002 18.3334C7.76405 16.4306 6.09391 14.6632 4.98975 13.0313C3.88558 11.3993 3.3335 9.88891 3.3335 8.50002C3.3335 6.41669 4.00363 4.75696 5.34391 3.52085C6.68419 2.28474 8.23627 1.66669 10.0002 1.66669C11.7641 1.66669 13.3161 2.28474 14.6564 3.52085C15.9967 4.75696 16.6668 6.41669 16.6668 8.50002C16.6668 9.88891 16.1147 11.3993 15.0106 13.0313C13.9064 14.6632 12.2363 16.4306 10.0002 18.3334Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <span>16 Hunter St, Parramatta NSW 2150. <a href=\"https:\/\/www.google.com\/maps\/place\/The+Games+Cube+PTY+LTD\/data=!4m2!3m1!1s0x0:0x401095bc0851d766?sa=X&amp;ved=1t:2428&amp;ictx=111\" style=\"color: #007ace; font-weight: 700; text-decoration: underline;\" target=\"_blank\">Get direction<\/a><\/span>\n  <\/div>\n  \n  <div style=\"font-size: 15px;display: flex; align-items: flex-start; gap: 8px;\">\n    <svg width=\"20\" height=\"20\" viewbox=\"0 0 20 20\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M7.07292 17.7396C6.16319 17.3437 5.37153 16.809 4.69792 16.1354C4.02431 15.4618 3.48958 14.6701 3.09375 13.7604C2.69792 12.8507 2.5 11.875 2.5 10.8333C2.5 9.79165 2.69792 8.81595 3.09375 7.90623C3.48958 6.99651 4.02431 6.20484 4.69792 5.53123C5.37153 4.85762 6.16319 4.3229 7.07292 3.92706C7.98264 3.53123 8.95833 3.33331 10 3.33331C11.0417 3.33331 12.0174 3.53123 12.9271 3.92706C13.8368 4.3229 14.6285 4.85762 15.3021 5.53123C15.9757 6.20484 16.5104 6.99651 16.9062 7.90623C17.3021 8.81595 17.5 9.79165 17.5 10.8333C17.5 11.875 17.3021 12.8507 16.9062 13.7604C16.5104 14.6701 15.9757 15.4618 15.3021 16.1354C14.6285 16.809 13.8368 17.3437 12.9271 17.7396C12.0174 18.1354 11.0417 18.3333 10 18.3333C8.95833 18.3333 7.98264 18.1354 7.07292 17.7396ZM12.3333 14.3333L13.5 13.1666L10.8333 10.5V6.66665H9.16667V11.1666L12.3333 14.3333ZM4.66667 1.95831L5.83333 3.12498L2.29167 6.66665L1.125 5.49998L4.66667 1.95831ZM15.3333 1.95831L18.875 5.49998L17.7083 6.66665L14.1667 3.12498L15.3333 1.95831ZM10 16.6666C11.625 16.6666 13.0035 16.1007 14.1354 14.9687C15.2674 13.8368 15.8333 12.4583 15.8333 10.8333C15.8333 9.20831 15.2674 7.82984 14.1354 6.6979C13.0035 5.56595 11.625 4.99998 10 4.99998C8.375 4.99998 6.99653 5.56595 5.86458 6.6979C4.73264 7.82984 4.16667 9.20831 4.16667 10.8333C4.16667 12.4583 4.73264 13.8368 5.86458 14.9687C6.99653 16.1007 8.375 16.6666 10 16.6666Z\" fill=\"currentColor\"><\/path>\n<\/svg>\n    <div>\n      <div style=\"line-height: 1.6;\">Opening hours:<\/div>\n      <div style=\"line-height: 1.6;\">Mon: 11am – 5pm<\/div>\n      <div style=\"line-height: 1.6;\">Tue: 11am – 6pm<\/div>\n      <div style=\"line-height: 1.6;\">Wed – Fri: 11am – 10pm<\/div>\n      <div style=\"line-height: 1.6;\">Sat: 10am – 5pm<\/div>\n      <div style=\"line-height: 1.6;\">Sun: 10am – 4pm<\/div>\n    <\/div>\n  <\/div>",
+            "button_1_label": "GOT IT",
+            "button_1_link": "",
+            "button_1_open_in_new_tab": false,
+            "button_1_style_class": "button-secondary",
+            "button_1_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_1_custom_text": "{{ settings.color_palette.background }}",
+            "button_1_custom_border": "{{ settings.color_palette.background }}",
+            "button_1_link_text_color": "",
+            "button_1_default_action": "close",
+            "button_1_custom_action": "",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_open_in_new_tab": false,
+            "button_2_style_class": "button-secondary",
+            "button_2_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_2_custom_text": "{{ settings.color_palette.background }}",
+            "button_2_custom_border": "{{ settings.color_palette.background }}",
+            "button_2_link_text_color": "",
+            "button_2_default_action": "none",
+            "button_2_custom_action": ""
+          }
+        },
+        "item_c6bXp7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/delivery_icon_0ed23049-4d69-493e-a267-6e47385395fa.png",
+            "icon_svg": "",
+            "heading": "EXPRESS SHIPPING",
+            "text": "Express shipping available — view options",
+            "modal_enabled": true,
+            "modal_heading": "Fast, Tracked Shipping",
+            "modal_heading_preset": "h4",
+            "modal_heading_size": "1rem",
+            "modal_content": "<p style=\"margin: 0 0 16px 0;\">Every order ships with tracking. Choose your speed at checkout:<\/p>\n  \n  <p style=\"margin: 0 0 12px 0; font-weight: 700;\">Singles only<\/p>\n  \n  <ul style=\"margin: 0 0 20px 0; padding-left: 20px; list-style-type: disc;\">\n    <li style=\"margin-bottom: 8px;\">Regular Post — $6<\/li>\n    <li style=\"margin-bottom: 8px;\">Registered Post — $8<\/li>\n    <li style=\"margin-bottom: 0;\">Express Post — $10<\/li>\n  <\/ul>\n  \n  <p style=\"margin: 0 0 12px 0; font-weight: 700;\">All other products<\/p>\n  \n  <ul style=\"margin: 0 0 20px 0; padding-left: 20px; list-style-type: disc;\">\n    <li style=\"margin-bottom: 8px;\">Parcel (flat rate) — $10<\/li>\n    <li style=\"margin-bottom: 8px;\">Parcel Registered (signature) — $15<\/li>\n    <li style=\"margin-bottom: 0;\">Parcel Express — $20<\/li>\n  <\/ul>\n  \n  <p style=\"margin: 0;\">\n    Insurance available: $5 (up to $300) · $10 (up to $500) · $20 (up to $1000)\n  <\/p>",
+            "button_1_label": "GOT IT",
+            "button_1_link": "",
+            "button_1_open_in_new_tab": false,
+            "button_1_style_class": "button-secondary",
+            "button_1_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_1_custom_text": "{{ settings.color_palette.background }}",
+            "button_1_custom_border": "{{ settings.color_palette.background }}",
+            "button_1_link_text_color": "",
+            "button_1_default_action": "close",
+            "button_1_custom_action": "",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_open_in_new_tab": false,
+            "button_2_style_class": "button-secondary",
+            "button_2_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_2_custom_text": "{{ settings.color_palette.background }}",
+            "button_2_custom_border": "{{ settings.color_palette.background }}",
+            "button_2_link_text_color": "",
+            "button_2_default_action": "none",
+            "button_2_custom_action": ""
+          }
+        },
+        "item_NR8yPE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/magic_icon_3e258cf3-3472-48c0-8ff6-739cba9011fc.png",
+            "icon_svg": "",
+            "heading": "DECK BUILDER",
+            "text": "Got a list, paste it in here",
+            "modal_enabled": true,
+            "modal_heading": "Paste Your List. We'll Find It.",
+            "modal_heading_preset": "h4",
+            "modal_heading_size": "1rem",
+            "modal_content": "<p style=\"margin: 0 0 16px 0;\">\n    Building a deck or chasing down a wishlist? Drop your list in below and we'll match it against our live stock — singles, sets, the lot. No manual searching, no tab-switching. Just paste and go.\n  <\/p>\n\n  <p style=\"margin: 0 0 16px 0;\">\n    Paste your list below and hit Search — any of the 3 formats below works fine.\n  <\/p>\n\n  <textarea id=\"decklistInput\" placeholder=\"Paste your decklist here...\" style=\"width: 100%; height: 120px; padding: 12px 16px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; outline: none;\"><\/textarea>\n\n  <div style=\"display: flex; gap: 24px; flex-wrap: wrap;\">\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 1:<\/div>\n      <div>Forest<\/div>\n      <div>Mox Emerald<\/div>\n    <\/div>\n\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 2:<\/div>\n      <div>12 Forest<\/div>\n      <div>3 Mox Emerald<\/div>\n    <\/div>\n\n    <div style=\"flex: 1; min-width: 120px;\">\n      <div style=\"font-weight: 700; margin-bottom: 8px;\">Format 3:<\/div>\n      <div>12x Forest<\/div>\n      <div>3x Mox Emerald<\/div>\n    <\/div>\n  <\/div>",
+            "button_1_label": "CANCEL",
+            "button_1_link": "",
+            "button_1_open_in_new_tab": false,
+            "button_1_style_class": "button-secondary",
+            "button_1_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_1_custom_text": "{{ settings.color_palette.background }}",
+            "button_1_custom_border": "{{ settings.color_palette.background }}",
+            "button_1_link_text_color": "",
+            "button_1_default_action": "close",
+            "button_1_custom_action": "",
+            "button_2_label": "SEARCH",
+            "button_2_link": "",
+            "button_2_open_in_new_tab": false,
+            "button_2_style_class": "button",
+            "button_2_custom_background": "{{ settings.color_palette.foreground }}",
+            "button_2_custom_text": "{{ settings.color_palette.background }}",
+            "button_2_custom_border": "{{ settings.color_palette.background }}",
+            "button_2_link_text_color": "",
+            "button_2_default_action": "none",
+            "button_2_custom_action": "const text = document.getElementById('decklistInput').value;\nif (text.trim()) {\n  window.location.href = '\/search?q=' + encodeURIComponent(text);\n}"
+          }
+        }
+      },
+      "block_order": [
+        "item_XQcigM",
+        "item_YgXcxF",
+        "item_c6bXp7",
+        "item_NR8yPE"
+      ],
+      "custom_css": [
+        ".icon-columns-modal__buttons button {flex: 1; border-radius: 8px; justify-content: center;}"
+      ],
+      "name": "Icon columns",
+      "settings": {
+        "background_color": "{{ settings.color_palette.background }}",
+        "background_color_box": "{{ settings.color_palette.color3 }}",
+        "image_color_picker": "#eaf2ff",
+        "section_width": "page-width",
+        "mobile_layout": "grid",
+        "padding-block-start": 0,
+        "padding-block-end": 32
+      }
+    },
+    "collection_list_Tp6wpc": {
+      "type": "collection-list",
+      "blocks": {
+        "group_7kjtCj": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_X33cmy": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>SHOP BY GAME<\/strong><\/p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#207fc4",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_phWTAa": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3>MOST WANTED TCG'S<\/h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1d1a17",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_dCc6VG": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Beyond Magic — here's everything else our shelves are stacked with.<\/p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#5c554c",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["text_X33cmy", "text_phWTAa", "text_dCc6VG"]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 0,
+            "background_color": "{{ settings.color_palette.foreground }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 12
+          },
+          "blocks": {
+            "collection_title_CTk3L3": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": true,
+                "background_color": "{{ settings.color_palette.foreground }}",
+                "text_color": "#f7f1e4",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 8,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["collection_title_CTk3L3"]
+        }
+      },
+      "block_order": ["group_7kjtCj"],
+      "custom_css": [
+        ".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}",
+        ".collection-card {--ratio: 1.225 !important;}",
+        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}",
+        "@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(6, 1fr) !important; }}",
+        "@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 \/ -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) \/ 2); }}"
+      ],
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [
+          "magic-the-gathering",
+          "one-piece-tcg",
+          "pokemon",
+          "riftbound",
+          "yu-gi-oh",
+          "disney-lorcana"
+        ],
+        "card_text_placement": "below_image",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 3,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 24,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "none",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 16,
+        "background_color": "",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "custom_products_tabs_VjGWXx": {
+      "type": "custom-products-tabs",
+      "blocks": {
+        "tab_NdgepX": {
+          "type": "_trending-tab",
+          "settings": {
+            "collection": "singles",
+            "tab_label": "Singles",
+            "product_limit": 5
+          },
+          "blocks": {
+            "static-product-card": {
+              "type": "_product-card",
+              "static": true,
+              "settings": {
+                "product_card_gap": 0,
+                "background_color": "{{ settings.color_palette.color3 }}",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 8,
+                "padding-block-start": 8,
+                "padding-block-end": 8,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {
+                "image_8YaKbk": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "{{ closest.product.featured_image }}",
+                    "link": "{{ closest.product.url }}",
+                    "image_ratio": "portrait",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "product_card_group_B6EMCt": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "space-between",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 6,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fill",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 16,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "text_BgEtyG": {
+                      "type": "text",
+                      "name": "t:names.heading",
+                      "settings": {
+                        "text": "<h3>{{ closest.product.title }}<\/h3>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "1.25rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "#1d1a17",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "text_UBgrY6": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.variant.value }}<\/p>",
+                        "width": "fit-content",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "tight",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "#46626f",
+                        "background": true,
+                        "background_color": "{{ settings.color_palette.background }}",
+                        "corner_radius": 50,
+                        "padding-block-start": 4,
+                        "padding-block-end": 4,
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 12
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["text_BgEtyG", "text_UBgrY6"]
+                },
+                "product_card_group_TwcWjB": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "space-between",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 6,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "price_ncyQNg": {
+                      "type": "price",
+                      "name": "t:names.product_price",
+                      "settings": {
+                        "show_sale_price_first": true,
+                        "show_installments": false,
+                        "show_tax_info": false,
+                        "type_preset": "custom",
+                        "width": "fit-content",
+                        "alignment": "left",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "text_color": "#207fc4",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "custom_liquid_a8tqiA": {
+                      "type": "custom-liquid",
+                      "name": "t:names.custom_liquid",
+                      "settings": {
+                        "full_width": false,
+                        "custom_liquid": "{% assign variant = closest.product.selected_or_first_available_variant %}\n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %}\n    <span style=\"color:red;\">DEBUG: closest.product also blank<\/span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \"{{ variant.inventory_management }}\"<\/span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left<\/span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\">{{ variant.inventory_quantity }} left<\/span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %}\n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder<\/span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock<\/span>\n      {% endif %}\n    {% endif %}\n  {% endif %}\n<\/div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n<\/style>"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["price_ncyQNg", "custom_liquid_a8tqiA"]
+                },
+                "product_card_group_jNdink": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 12,
+                    "width": "custom",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "card_variant_selects_mUdjFV": {
+                      "type": "custom-variant-select",
+                      "name": "t:names.card_variant_selects",
+                      "settings": {},
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["card_variant_selects_mUdjFV"]
+                },
+                "buy_buttons_Mchxnh": {
+                  "type": "buy-buttons",
+                  "name": "t:names.product_buy_buttons",
+                  "settings": {
+                    "stacking": true,
+                    "text_color": "",
+                    "show_pickup_availability": true,
+                    "gift_card_form": true,
+                    "recipient_button_style": "default",
+                    "recipient_button_background": "{{ settings.color_palette.background }}",
+                    "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                    "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                    "selected_recipient_button_style": "default",
+                    "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                    "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                    "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0,
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "quantity": {
+                      "type": "quantity",
+                      "static": true,
+                      "settings": {
+                        "input_style": "custom",
+                        "input_background_color": "{{ settings.color_palette.color3 }}",
+                        "input_text_color": "{{ settings.color_palette.foreground }}",
+                        "input_border_color": "#c0dff6",
+                        "border_width": 1,
+                        "border_radius": 8
+                      },
+                      "blocks": {}
+                    },
+                    "add-to-cart": {
+                      "type": "add-to-cart",
+                      "static": true,
+                      "settings": {
+                        "style_class": "button-custom",
+                        "custom_button_background": "{{ settings.color_palette.foreground }}",
+                        "custom_button_text": "{{ settings.color_palette.background }}",
+                        "custom_button_border": "rgba(0,0,0,0)"
+                      },
+                      "blocks": {}
+                    },
+                    "accelerated-checkout": {
+                      "type": "accelerated-checkout",
+                      "disabled": true,
+                      "static": true,
+                      "settings": {},
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": []
+                }
+              },
+              "block_order": [
+                "image_8YaKbk",
+                "product_card_group_B6EMCt",
+                "product_card_group_TwcWjB",
+                "product_card_group_jNdink",
+                "buy_buttons_Mchxnh"
+              ]
+            }
+          },
+          "block_order": []
+        },
+        "trending_tab_zymFR6": {
+          "type": "_trending-tab",
+          "settings": {
+            "collection": "sealed",
+            "tab_label": "Sealed",
+            "product_limit": 5
+          },
+          "blocks": {
+            "static-product-card": {
+              "type": "_product-card",
+              "static": true,
+              "settings": {
+                "product_card_gap": 0,
+                "background_color": "{{ settings.color_palette.color3 }}",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 8,
+                "padding-block-start": 8,
+                "padding-block-end": 8,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {
+                "image_DwtEFT": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "{{ closest.product.featured_image }}",
+                    "link": "{{ closest.product.url }}",
+                    "image_ratio": "portrait",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "product_card_group_DtBNyN": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "space-between",
+                    "vertical_alignment": "flex-start",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 6,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fill",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 16,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "text_RjYJd7": {
+                      "type": "text",
+                      "name": "t:names.heading",
+                      "settings": {
+                        "text": "<h3>{{ closest.product.title }}<\/h3>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heading--family)",
+                        "font_size": "1.25rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "#1d1a17",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "text_qiX9wk": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.variant.value }}<\/p>",
+                        "width": "fit-content",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "tight",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "#46626f",
+                        "background": true,
+                        "background_color": "{{ settings.color_palette.background }}",
+                        "corner_radius": 50,
+                        "padding-block-start": 4,
+                        "padding-block-end": 4,
+                        "padding-inline-start": 8,
+                        "padding-inline-end": 12
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["text_RjYJd7", "text_qiX9wk"]
+                },
+                "product_card_group_AXPQf6": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "space-between",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 6,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "price_mgwGip": {
+                      "type": "price",
+                      "name": "t:names.product_price",
+                      "settings": {
+                        "show_sale_price_first": true,
+                        "show_installments": false,
+                        "show_tax_info": false,
+                        "type_preset": "custom",
+                        "width": "fit-content",
+                        "alignment": "left",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "text_color": "#207fc4",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "custom_liquid_LMMVLE": {
+                      "type": "custom-liquid",
+                      "name": "t:names.custom_liquid",
+                      "settings": {
+                        "full_width": false,
+                        "custom_liquid": "{% assign variant = closest.product.selected_or_first_available_variant %}\n\n<div class=\"product-inventory\">\n  {% if closest.product == blank %}\n    <span style=\"color:red;\">DEBUG: closest.product also blank<\/span>\n  {% elsif variant.inventory_management != 'shopify' %}\n    <span style=\"color:red;\">DEBUG: inventory_management = \"{{ variant.inventory_management }}\"<\/span>\n  {% else %}\n    {% if variant.inventory_quantity > 0 and variant.inventory_quantity <= 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--low\">{{ variant.inventory_quantity }} left<\/span>\n    {% elsif variant.inventory_quantity > 10 %}\n      <span class=\"product-inventory__badge product-inventory__badge--ok\">{{ variant.inventory_quantity }} left<\/span>\n    {% else %}\n      {% if variant.inventory_policy == 'continue' %}\n        <span class=\"product-inventory__badge product-inventory__badge--backorder\">Backorder<\/span>\n      {% else %}\n        <span class=\"product-inventory__badge product-inventory__badge--out\">Out of stock<\/span>\n      {% endif %}\n    {% endif %}\n  {% endif %}\n<\/div>\n\n<style>\n  .product-inventory__badge { display:inline-block; font-size:10px; font-weight:700; padding:0.3rem 0.7rem; border-radius:4px; }\n  .product-inventory__badge--low { background:#FCE6D6; color:#C25A1E; }\n  .product-inventory__badge--ok { background:#E3F3E9; color:#2E7D4F; }\n  .product-inventory__badge--out { background:#FBE4E4; color:#B0231C; }\n  .product-inventory__badge--backorder { background:#EAF2FB; color:#2F6FED; }\n<\/style>"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["price_mgwGip", "custom_liquid_LMMVLE"]
+                },
+                "product_card_group_pqf9RK": {
+                  "type": "_product-card-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 12,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "background_color": "",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "card_variant_selects_3zAndU": {
+                      "type": "custom-variant-select",
+                      "name": "t:names.card_variant_selects",
+                      "settings": {},
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": ["card_variant_selects_3zAndU"]
+                },
+                "buy_buttons_pVnEpe": {
+                  "type": "buy-buttons",
+                  "name": "t:names.product_buy_buttons",
+                  "settings": {
+                    "stacking": true,
+                    "text_color": "",
+                    "show_pickup_availability": true,
+                    "gift_card_form": true,
+                    "recipient_button_style": "default",
+                    "recipient_button_background": "{{ settings.color_palette.background }}",
+                    "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                    "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                    "selected_recipient_button_style": "default",
+                    "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                    "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                    "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0,
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "quantity": {
+                      "type": "quantity",
+                      "static": true,
+                      "settings": {
+                        "input_style": "custom",
+                        "input_background_color": "{{ settings.color_palette.color3 }}",
+                        "input_text_color": "{{ settings.color_palette.foreground }}",
+                        "input_border_color": "#c0dff6",
+                        "border_width": 1,
+                        "border_radius": 8
+                      },
+                      "blocks": {}
+                    },
+                    "add-to-cart": {
+                      "type": "add-to-cart",
+                      "static": true,
+                      "settings": {
+                        "style_class": "button-custom",
+                        "custom_button_background": "{{ settings.color_palette.foreground }}",
+                        "custom_button_text": "{{ settings.color_palette.background }}",
+                        "custom_button_border": "rgba(0,0,0,0)"
+                      },
+                      "blocks": {}
+                    },
+                    "accelerated-checkout": {
+                      "type": "accelerated-checkout",
+                      "disabled": true,
+                      "static": true,
+                      "settings": {},
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": []
+                }
+              },
+              "block_order": [
+                "image_DwtEFT",
+                "product_card_group_DtBNyN",
+                "product_card_group_AXPQf6",
+                "product_card_group_pqf9RK",
+                "buy_buttons_pVnEpe"
+              ]
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": ["tab_NdgepX", "trending_tab_zymFR6"],
+      "custom_css": [
+        ".trending .resource-list__slide {min-width: calc( (100% - (var(--column-count) - 1) * 1rem) \/ var(--column-count) );}",
+        ".image-block {border-radius: 8px; overflow: hidden;}",
+        "@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}"
+      ],
+      "name": "Products Tabs",
+      "settings": {
+        "eyebrow": "Fresh off the shelf",
+        "heading": "Trending now",
+        "subheading": "Priced and verified by the crew who actually play these games.",
+        "view_all_label": "",
+        "accent_color": "#207fc4",
+        "heading_color": "#1d1a17",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 3,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "collection_list_93zjHF": {
+      "type": "collection-list",
+      "blocks": {
+        "group_6Xr9Gf": {
+          "type": "group",
+          "name": "t:names.header",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_cePRiQ": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>HANDPICKED BY THE CREW<\/p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#207fc4",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_QV8ep4": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<h3>BEST SELLING TCG ACCESSORIES<\/h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1d1a17",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_aj3Ad3": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>The gear our own staff actually use at the tables every week.<\/p>",
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#5c554c",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["text_cePRiQ", "text_QV8ep4", "text_aj3Ad3"]
+        },
+        "static-collection-card": {
+          "type": "_collection-card",
+          "name": "t:names.collection_card",
+          "static": true,
+          "settings": {
+            "placement": "below_image",
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-end",
+            "collection_card_gap": 0,
+            "background_color": "{{ settings.color_palette.foreground }}",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 12
+          },
+          "blocks": {
+            "collection_title_A47Wpe": {
+              "type": "collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": true,
+                "background_color": "{{ settings.color_palette.foreground }}",
+                "text_color": "#f7f1e4",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 8,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "name": "t:names.collection_card_image",
+              "static": true,
+              "settings": {
+                "image_ratio": "adapt",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["collection_title_A47Wpe"]
+        }
+      },
+      "block_order": ["group_6Xr9Gf"],
+      "custom_css": [
+        ".collection-card.collection-card--image-bg .collection-card__content {padding: 0px;}",
+        "slideshow-slides[gutters*=\"end\"] {padding-inline-end: 0;}",
+        "@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}",
+        "@media screen and (max-width: 749px) {.resource-list__item:last-child:nth-child(odd) {grid-column: 1 \/ -1; justify-self: center; width: calc((100% - var(--resource-list-column-gap)) \/ 2); }}"
+      ],
+      "name": "t:names.collections_carousel",
+      "settings": {
+        "collection_list": [
+          "sleeves",
+          "deck-boxes",
+          "play-mats",
+          "folders",
+          "games-cube-accessories"
+        ],
+        "card_text_placement": "below_image",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "columns": 3,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 24,
+        "bento_gap": 8,
+        "rows_gap": 8,
+        "max_collections": 4,
+        "icons_style": "none",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "gap": 16,
+        "background_color": "",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "custom_event_calendar_h8yr7U": {
+      "type": "custom-event-calendar",
+      "name": "Event calendar",
+      "settings": {
+        "heading": "Event Calendar",
+        "subtitle": "See what's on at Game Locker",
+        "empty_message": "No events this month.",
+        "background_color": "#ECF7FF",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "custom_stats_banner_XzUWxB": {
+      "type": "custom-stats-banner",
+      "blocks": {
+        "stat_peWb6L": {
+          "type": "stat",
+          "settings": {
+            "value": "4.5 ⭐",
+            "show_star": false,
+            "label": "Average rating on Google"
+          }
+        },
+        "stat_X3nWGL": {
+          "type": "stat",
+          "settings": {
+            "value": "165+",
+            "show_star": false,
+            "label": "Verified customer reviews"
+          }
+        },
+        "stat_9nCUqN": {
+          "type": "stat",
+          "settings": {
+            "value": "98%",
+            "show_star": false,
+            "label": "Would shop with us again"
+          }
+        }
+      },
+      "block_order": ["stat_peWb6L", "stat_X3nWGL", "stat_9nCUqN"],
+      "name": "Testimonial with stats",
+      "settings": {
+        "background_color": "{{ settings.color_palette.foreground }}",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32,
+        "subheading": "What players say",
+        "quote": "You can tell they actually play. Every recommendation just... made sense.",
+        "attribution": "Sarah T., Google Reviews"
+      }
+    },
+    "custom_team_slider_NkUJ67": {
+      "type": "custom-team-slider",
+      "blocks": {
+        "member_LyUA6A": {
+          "type": "member",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Photo.png",
+            "heading": "Lindsay Heming",
+            "badge_text": "Level 3 MTG Judge",
+            "description": "Lindsay has been playing Magic since 1995 and has head-judged two Grand Prix events for Wizards of the Coast. If a ruling gets complicated, he's the one everyone calls."
+          }
+        },
+        "member_ppYNaQ": {
+          "type": "member",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Photo.png",
+            "heading": "Lindsay Heming 2",
+            "badge_text": "Level 3 MTG Judge",
+            "description": "Lindsay has been playing Magic since 1995 and has head-judged two Grand Prix events for Wizards of the Coast. If a ruling gets complicated, he's the one everyone calls."
+          }
+        }
+      },
+      "block_order": ["member_LyUA6A", "member_ppYNaQ"],
+      "name": "Meet the team",
+      "settings": {
+        "eyebrow": "Meet the team",
+        "background_color": "#e8f1fb",
+        "accent_color": "#207fc4",
+        "button_border": "#d6edfe",
+        "heading_color": "#1d1a17",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    }
+  },
+  "order": [
+    "custom_hero_slider_CyxXjd",
+    "custom_icon_columns_kDcKV4",
+    "collection_list_Tp6wpc",
+    "custom_products_tabs_VjGWXx",
+    "collection_list_93zjHF",
+    "custom_event_calendar_h8yr7U",
+    "custom_stats_banner_XzUWxB",
+    "custom_team_slider_NkUJ67"
+  ]
+}
