@@ -22,10 +22,12 @@
             "alignment": "left",
             "type_preset": "h2",
             "font": "var(--font-body--family)",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -38,7 +40,9 @@
         },
         "page-content": {
           "type": "page-content",
-          "settings": {},
+          "settings": {
+            "text_color": ""
+          },
           "blocks": {}
         }
       },
@@ -46,6 +50,7 @@
         "heading",
         "page-content"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -54,21 +59,37 @@
         "padding-block-end": 24
       }
     },
-    "event_calendar": {
-      "type": "custom-event-calendar",
+    "custom_breadcrumbs_kQJ8CP": {
+      "type": "custom-breadcrumbs",
+      "name": "Breadcrumbs",
       "settings": {
-        "heading": "Upcoming Events",
-        "subtitle": "Never miss a draft",
-        "empty_message": "No events this month.",
-        "background_color": "#f4f8fc",
+        "link_color": "#5c554c",
+        "current_color": "#1d1a17",
+        "background_color": "#ecf7ff",
         "section_width": "page-width",
         "padding-block-start": 20,
-        "padding-block-end": 72
+        "padding-block-end": 20
+      }
+    },
+    "event_calendar": {
+      "type": "custom-event-calendar",
+      "custom_css": [
+        ".gl-event-calendar__title {text-align: left; text-transform: none;}"
+      ],
+      "settings": {
+        "heading": "Grab Your Tickets",
+        "subtitle": "",
+        "empty_message": "No events this month.",
+        "background_color": "#ecf7ff",
+        "section_width": "page-width",
+        "padding-block-start": 24,
+        "padding-block-end": 32
       }
     }
   },
   "order": [
     "main",
+    "custom_breadcrumbs_kQJ8CP",
     "event_calendar"
   ]
 }

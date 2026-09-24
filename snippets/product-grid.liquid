@@ -7,6 +7,7 @@
   @param {string} [title] - Header of the collection or search results
   @param {string} children - List or grid of product cards
   @param {boolean} [enable_infinite_scroll] - Whether to enable infinite scroll (default: true)
+  @param {boolean} [show_filter_empty_message] - Whether filters are visible, so the empty state can suggest clearing them
 {%- enddoc -%}
 
 {%- liquid
@@ -115,9 +116,11 @@
         <h2 class="main-collection-grid__empty-title h2">
           {{ 'content.no_products_found' | t }}
         </h2>
-        <p>
-          {{ 'content.use_fewer_filters_html' | t: link: collection.url, class: 'main-collection-grid__empty-link' }}
-        </p>
+        {% if show_filter_empty_message %}
+          <p>
+            {{ 'content.use_fewer_filters_html' | t: link: collection.url, class: 'main-collection-grid__empty-link' }}
+          </p>
+        {% endif %}
       </div>
     {% else %}
       {% if enable_infinite_scroll %}
