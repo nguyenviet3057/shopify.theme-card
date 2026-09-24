@@ -47,12 +47,15 @@
     <div
       class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
     >
-      {% content_for 'block',
-        type: 'filters',
-        id: 'filters',
-        results: collection,
-        results_size: collection.products_count
-      %}
+      {% if collection.all_products_count > 0 %}
+        {% assign show_filter_empty_message = true %}
+        {% content_for 'block',
+          type: 'filters',
+          id: 'filters',
+          results: collection,
+          results_size: collection.products_count
+        %}
+      {% endif %}
 
       {% assign products_per_page = 24 %}
 
@@ -85,7 +88,8 @@
           children: children,
           products: collection.products,
           paginate: paginate,
-          enable_infinite_scroll: section.settings.enable_infinite_scroll
+          enable_infinite_scroll: section.settings.enable_infinite_scroll,
+          show_filter_empty_message: show_filter_empty_message
         %}
       {% endpaginate %}
     </div>

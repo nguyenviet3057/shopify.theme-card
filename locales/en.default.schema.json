@@ -232,6 +232,7 @@
     "custom_heading": "Custom heading",
     "custom_liquid": "Add app snippets or other code to create advanced customizations. [Learn more](https://shopify.dev/docs/api/liquid)",
     "store_locations": "Leave empty to hide. Product tags must be formatted as \"Location: Melbourne\" to match.",
+    "svg_overrides_icon": "Paste SVG markup. When filled, this overrides Icon and Image icon.",
     "edit_button_style_in_theme_settings": "Edit primary and secondary button styles in [theme settings](/editor?context=theme&category=buttons)",
     "edit_input_field_in_theme_settings": "Edit input field in [theme settings](/editor?context=theme&category=input%20fields)",
     "edit_presets_in_theme_settings": "Edit presets in [theme settings](/editor?context=theme&category=typography)",
@@ -910,6 +911,7 @@
     "image_gap": "Image gap",
     // Image picker setting to upload custom image as icon
     "image_icon": "Image icon",
+    "svg": "SVG",
     "image_opacity": "Image opacity",
     "image_position": "Image position",
     "image_ratio": "Image ratio",

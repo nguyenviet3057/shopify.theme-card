@@ -37,6 +37,7 @@
 
     {% paginate search.results by products_per_page %}
       {% if search.results_count > 0 %}
+        {% assign show_filter_empty_message = true %}
         {% content_for 'block', type: 'filters', id: 'filters', results: search, results_size: search.results_count %}
         {% assign products = search.results | where: 'object_type', 'product' %}
       {% else %}
@@ -71,7 +72,8 @@
         products: products,
         paginate: paginate,
         enable_infinite_scroll: section.settings.enable_infinite_scroll,
-        title: title
+        title: title,
+        show_filter_empty_message: show_filter_empty_message
       %}
     {% endpaginate %}
   </div>

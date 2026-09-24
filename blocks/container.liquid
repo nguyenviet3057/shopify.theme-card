@@ -42,6 +42,11 @@
   elsif content_width == 'page-width'
     assign width_class = 'container-block--page-width'
   endif
+
+  assign custom_class = ''
+  if block.settings.advanced_enabled
+    assign custom_class = block.settings.custom_class | strip
+  endif
 %}
 
 {% render 'contrast-override'
@@ -57,6 +62,7 @@
     {{ width_class }}
     container-block--{{ layout }}
     {% if block.settings.background_color != blank %} color-custom-{{ block.id }}{% endif %}
+    {{ custom_class }}
   "
   style="
     --container-gap: {{ gap }};
@@ -122,7 +128,7 @@
 
   <div class="container-block__overlay"></div>
 
-  <div class="container-block__content container-block__content--{{ layout }}">
+  <div class="container-block__content container-block__content--{{ layout }}{% if layout == 'flex' and block.settings.auto_responsive != blank and block.settings.auto_responsive != 'none' %} container-block__content--stack-{{ block.settings.auto_responsive }}{% endif %}">
     {% content_for 'blocks' %}
   </div>
 </div>
@@ -156,6 +162,7 @@
   .container-block--custom-width {
     width: var(--container-custom-width);
     max-width: 100%;
+    flex-shrink: 0;
     margin-inline: var(--margin-inline-start, auto) var(--margin-inline-end, auto);
   }
 
@@ -202,6 +209,18 @@
     align-items: var(--container-align-items, stretch);
     flex-wrap: var(--container-flex-wrap, nowrap);
     gap: var(--container-gap, 0px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .container-block__content--stack-mobile {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .container-block__content--stack-tablet {
+      flex-direction: column;
+    }
   }
 
   .container-block__content--grid {
@@ -307,6 +326,28 @@
           }
         ],
         "default": "column",
+        "visible_if": "{{ block.settings.layout == 'flex' }}"
+      },
+      {
+        "type": "select",
+        "id": "auto_responsive",
+        "label": "Auto responsive",
+        "info": "Switches flex direction to column. Mobile applies under 750px. Tablet applies under 990px.",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile"
+          },
+          {
+            "value": "tablet",
+            "label": "Tablet"
+          }
+        ],
+        "default": "none",
         "visible_if": "{{ block.settings.layout == 'flex' }}"
       },
       {
@@ -642,6 +683,23 @@
         "step": 1,
         "unit": "px",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Advanced"
+      },
+      {
+        "type": "checkbox",
+        "id": "advanced_enabled",
+        "label": "Enabled",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Custom class",
+        "info": "Space-separated classes added to this block.",
+        "visible_if": "{{ block.settings.advanced_enabled }}"
       }
     ],
     "presets": [
