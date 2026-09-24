@@ -118,6 +118,7 @@ gl-event-calendar,
 
 .gl-event-calendar__search {
   width: 100%;
+  background: #ffffff !important;
 }
 
 .gl-event-calendar__search::-webkit-search-decoration,
