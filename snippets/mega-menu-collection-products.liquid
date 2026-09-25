@@ -1,0 +1,42 @@
+{%- doc -%}
+  Two featured images from the most recently updated products in a level-2 collection link.
+
+  Scans the first page of collection.products (50). Products without a featured image are skipped.
+
+  @param {link} link - Menu link. Renders nothing unless type is collection_link.
+  @param {string} image_class - Class on each product anchor.
+  @param {number} [image_width] - Requested image width. Defaults to 400.
+
+  @example
+  {% render 'mega-menu-collection-products', link: link2, image_class: 'tgc-mega__image' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign image_width = image_width | default: 400
+  assign shown = 0
+-%}
+
+{%- if link.type == 'collection_link' and link.object != blank -%}
+  {% comment %} COMMENT: Sort by created_at to get the newest products, in the first 50 products of the collection {% endcomment %}
+  {% comment %} {%- assign newest_products = link.object.products | sort: 'created_at' | reverse -%} {% endcomment %}
+
+  {% comment %} COMMENT: Get the first 50 products of the collection, manually sorted in the Shopify admin {% endcomment %}
+  {%- assign newest_products = link.object.products -%}
+  {%- for product in newest_products -%}
+    {%- if shown >= 2 -%}
+      {%- break -%}
+    {%- endif -%}
+    {%- if product.featured_image != blank -%}
+      <a href="{{ product.url }}" class="{{ image_class }}">
+        <img
+          src="{{ product.featured_image | image_url: width: image_width }}"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          loading="lazy"
+        >
+      </a>
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
