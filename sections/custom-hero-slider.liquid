@@ -221,7 +221,7 @@
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .hero-carousel {
       grid-template-columns: 1fr 1fr;
       column-gap: 0;
@@ -344,7 +344,7 @@
                     {{ block.settings.image | image_url: width: 1200 }} 1200w,
                     {{ block.settings.image | image_url: width: 1600 }} 1600w
                   "
-                  sizes="(min-width: 990px) 66vw, (min-width: 750px) 50vw, 100vw"
+                  sizes="(min-width: 990px) 66vw, (min-width: 990px) 50vw, 100vw"
                   width="{{ block.settings.image.width }}"
                   height="{{ block.settings.image.height }}"
                   alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"

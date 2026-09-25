@@ -8,7 +8,7 @@
   padding-inline: var(--overflow-list-padding-inline, 0);
   height: 100%;
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     justify-content: var(--overflow-list-alignment-mobile);
   }
 

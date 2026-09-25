@@ -59,7 +59,7 @@
     &.media-with-content {
       grid-template-areas: 'margin-left media margin-right' 'margin-left content margin-right';
 
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         /* Wide proportion is media 3.5 parts, content 2.5 parts. Which equals 7|5. So divide the central column by 7+5 and multiply accordingly */
         --media-with-content-grid-columns: var(--full-page-grid-margin)
           calc((var(--full-page-grid-central-column-width) / 12) * 7)
@@ -70,7 +70,7 @@
     }
 
     &.media-with-content--media-right {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: var(--full-page-grid-margin)
           calc((var(--full-page-grid-central-column-width) / 12) * 5)
           calc((var(--full-page-grid-central-column-width) / 12) * 7) var(--full-page-grid-margin);
@@ -80,14 +80,14 @@
     }
 
     &.media-with-content--medium {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: var(--full-page-grid-margin)
           repeat(2, calc(var(--full-page-grid-central-column-width) / 2)) var(--full-page-grid-margin);
       }
     }
 
     &.media-with-content--narrow.media-with-content--media-right {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: var(--full-page-grid-margin)
           calc((var(--full-page-grid-central-column-width) / 3) * 2)
           calc(var(--full-page-grid-central-column-width) / 3) var(--full-page-grid-margin);
@@ -95,7 +95,7 @@
     }
 
     &.media-with-content--narrow {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: var(--full-page-grid-margin)
           calc(var(--full-page-grid-central-column-width) / 3)
           calc((var(--full-page-grid-central-column-width) / 3) * 2) var(--full-page-grid-margin);
@@ -105,7 +105,7 @@
 
   .section--full-width {
     &.media-with-content--media-right {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: 2.5fr 3.5fr;
 
         grid-template-areas: 'content media';
@@ -113,19 +113,19 @@
     }
 
     &.media-with-content--medium {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: 1fr 1fr;
       }
     }
 
     &.media-with-content--narrow {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: 2fr 4fr;
       }
     }
 
     &.media-with-content--narrow.media-with-content--media-right {
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         --media-with-content-grid-columns: 4fr 2fr;
       }
     }
@@ -136,19 +136,19 @@
     grid-template-columns: var(--media-with-content-grid-columns);
     grid-template-areas: 'media media media' 'margin-left content margin-right';
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-template-areas: 'media media content margin-right';
     }
   }
 
   .media-with-content--media-extend.media-with-content--media-right {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-template-areas: 'margin-left content media media';
     }
   }
 
   .media-with-content--media-right {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-template-areas: 'margin-left content media media';
     }
   }
@@ -159,7 +159,7 @@
     grid-template-columns: var(--media-with-content-grid-columns);
     grid-template-areas: 'media media media' 'content content content';
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --media-with-content-grid-columns: 3.5fr 2.5fr;
 
       /* Default desktop layout is wide media, on the left, in full page section */
@@ -179,7 +179,7 @@
       padding-inline: var(--page-margin);
       padding-block: calc(2 * var(--page-margin));
 
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         padding-block: var(--page-margin);
       }
     }
@@ -187,7 +187,7 @@
     &.section--page-width .media-with-content__content > .group-block-content {
       padding-inline: 0;
 
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 990px) {
         padding-inline-start: var(--page-margin);
       }
     }

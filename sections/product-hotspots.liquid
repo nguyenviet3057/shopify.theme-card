@@ -101,7 +101,7 @@
   }
 
   /* Responsive adjustments */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     /* Hide dialog on mobile - hotspot opens quick-add modal instead */
     .hotspot .hotspot-dialog {
       display: none;
@@ -157,7 +157,7 @@
   }
 
   /* On mobile, ensure trigger is tappable */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .hotspot-trigger {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -179,7 +179,7 @@
   }
 
   /* Bullseye grows on hover or when dialog is open (desktop only) */
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .hotspot:hover .hotspot-trigger::after,
     .hotspot:has(.hotspot-dialog[open]) .hotspot-trigger::after {
       width: calc(var(--hotspot-size) * 0.55);
@@ -459,7 +459,7 @@
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .hotspot-dialog {
       .quick-add__button:is(:hover, :focus-visible) {
         width: max-content;

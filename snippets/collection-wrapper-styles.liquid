@@ -13,7 +13,7 @@
   /* ------------------------------------------------------------------------------ */
 
   .collection-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --facets-vertical-col-width: 6;
 
       grid-template-columns:
@@ -31,7 +31,7 @@
 
   .collection-wrapper:has(.facets-block-wrapper--full-width),
   .collection-wrapper:has(.collection-wrapper--full-width) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: 1 / -1;
       grid-template-columns:
         minmax(var(--page-margin), 1fr) repeat(
@@ -43,7 +43,7 @@
   }
 
   .collection-wrapper:has(.facets--vertical) .facets-block-wrapper--vertical:not(.hidden) ~ .main-collection-grid {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: var(--facets-vertical-col-width) / var(--full-width-column-number);
     }
   }
@@ -54,7 +54,7 @@
     or adding space above the product list.
   */
   .collection-wrapper:has(.facets-product-toolbar) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --collection-toolbar-height: 44px;
       --collection-toolbar-gap: 24px;
 
@@ -64,7 +64,7 @@
   }
 
   .collection-wrapper:has(.facets--vertical):has(.facets-product-toolbar) .main-collection-grid {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-row: 1;
       align-self: start;
       padding-block-start: calc(var(--collection-toolbar-height) + var(--collection-toolbar-gap));
@@ -72,7 +72,7 @@
   }
 
   .collection-wrapper:has(.facets-block-wrapper--vertical:not(#filters-drawer)):has(.collection-wrapper--full-width) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: 1 / -1;
       grid-template-columns: 0fr repeat(var(--centered-column-number), minmax(0, 1fr)) 0fr;
     }
@@ -81,7 +81,7 @@
   :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile)
     [product-grid-view='default']
     .product-grid__card {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       padding-inline-start: max(var(--padding-xs), var(--padding-inline-start));
       padding-inline-end: max(var(--padding-xs), var(--padding-inline-end));
     }
@@ -90,7 +90,7 @@
   :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile)
     [product-grid-view='mobile-single']
     .product-grid__card {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       padding-inline-start: max(var(--padding-xs), var(--padding-inline-start));
       padding-inline-end: max(var(--padding-xs), var(--padding-inline-end));
     }
@@ -99,7 +99,7 @@
   /* Make product media go edge-to-edge by using negative margins */
   :is(.collection-wrapper--full-width) .card-gallery,
   :is(.collection-wrapper--full-width-on-mobile) .card-gallery {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       margin-inline-start: calc(-1 * max(var(--padding-xs), var(--padding-inline-start)));
       margin-inline-end: calc(-1 * max(var(--padding-xs), var(--padding-inline-end)));
     }
@@ -110,25 +110,25 @@
   }
 
   .collection-wrapper--full-width-on-mobile .main-collection-grid__title {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       margin-left: var(--page-margin);
     }
   }
 
   .collection-wrapper--grid-full-width .facets--vertical:not(.facets--drawer) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding-inline-start: max(var(--padding-sm), var(--padding-inline-start));
     }
   }
 
   .collection-wrapper:has(.product-grid-mobile--large) .facets-mobile-wrapper.facets-controls-wrapper {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       display: none;
     }
   }
 
   .collection-wrapper:has(> .facets--horizontal) .facets__panel[open] {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       z-index: var(--facets-open-z-index);
     }
   }

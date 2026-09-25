@@ -585,20 +585,20 @@
 
 {% stylesheet %}
   .facets-block-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       margin: var(--facets-margin);
       grid-column: var(--grid-column--desktop);
     }
   }
 
   .facets-block-wrapper--vertical {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: var(--grid-column--desktop);
     }
   }
 
   .facets-block-wrapper--vertical:not(#filters-drawer) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       background-color: #fff;
       padding: 16px;
       border-radius: 12px;
@@ -611,7 +611,7 @@
   }
 
   .facets-block-wrapper--vertical:not(#filters-drawer) .facets--vertical {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding: 0;
     }
   }
@@ -634,7 +634,7 @@
     z-index: var(--layer-sticky);
     --facets-upper-z-index: var(--layer-sticky);
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: none;
     }
   }
@@ -680,7 +680,7 @@
     white-space: nowrap;
     cursor: pointer;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: none;
     }
   }
@@ -769,7 +769,7 @@
   }
 
   .facets-toggle--no-filters {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       /* stylelint-disable-next-line declaration-no-important */
       justify-content: unset !important;
 
@@ -780,7 +780,7 @@
   }
 
   .facets-block-wrapper--vertical + .facets-toggle {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       margin-inline: 0;
       margin-block-start: 0;
       margin-block-end: 16px;
@@ -816,7 +816,7 @@
     --facets-low-opacity: 10%;
     --facets-hover-opacity: 75%;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding-inline: var(--padding-inline-start) var(--padding-inline-end);
     }
   }
@@ -824,7 +824,7 @@
   .facets--horizontal {
     display: none;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding-block: var(--padding-block-start) var(--padding-block-end);
       display: flex;
       align-items: center;
@@ -843,7 +843,7 @@
   .facets--vertical {
     display: none;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding-block: 0 var(--padding-block-end);
       display: block;
       position: static;
@@ -887,7 +887,7 @@
   }
 
   .facets.facets-controls-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: column-1 / column-12;
       color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
       gap: 0 var(--facets-form-horizontal-gap);
@@ -896,7 +896,7 @@
   }
 
   .collection-wrapper:has(.facets--vertical) .facets-product-toolbar {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-column: var(--facets-vertical-col-width) / var(--full-width-column-number);
       grid-row: 1;
       align-self: start;
@@ -914,7 +914,7 @@
   }
 
   .facets-product-toolbar .products-count-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       margin-left: 0;
     }
   }
@@ -939,7 +939,7 @@
   }
 
   .facets--horizontal .facets__form-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       flex-direction: row;
       height: auto;
     }
@@ -953,14 +953,14 @@
   }
 
   .facets--horizontal .facets__form {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       flex-flow: row nowrap;
       height: auto;
     }
   }
 
   .facets--horizontal .facets__filters-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       max-width: 60%;
       display: flex;
       flex-wrap: wrap;
@@ -975,7 +975,7 @@
     --variant-picker-swatch-height: 32px;
     --icon-opacity: 0.5;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --variant-picker-swatch-width: 26px;
       --variant-picker-swatch-height: 26px;
     }
@@ -1000,7 +1000,7 @@
   }
 
   .facets--horizontal .facets__summary {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       font-size: var(--font-paragraph--size);
       justify-content: flex-start;
       height: var(--minimum-touch-target);
@@ -1032,19 +1032,19 @@
   }
 
   .facets:not(.facets--drawer) .facets__inputs-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       gap: var(--gap-sm);
     }
   }
 
   .facets--horizontal .facets__inputs .show-more {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: contents;
     }
   }
 
   .facets--horizontal .facets__inputs-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       max-height: var(--facets-horizontal-max-input-wrapper-height);
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -1061,7 +1061,7 @@
     margin-inline: calc(var(--padding-sm) * -1);
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .facets__inputs:has(.show-more) .facets__inputs-wrapper {
       padding-block: var(--padding-sm);
       padding-inline: var(--padding-sm);
@@ -1076,7 +1076,7 @@
     gap: var(--facets-mobile-gap);
     flex-direction: column;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       gap: var(--gap-sm);
     }
   }
@@ -1086,7 +1086,7 @@
     display: none;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .facets--vertical .facets__inputs-wrapper .facets__inputs-list--swatches {
       gap: var(--gap-sm);
     }
@@ -1110,13 +1110,13 @@
     grid-template-columns: repeat(auto-fit, minmax(var(--min-column-width), 1fr));
     gap: var(--gap-sm);
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --min-column-width: 50px;
     }
   }
 
   .facets-block-wrapper:not(.facets-block-wrapper--vertical) .facets__inputs-list--grid {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       width: var(--facets-grid-panel-width);
     }
   }
@@ -1133,7 +1133,7 @@
 
     gap: var(--show-more-gap);
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --show-more-icon-size: 16px;
       --show-more-gap: 6px;
     }
@@ -1156,13 +1156,13 @@
 
   .facets:not(.facets--drawer) .facets__panel,
   .facets-controls-wrapper .facets__panel {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding: 0;
     }
   }
 
   .facets--horizontal .facets__panel {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       position: relative;
     }
   }
@@ -1178,7 +1178,7 @@
   }
 
   .facets--horizontal .facets__panel-content {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       border-radius: var(--style-border-radius-popover);
       position: absolute;
       top: 100%;
@@ -1204,7 +1204,7 @@
     margin: 0 auto;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .facets:not(.facets--drawer) :is(.facets__item, .sorting-filter)::before {
       width: 100%;
     }
@@ -1215,7 +1215,7 @@
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .facets--vertical .facets__item:not(:first-of-type)::before,
     .facets--vertical .sorting-filter::before {
       content: '';
@@ -1337,7 +1337,7 @@
   }
 
   .facets--horizontal .facets__clear {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       width: 100%;
       justify-content: flex-end;
       padding: 0 var(--facets-clear-padding) var(--facets-clear-padding) 0;
@@ -1346,7 +1346,7 @@
   }
 
   .facets__clear--active {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
     }
   }
@@ -1357,7 +1357,7 @@
     cursor: pointer;
     white-space: nowrap;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       margin-inline-end: var(--margin-2xs);
     }
   }
@@ -1372,7 +1372,7 @@
   }
 
   .facets--horizontal .products-count-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
       margin-left: auto;
       flex-shrink: 0;
@@ -1382,7 +1382,7 @@
   }
 
   .facets-product-toolbar.facets--horizontal .products-count-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       margin-left: 0;
       height: auto;
     }
@@ -1404,7 +1404,7 @@
   }
 
   :is(.facets--horizontal, .facets--vertical) .facets__title-wrapper {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: none;
     }
   }
@@ -1413,7 +1413,7 @@
     --variant-picker-swatch-width: 32px;
     --variant-picker-swatch-height: 32px;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --variant-picker-swatch-width: 26px;
       --variant-picker-swatch-height: 26px;
     }
@@ -1445,7 +1445,7 @@
     color: var(--color-foreground);
     height: fit-content;
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       display: none;
     }
   }
@@ -1463,7 +1463,7 @@
   }
 
   .facets--horizontal .facets__panel .facets__status:has(:not(:empty)) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
       margin-inline-start: var(--margin-xs);
       margin-inline-end: var(--margin-xs);
@@ -1472,7 +1472,7 @@
 
   /* Horizontal filter style */
   .facets--horizontal .facets__form {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       gap: 0 var(--facets-form-horizontal-gap);
     }
   }

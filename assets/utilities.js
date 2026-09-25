@@ -417,7 +417,7 @@ export function isPointWithinElement(x, y, element) {
  * A media query for large screens
  * @type {MediaQueryList}
  */
-export const mediaQueryLarge = matchMedia('(min-width: 750px)');
+export const mediaQueryLarge = matchMedia('(min-width: 990px)');
 
 /**
  * Check if the current breakpoint is mobile

@@ -11,7 +11,7 @@
 {% liquid
   assign product = closest.product
   assign block_settings = block.settings
-  assign image_sizes = '(min-width: 750px) 50vw, 100vw'
+  assign image_sizes = '(min-width: 990px) 50vw, 100vw'
 
   # Check if product has badges and determine position
   assign has_badges = false
@@ -39,7 +39,7 @@
     assign image_sizes = sizes_attribute | strip
   elsif section.settings.columns and section.settings.layout_type != 'editorial'
     assign viewport_width = 100.0 | divided_by: section.settings.columns
-    assign sizes_attribute = '(min-width: 750px) [viewport_width]vw, 100vw' | replace: '[viewport_width]', viewport_width
+    assign sizes_attribute = '(min-width: 990px) [viewport_width]vw, 100vw' | replace: '[viewport_width]', viewport_width
     assign image_sizes = sizes_attribute | strip
   endif
 
@@ -283,7 +283,7 @@
     line-clamp: 3;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .product-grid[data-product-card-size='extra-large'] .product-card-gallery__title-placeholder {
       padding: var(--padding-3xl);
       font-size: var(--font-size--3xl);
@@ -377,7 +377,7 @@
     }
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .product-card-gallery__title-placeholder {
       font-size: var(--font-size--xl);
       padding: var(--padding-md);
