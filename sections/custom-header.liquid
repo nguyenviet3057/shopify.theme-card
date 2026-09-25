@@ -161,6 +161,19 @@
 
       .tgc-search-row {
         justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .tgc-search {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: 42rem;
+      }
+    }
+
+    @media (min-width: 1600px) {
+      .tgc-header__inner {
+        position: relative;
       }
 
       .tgc-search {
@@ -168,7 +181,9 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: min(42rem, calc(100% - 34rem));
+        width: min(42rem, calc(100% - 36rem));
+        max-width: none;
+        flex: none;
         z-index: 2;
       }
     }
@@ -479,6 +494,15 @@
       display: block;
       width: 100%;
       height: auto;
+    }
+    .tgc-mega__image--product {
+      flex: 0 1 220px;
+      max-width: 240px;
+    }
+    .tgc-mega__image--product img {
+      aspect-ratio: 1;
+      object-fit: cover;
+      height: 100%;
     }
 
     /* ---------- MOBILE DRAWER ---------- */
@@ -1076,32 +1100,42 @@
                     </div>
                   {% endif %}
                   <div class="tgc-mega__col tgc-mega__col--images">
-                    {% for block in mega_images %}
-                      {% if block.settings.parent_label == link2.title %}
-                        {% if block.settings.image_1 %}
-                          <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mega__image">
-                            <img
-                              src="{{ block.settings.image_1 | image_url: width: 400 }}"
-                              width="{{ block.settings.image_1.width }}"
-                              height="{{ block.settings.image_1.height }}"
-                              alt="{{ block.settings.title_1 | escape }}"
-                              loading="lazy"
-                            >
-                          </a>
+                    {%- capture mega_product_images -%}
+                      {%- render 'mega-menu-collection-products',
+                        link: link2,
+                        image_class: 'tgc-mega__image tgc-mega__image--product'
+                      -%}
+                    {%- endcapture -%}
+                    {%- if mega_product_images != blank -%}
+                      {{ mega_product_images }}
+                    {%- else -%}
+                      {% for block in mega_images %}
+                        {% if block.settings.parent_label == link2.title %}
+                          {% if block.settings.image_1 %}
+                            <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mega__image">
+                              <img
+                                src="{{ block.settings.image_1 | image_url: width: 400 }}"
+                                width="{{ block.settings.image_1.width }}"
+                                height="{{ block.settings.image_1.height }}"
+                                alt="{{ block.settings.title_1 | escape }}"
+                                loading="lazy"
+                              >
+                            </a>
+                          {% endif %}
+                          {% if block.settings.image_2 %}
+                            <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mega__image">
+                              <img
+                                src="{{ block.settings.image_2 | image_url: width: 400 }}"
+                                width="{{ block.settings.image_2.width }}"
+                                height="{{ block.settings.image_2.height }}"
+                                alt="{{ block.settings.title_2 | escape }}"
+                                loading="lazy"
+                              >
+                            </a>
+                          {% endif %}
                         {% endif %}
-                        {% if block.settings.image_2 %}
-                          <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mega__image">
-                            <img
-                              src="{{ block.settings.image_2 | image_url: width: 400 }}"
-                              width="{{ block.settings.image_2.width }}"
-                              height="{{ block.settings.image_2.height }}"
-                              alt="{{ block.settings.title_2 | escape }}"
-                              loading="lazy"
-                            >
-                          </a>
-                        {% endif %}
-                      {% endif %}
-                    {% endfor %}
+                      {% endfor %}
+                    {%- endif -%}
                   </div>
                 </div>
               {% endfor %}
@@ -1191,12 +1225,18 @@
                           </li>
                         {% endfor %}
 
-                        {% comment %}
-                          Images matched to THIS specific level-2 item's title,
-                          shown at the bottom of its own level-2 submenu list.
-                          Checked per-item (not just the first one) so images
-                          configured for any level-2 title actually render.
-                        {% endcomment %}
+                        {%- capture mega_product_images -%}
+                          {%- render 'mega-menu-collection-products',
+                            link: link2,
+                            image_class: 'tgc-mnav__image',
+                            image_width: 500
+                          -%}
+                        {%- endcapture -%}
+                        {%- if mega_product_images != blank -%}
+                          <li class="tgc-mnav__images">
+                            {{ mega_product_images }}
+                          </li>
+                        {%- else -%}
                         {% for block in section.blocks %}
                           {% if block.type == 'mega_image' and block.settings.parent_label == link2.title %}
                             {% if block.settings.image_1 or block.settings.image_2 %}
@@ -1227,14 +1267,23 @@
                             {% endif %}
                           {% endif %}
                         {% endfor %}
+                        {%- endif -%}
                       </ul>
                     {% else %}
                       <a href="{{ link2.url }}">{{ link2.title }}</a>
 
-                      {% comment %}
-                        Flat (no-children) level-2 item — if it has matching
-                        images, show them right after it as its own row.
-                      {% endcomment %}
+                      {%- capture mega_product_images -%}
+                        {%- render 'mega-menu-collection-products',
+                          link: link2,
+                          image_class: 'tgc-mnav__image',
+                          image_width: 500
+                        -%}
+                      {%- endcapture -%}
+                      {%- if mega_product_images != blank -%}
+                        <div class="tgc-mnav__images">
+                          {{ mega_product_images }}
+                        </div>
+                      {%- else -%}
                       {% for block in section.blocks %}
                         {% if block.type == 'mega_image' and block.settings.parent_label == link2.title %}
                           {% if block.settings.image_1 or block.settings.image_2 %}
@@ -1265,6 +1314,7 @@
                           {% endif %}
                         {% endif %}
                       {% endfor %}
+                      {%- endif -%}
                     {% endif %}
                   </li>
                 {% endfor %}
