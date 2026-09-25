@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "t:names.header",
@@ -20,7 +29,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["announcement_BxgCk9"],
+      "block_order": [
+        "announcement_BxgCk9"
+      ],
       "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
@@ -40,7 +51,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Shop with Confidence</p>",
+            "text": "<p>Free next-day delivery on Singles orders over $200</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -66,7 +77,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Use code <strong>CARD10 </strong>for <strong>10% off</strong> your first Booster Box purchase!</p>",
+            "text": "<p>Free next-day delivery on Singles orders over $200</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -92,7 +103,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>🌍 Global Shipping</p>",
+            "text": "<p>Free next-day delivery on Singles orders over $200</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -118,7 +129,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>✨ ✨ <strong>NEW ARRIVALS:</strong> Rare Pokémon, One Piece & Yu-Gi-Oh cards just landed!</p>",
+            "text": "<p>Free next-day delivery on Singles orders over $200</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -187,8 +198,8 @@
             "type_font_primary_link": "body",
             "type_case_primary_link": "none",
             "menu_style": "featured_products",
-            "featured_products_aspect_ratio": "4 \/ 5",
-            "featured_collections_aspect_ratio": "16 \/ 9",
+            "featured_products_aspect_ratio": "4 / 5",
+            "featured_collections_aspect_ratio": "16 / 9",
             "image_border_radius": 0,
             "navigation_bar": false,
             "background_color_navigation_bar": "{{ settings.color_palette.background }}",
@@ -253,10 +264,10 @@
           "type": "mega_image",
           "settings": {
             "parent_label": "MAGIC BOOSTER BOXES",
-            "image_1": "shopify:\/\/shop_images\/Media.png",
+            "image_1": "shopify://shop_images/Media.png",
             "title_1": "",
             "link_1": "",
-            "image_2": "shopify:\/\/shop_images\/Media_1.png",
+            "image_2": "shopify://shop_images/Media_1.png",
             "title_2": "",
             "link_2": ""
           }
@@ -271,15 +282,18 @@
           }
         }
       },
-      "block_order": ["mega_image_Wf6NTb", "search_scope_cALrA4"],
+      "block_order": [
+        "mega_image_Wf6NTb",
+        "search_scope_cALrA4"
+      ],
       "name": "Custom Header",
       "settings": {
         "main_menu": "main-menu-1",
-        "logo": "shopify:\/\/shop_images\/Logo_1.png",
+        "logo": "shopify://shop_images/Logo_1.png",
         "logo_width": 120,
         "search_placeholder": "Search store",
         "cta_button_text": "Buylist",
-        "cta_button_link": "https:\/\/kiosk.gamelocker.co\/thegamescube\/store",
+        "cta_button_link": "https://kiosk.gamelocker.co/thegamescube/store",
         "show_currency_selector": true,
         "show_language_selector": false,
         "color_top_bg": "#b91c1c",
@@ -299,7 +313,9 @@
           "blocks": {
             "group_letters": {
               "type": "_shipping-group",
-              "settings": { "title": "Letters" },
+              "settings": {
+                "title": "Letters"
+              },
               "blocks": {
                 "opt_regular_post": {
                   "type": "_shipping-option",
@@ -337,7 +353,9 @@
             },
             "group_parcels": {
               "type": "_shipping-group",
-              "settings": { "title": "Parcels" },
+              "settings": {
+                "title": "Parcels"
+              },
               "blocks": {
                 "opt_standard_parcel": {
                   "type": "_shipping-option",
@@ -375,7 +393,9 @@
             },
             "group_insurance": {
               "type": "_shipping-group",
-              "settings": { "title": "Add-on — Shipping insurance" },
+              "settings": {
+                "title": "Add-on — Shipping insurance"
+              },
               "blocks": {
                 "opt_basic_cover": {
                   "type": "_shipping-option",
@@ -412,7 +432,11 @@
               ]
             }
           },
-          "block_order": ["group_letters", "group_parcels", "group_insurance"]
+          "block_order": [
+            "group_letters",
+            "group_parcels",
+            "group_insurance"
+          ]
         }
       },
       "settings": {}

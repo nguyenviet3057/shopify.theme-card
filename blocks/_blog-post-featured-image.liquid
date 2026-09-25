@@ -37,7 +37,7 @@
         height: image.height,
         class: 'blog-post-featured-image__image border-style',
         style: image_border_style,
-        sizes: 'auto, (min-width: 750px) 100vw, 100vw',
+        sizes: 'auto, (min-width: 990px) 100vw, 100vw',
         loading: 'eager',
         fetchpriority: 'high',
         alt: image.alt
@@ -76,7 +76,7 @@
     object-position: center center;
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .blog-post-featured-image {
       --width: var(--width-mobile, var(--width));
       --custom-width: var(--custom-width-mobile, var(--custom-width));

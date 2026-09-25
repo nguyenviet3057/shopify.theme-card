@@ -155,7 +155,7 @@
     padding: 0;
     border: var(--style-border-popover);
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       width: var(--modal-width);
       margin-block-start: var(--modal-top-margin);
       overflow: hidden;
@@ -163,7 +163,7 @@
   }
 
   /* Hide the default dialog backdrop on small screens */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .search-modal__content::backdrop {
       display: none;
     }
@@ -175,7 +175,7 @@
     border-radius: var(--search-border-radius);
     box-shadow: var(--shadow-popover);
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       border-radius: 0;
     }
   }
@@ -213,7 +213,7 @@
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .dialog-modal
       .predictive-search-form__header:has(
         .predictive-search__reset-button:not(.predictive-search__reset-button[hidden])
@@ -241,7 +241,7 @@
     left: 0;
     right: 0;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --to-top-gradient-background: linear-gradient(
         to top,
         rgb(var(--color-background-rgb) / var(--opacity-90)),
@@ -293,11 +293,11 @@
     transform: translateZ(0);
     overflow: hidden;
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       border-radius: 0;
     }
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       max-height: var(--modal-max-height);
     }
   }
@@ -318,7 +318,7 @@
     justify-content: space-between;
     width: 100%;
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       border-radius: var(--style-border-radius-inputs);
       border: none;
     }
@@ -327,7 +327,7 @@
   .predictive-search-form__header-inner:focus-within {
     outline-offset: var(--focus-outline-offset);
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       outline: var(--focus-outline-width) solid var(--color-foreground);
     }
   }
@@ -343,7 +343,7 @@
     border: var(--search-border-width) solid var(--color-border);
     border-radius: var(--style-border-radius-inputs);
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       padding: var(--padding-2xs) var(--padding-sm);
     }
   }
@@ -394,7 +394,7 @@
     height: var(--icon-size-lg);
     color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-60));
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       left: var(--margin-md);
     }
   }
@@ -428,7 +428,7 @@
       transition: transform 100ms var(--animation-timing-active);
     }
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       margin-inline-end: var(--margin-2xs);
     }
   }

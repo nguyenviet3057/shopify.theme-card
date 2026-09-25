@@ -24,7 +24,7 @@
         height: image.height,
         class: 'logo-section__image',
         alt: shop.name,
-        sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
+        sizes: '(min-width: 990px) calc(var(--logo-width)), 100vw'
     -}}
   {% endcapture %}
 {%- endif -%}
@@ -88,7 +88,7 @@
     font-size: var(--logo-height);
     display: flex;
 
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       max-height: calc(
         var(--logo-height-mobile, var(--logo-height, 100%)) + var(--padding-block-start) + var(--padding-block-end)
       );

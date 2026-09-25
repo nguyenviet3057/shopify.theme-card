@@ -104,7 +104,7 @@
   .facets .column-options-wrapper {
     display: none;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
     }
   }
@@ -117,7 +117,7 @@
     padding: 0;
     border: none;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       gap: var(--gap-2xs);
     }
   }
@@ -129,14 +129,14 @@
 
   .column-options__option:has(.column-picker-mobile--single),
   .column-options__option:has(.column-picker-mobile--double) {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       display: flex;
     }
   }
 
   .column-options__option:has(.column-picker--default),
   .column-options__option:has(.column-picker--zoom-out) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
     }
   }
@@ -144,14 +144,14 @@
   /* Override base rule for grid density controls - only when visible */
   .column-options-wrapper .column-options__option:has(input[type='radio']):has(.column-picker-mobile--single),
   .column-options-wrapper .column-options__option:has(input[type='radio']):has(.column-picker-mobile--double) {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       display: flex;
     }
   }
 
   .column-options-wrapper .column-options__option:has(input[type='radio']):has(.column-picker--default),
   .column-options-wrapper .column-options__option:has(input[type='radio']):has(.column-picker--zoom-out) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: flex;
     }
   }

@@ -278,7 +278,7 @@ p:empty {
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .page-width-wide,
   .page-width-normal,
   .page-width-narrow,
@@ -376,7 +376,7 @@ p:empty {
   grid-column: 1 / -1;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 989px) {
   .section--mobile-full-width > * {
     grid-column: 1 / -1;
   }
@@ -391,7 +391,7 @@ p:empty {
 .section--full-width.section--full-width-margin > * {
   grid-column: 1 / -1;
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     padding-left: var(--page-margin);
     padding-right: var(--page-margin);
   }
@@ -432,7 +432,7 @@ p:empty {
   display: none !important;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 989px) {
   .hidden--mobile,
   .mobile\:hidden {
     /* stylelint-disable-next-line declaration-no-important */
@@ -440,7 +440,7 @@ p:empty {
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .hidden--desktop,
   .desktop\:hidden {
     /* stylelint-disable-next-line declaration-no-important */
@@ -486,7 +486,7 @@ p:empty {
   flex-direction: column;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .grid {
     display: grid;
     gap: 0;
@@ -1084,7 +1084,7 @@ summary:hover {
   z-index: var(--layer-flat);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .sticky-content--desktop,
   .sticky-content--desktop.full-height--desktop > .group-block {
     position: sticky;
@@ -1130,7 +1130,7 @@ summary:hover {
   width: var(--size-style-width-mobile, var(--size-style-width));
   height: var(--size-style-height-mobile, var(--size-style-height));
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     width: var(--size-style-width);
     height: var(--size-style-height);
   }
@@ -1213,7 +1213,7 @@ summary:hover {
   justify-content: var(--vertical-alignment);
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 989px) {
   .mobile-column {
     flex-flow: column nowrap;
     align-items: var(--horizontal-alignment);
@@ -1246,7 +1246,7 @@ summary:hover {
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 990px) {
   .layout-panel-flex {
     flex-direction: var(--flex-direction);
   }
@@ -1753,7 +1753,7 @@ label:has(input[type='checkbox']:disabled) {
 
 :where(.section-resource-list.section--full-width) product-card[data-product-transition] > .group-block,
 :where(.section-carousel.section--full-width) product-card[data-product-transition] > .group-block {
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     padding-inline: max(var(--padding-xs), var(--padding-inline-start))
       max(var(--padding-xs), var(--padding-inline-end));
   }
@@ -2069,7 +2069,7 @@ body:has(:is(.product-grid, .resource-list) .add-to-cart-button.is-loading) .act
   justify-content: space-around;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 989px) {
   .product-details .product-form-buttons .quantity-selector {
     width: 100%;
     max-width: 100%;
@@ -2175,7 +2175,7 @@ body:has(:is(.product-grid, .resource-list) .add-to-cart-button.is-loading) .act
 }
 
 /* Mobile: compress quantity +/- and ATC so they fit side by side */
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 989px) {
   .product-grid__card .group-block > * {
     flex-direction: row;
     min-width: 0;

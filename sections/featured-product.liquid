@@ -68,7 +68,7 @@
     display: grid;
     overflow: hidden;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-template-columns: 1fr 1fr;
     }
   }
@@ -78,7 +78,7 @@
     --constrained-min-height: var(--visual-preview--height, 80dvh);
     --constrained-height: max(var(--constrained-min-height), calc(100vh - var(--viewport-offset)));
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --viewport-offset: 300px;
     }
   }
@@ -87,19 +87,19 @@
     --padding-block: 20px;
     --padding-inline: 20px;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       --padding-block: 40px;
       --padding-inline: 40px;
     }
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .featured-product-section .media-block {
       order: -1;
     }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .featured-product-section .product-card__content {
       --hugged-width: calc(var(--constrained-height) * var(--gallery-aspect-ratio, var(--media-preview-ratio)));
       width: min(100%, var(--hugged-width));

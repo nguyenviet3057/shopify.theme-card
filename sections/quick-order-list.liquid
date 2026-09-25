@@ -541,7 +541,7 @@
       calc(2 * var(--padding-sm) + var(--image-size) + var(--minimum-touch-target) + var(--padding-2xl));
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .quick-order-list__grid-row {
       contain-intrinsic-size: auto calc(2 * var(--padding-sm) + var(--image-size));
     }
@@ -666,7 +666,7 @@
   }
 
   /* Mobile layout */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .quick-order-list__grid-header,
     .quick-order-list__grid-row {
       grid-template-columns: 1fr auto; /* Variant column and total column on mobile */
@@ -827,7 +827,7 @@
   }
 
   /* Tablet and Desktop styles - sticky footer */
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .quick-order-list-total {
       position: sticky;
       inset-block-end: 0;
@@ -864,7 +864,7 @@
   }
 
   /* Desktop layout - Use CSS Grid to match main table alignment */
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 990px) {
     .quick-order-list-total__info {
       display: grid;
       grid-template-columns:
@@ -901,7 +901,7 @@
   }
 
   /* Tablet-specific overrides - 750px to 989px */
-  @media screen and (min-width: 750px) and (max-width: 989px) {
+  @media screen and (min-width: 990px) and (max-width: 989px) {
     .quick-order-list-total__actions {
       flex-direction: column;
     }
@@ -1032,7 +1032,7 @@
   }
 
   /* Mobile styles */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     .quick-order-list-total__info {
       display: flex;
       flex-direction: column;

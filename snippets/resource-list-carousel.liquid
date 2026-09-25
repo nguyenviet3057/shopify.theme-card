@@ -71,13 +71,13 @@
     }
   }
 
-  @container resource-list-carousel (max-width: 749px) {
+  @container resource-list-carousel (max-width: 989px) {
     .resource-list__carousel .resource-list__slide {
       --slide-width: clamp(150px, var(--mobile-card-size, 60cqw), var(--slide-width-max));
     }
   }
 
-  @container resource-list-carousel (min-width: 750px) {
+  @container resource-list-carousel (min-width: 990px) {
     .resource-list__carousel .resource-list__slide {
       --section-slide-width: calc(
         (100% - (var(--resource-list-column-gap) * (var(--column-count) - 1)) - var(--peek-next-slide-size)) /

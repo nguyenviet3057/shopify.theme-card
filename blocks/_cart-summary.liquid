@@ -49,7 +49,7 @@
     top: 0;
     align-self: start;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       padding: var(--padding-5xl);
       grid-row: 1 / -1;
     }
@@ -60,11 +60,11 @@
   }
 
   .cart-summary {
-    @media screen and (max-width: 749px) {
+    @media screen and (max-width: 989px) {
       border: none;
     }
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       display: grid;
       grid-template-rows: subgrid;
       grid-row: 1 / -1;
@@ -74,7 +74,7 @@
   .cart-summary--extend {
     height: 100%;
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       border-right: none;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -83,14 +83,14 @@
 
   /* If extend is on, only include top and bottom borders when the border radius is 0. */
   .cart-summary--extend:not(.has-border-radius) {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       border-top: none;
       border-bottom: none;
     }
   }
 
   .cart-summary--extend .cart-summary__inner {
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       grid-row: 2 / -1;
       padding: var(--padding-md) var(--page-margin) var(--padding-4xl);
       width: var(--sidebar-width);
@@ -104,7 +104,7 @@
 
   /* On mobile, drop the summary's custom palette and inherit from the cart
      section so the summary visually merges with the rest of the cart page. */
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     :is(.section-background, .cart-summary, .cart-summary__inner).inherit-parent-scheme--mobile {
       --color: inherit;
       --color-rgb: inherit;
