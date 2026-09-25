@@ -161,6 +161,19 @@
 
       .tgc-search-row {
         justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .tgc-search {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: 42rem;
+      }
+    }
+
+    @media (min-width: 1600px) {
+      .tgc-header__inner {
+        position: relative;
       }
 
       .tgc-search {
@@ -168,7 +181,9 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: min(42rem, calc(100% - 34rem));
+        width: min(42rem, calc(100% - 36rem));
+        max-width: none;
+        flex: none;
         z-index: 2;
       }
     }
