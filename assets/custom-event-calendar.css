@@ -40,13 +40,55 @@ gl-event-calendar,
   }
 }
 
+.gl-event-calendar__type-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.gl-event-calendar__type-filter {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border: 1px solid #c0dff6;
+  background: #fff;
+  color: var(--gl-cal-text);
+  border-radius: var(--style-border-radius-buttons-primary);
+  padding: 0 16px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.gl-event-calendar__type-filter.is-active {
+  background: var(--gl-cal-accent);
+  border-color: var(--gl-cal-accent);
+  color: #fff;
+}
+
+.gl-event-calendar__type-filter:focus-visible {
+  outline: 2px solid var(--gl-cal-accent);
+  outline-offset: 2px;
+}
+
 .gl-event-calendar__controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
   margin-bottom: 20px;
+}
+
+.gl-event-calendar__controls-right {
+  margin-left: auto;
 }
 
 .gl-event-calendar__nav {
@@ -107,7 +149,7 @@ gl-event-calendar,
   height: 44px;
   padding: 0 40px 0 16px;
   border: 1px solid #C0DFF6;
-  border-radius: 12px;
+  border-radius: 8px;
   background: #fff;
   color: var(--gl-cal-text);
   font-size: 0.9rem;
@@ -555,17 +597,38 @@ gl-event-calendar,
   .gl-event-calendar__controls {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
   }
 
   .gl-event-calendar__nav {
+    order: 1;
     justify-content: center;
     max-width: 100%;
   }
 
   .gl-event-calendar__controls-right {
+    display: contents;
     width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+    margin-left: 0;
+  }
+
+  .gl-event-calendar__search-wrap {
+    order: 2;
+  }
+
+  .gl-event-calendar__type-filters {
+    order: 3;
+    width: 100%;
+  }
+
+  .gl-event-calendar__type-filter {
+    flex: 1 0 auto;
+    white-space: nowrap;
+    min-width: max-content;
+  }
+
+  .gl-event-calendar__game-select {
+    order: 4;
   }
 
   .gl-event-calendar__search-wrap,

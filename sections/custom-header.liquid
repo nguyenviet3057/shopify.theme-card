@@ -42,7 +42,7 @@
       --tgc-nav-text: {{ section.settings.color_nav_text }};
       --tgc-accent: {{ section.settings.color_accent }};
       --tgc-control-h: 44px;
-      --tgc-radius: 4px;
+      --tgc-radius: 8px;
     }
 
     .tgc-header {
@@ -152,6 +152,25 @@
       overflow: visible;
       position: relative;
       height: var(--tgc-control-h);
+    }
+
+    @media (min-width: 750px) {
+      .tgc-header__inner {
+        position: relative;
+      }
+
+      .tgc-search-row {
+        justify-content: flex-end;
+      }
+
+      .tgc-search {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(42rem, calc(100% - 34rem));
+        z-index: 2;
+      }
     }
     .tgc-search__scope {
       flex: 0 0 auto;
@@ -363,7 +382,7 @@
       vertical-align: middle;
     }
 
-    .tgc-nav__item.has-mega:hover > .tgc-nav__link::after {
+    .tgc-nav__item.has-mega.is-open > .tgc-nav__link::after {
       transform: rotate(180deg);
       background-image: url("data:image/svg+xml, %3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%232d7dd2'/%3E%3C/svg%3E");
     }
@@ -828,9 +847,11 @@
 
       <a href="{{ routes.root_url }}" class="tgc-logo">
         {% if section.settings.logo %}
+          {% assign logo_height = section.settings.logo_width | times: section.settings.logo.height | divided_by: section.settings.logo.width %}
           <img
             src="{{ section.settings.logo | image_url: width: 400 }}"
             width="{{ section.settings.logo_width }}"
+            height="{{ logo_height }}"
             alt="{{ shop.name }}"
             loading="lazy"
           >
@@ -1004,10 +1025,20 @@
     <ul class="tgc-nav__list">
       {% for link in linklists[section.settings.main_menu].links %}
         <li class="tgc-nav__item {% if link.links != blank %}has-mega{% endif %}" data-nav-item>
-          <a href="{{ link.url }}" class="tgc-nav__link">{{ link.title }}</a>
+          <a
+            href="{{ link.url }}"
+            class="tgc-nav__link"
+            {% if link.links != blank %}
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="tgc-mega-{{ section.id }}-{{ forloop.index }}"
+            {% endif %}
+          >
+            {{- link.title -}}
+          </a>
 
           {% if link.links != blank %}
-            <div class="tgc-mega" data-mega>
+            <div class="tgc-mega" id="tgc-mega-{{ section.id }}-{{ forloop.index }}" data-mega>
               <div class="tgc-mega__col tgc-mega__col--l2">
                 <ul>
                   {% for link2 in link.links %}
@@ -1051,6 +1082,8 @@
                           <a href="{{ block.settings.link_1 | default: '#' }}" class="tgc-mega__image">
                             <img
                               src="{{ block.settings.image_1 | image_url: width: 400 }}"
+                              width="{{ block.settings.image_1.width }}"
+                              height="{{ block.settings.image_1.height }}"
                               alt="{{ block.settings.title_1 | escape }}"
                               loading="lazy"
                             >
@@ -1060,6 +1093,8 @@
                           <a href="{{ block.settings.link_2 | default: '#' }}" class="tgc-mega__image">
                             <img
                               src="{{ block.settings.image_2 | image_url: width: 400 }}"
+                              width="{{ block.settings.image_2.width }}"
+                              height="{{ block.settings.image_2.height }}"
                               alt="{{ block.settings.title_2 | escape }}"
                               loading="lazy"
                             >
@@ -1264,36 +1299,32 @@
       observer.observe(header);
     }
 
-    /* ---------- Desktop mega menu ---------- */
+    /* ---------- Desktop mega menu (click to open) ---------- */
     var navItems = root.querySelectorAll('[data-nav-item]');
+
+    function setMegaExpanded(item, expanded) {
+      item.classList.toggle('is-open', expanded);
+      var trigger = item.querySelector(':scope > .tgc-nav__link');
+      if (trigger) trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    function closeAllMegas(except) {
+      navItems.forEach(function (item) {
+        if (item === except) return;
+        if (!item.classList.contains('has-mega')) return;
+        setMegaExpanded(item, false);
+      });
+    }
+
     navItems.forEach(function (item) {
       if (!item.classList.contains('has-mega')) return;
-      var closeTimer;
-      function open() {
-        clearTimeout(closeTimer);
-        item.classList.add('is-open');
-      }
-      function close() {
-        closeTimer = setTimeout(function () {
-          item.classList.remove('is-open');
-        }, 150);
-      }
-      item.addEventListener('mouseenter', open);
-      item.addEventListener('mouseleave', close);
-      item.addEventListener('focusin', open);
-      item.addEventListener('focusout', close);
 
       var link = item.querySelector(':scope > .tgc-nav__link');
       link.addEventListener('click', function (e) {
-        if (window.matchMedia('(hover: none)').matches) {
-          if (!item.classList.contains('is-open')) {
-            e.preventDefault();
-            navItems.forEach(function (i) {
-              i.classList.remove('is-open');
-            });
-            item.classList.add('is-open');
-          }
-        }
+        e.preventDefault();
+        var willOpen = !item.classList.contains('is-open');
+        closeAllMegas(willOpen ? item : null);
+        setMegaExpanded(item, willOpen);
       });
 
       var l2Triggers = item.querySelectorAll('[data-l2-trigger]');
@@ -1312,10 +1343,12 @@
 
     document.addEventListener('click', function (e) {
       if (!root.contains(e.target)) {
-        navItems.forEach(function (i) {
-          i.classList.remove('is-open');
-        });
+        closeAllMegas();
       }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAllMegas();
     });
 
     /* ---------- Mobile drawer (drill-down) ---------- */

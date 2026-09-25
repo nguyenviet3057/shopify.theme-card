@@ -32,6 +32,7 @@
   - bento_gap: Gap for bento layout in pixels
   - mobile_card_size: Mobile card size for carousel
   - carousel_on_mobile: Boolean for mobile carousel fallback
+  - mobile_layout_type: 'grid' | 'carousel' — overrides the mobile layout when set
 {%- enddoc -%}
 
 {% liquid
@@ -49,6 +50,21 @@
   endunless
 
   assign layout_type = settings.layout_type | default: 'grid'
+  assign mobile_layout_type = settings.mobile_layout_type | default: ''
+  assign show_mobile_carousel = false
+  assign show_mobile_grid = false
+
+  if layout_type != 'carousel'
+    if mobile_layout_type == 'carousel'
+      assign show_mobile_carousel = true
+    elsif mobile_layout_type == blank and settings.carousel_on_mobile
+      assign show_mobile_carousel = true
+    endif
+  endif
+
+  if layout_type == 'carousel' and mobile_layout_type == 'grid'
+    assign show_mobile_grid = true
+  endif
   assign columns = settings.columns | default: 3
   assign mobile_columns = settings.mobile_columns | default: 2
   assign columns_gap = settings.columns_gap | default: 16
@@ -103,7 +119,7 @@
     {% if settings.layout_type == 'carousel' %}
       force-full-width
     {% endif %}
-    {% if settings.carousel_on_mobile and settings.layout_type != 'carousel' %}
+    {% if show_mobile_carousel or show_mobile_grid %}
       hidden--mobile
     {% endif %}
     {{ resource_list_classes }}
@@ -142,7 +158,7 @@
 </div>
 
 {% comment %} Mobile carousel for non-carousel layouts {% endcomment %}
-{% if settings.layout_type != 'carousel' and settings.carousel_on_mobile %}
+{% if show_mobile_carousel %}
   {% liquid
     assign mobile_carousel_gap = settings.columns_gap | default: 16
     if settings.layout_type == 'bento'
@@ -174,5 +190,19 @@
       settings: settings,
       slide_width_max: slide_width_max
     %}
+  </div>
+{% endif %}
+
+{% if show_mobile_grid %}
+  <div
+    class="resource-list resource-list--grid resource-list--mobile-only hidden--desktop"
+    style="
+      --resource-list-column-gap-desktop: {{ columns_gap }}px;
+      --resource-list-row-gap-desktop: {{ rows_gap }}px;
+      --resource-list-columns-mobile: repeat({{ mobile_columns }}, 1fr);
+      --column-count-mobile: {{ mobile_columns }};
+    "
+  >
+    {{ list_items }}
   </div>
 {% endif %}

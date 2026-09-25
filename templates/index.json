@@ -451,7 +451,8 @@
           "settings": {
             "collection": "singles",
             "tab_label": "Singles",
-            "product_limit": 5
+            "product_limit": 12,
+            "product_limit_mobile": 4
           },
           "blocks": {
             "static-product-card": {
@@ -790,7 +791,8 @@
           "settings": {
             "collection": "sealed",
             "tab_label": "Sealed",
-            "product_limit": 5
+            "product_limit": 12,
+            "product_limit_mobile": 4
           },
           "blocks": {
             "static-product-card": {
@@ -1127,25 +1129,26 @@
       },
       "block_order": ["tab_NdgepX", "trending_tab_zymFR6"],
       "custom_css": [
-        ".trending .resource-list__slide {min-width: calc( (100% - (var(--column-count) - 1) * 1rem) \/ var(--column-count) );}",
+        ".trending .resource-list__slide {min-width: calc( (100% - (var(--column-count) - 1) * var(--resource-list-column-gap, 1rem)) / var(--column-count) );}",
         ".image-block {border-radius: 8px; overflow: hidden;}",
-        "@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}"
+        "@media screen and (min-width: 1160px) {.resource-list {--resource-list-columns: repeat(5, 1fr) !important; }}",
+        "@media (min-width: 750px) {.trending__view-all {display: none; }}"
       ],
       "name": "Products Tabs",
       "settings": {
         "eyebrow": "Fresh off the shelf",
         "heading": "Trending now",
         "subheading": "Priced and verified by the crew who actually play these games.",
-        "view_all_label": "",
+        "view_all_label": "View all",
         "accent_color": "#207fc4",
         "heading_color": "#1d1a17",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "columns": 3,
+        "layout_type": "carousel",
+        "mobile_layout_type": "grid",
+        "columns": 5,
         "mobile_columns": "2",
         "mobile_card_size": "44cqw",
         "columns_gap": 16,
-        "rows_gap": 16,
+        "rows_gap": 24,
         "icons_style": "arrow",
         "icons_shape": "circle",
         "section_width": "page-width",
@@ -1380,8 +1383,8 @@
       "type": "custom-event-calendar",
       "name": "Event calendar",
       "settings": {
-        "heading": "Event Calendar",
-        "subtitle": "See what's on at Game Locker",
+        "heading": "Upcoming Events",
+        "subtitle": "Never miss a draft",
         "empty_message": "No events this month.",
         "background_color": "#ECF7FF",
         "section_width": "page-width",

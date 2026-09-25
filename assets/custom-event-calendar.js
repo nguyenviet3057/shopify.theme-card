@@ -87,6 +87,7 @@
       this.events = this.readEvents();
       this.searchQuery = '';
       this.gameFilter = '';
+      this.typeFilter = '';
       this.current = new Date(this.year, this.minMonth, 1);
 
       this.els = {
@@ -132,6 +133,7 @@
               textColor: asString(event.textColor),
               backgroundColor: asString(event.backgroundColor),
               tags: Array.isArray(event.tags) ? event.tags : [],
+              types: Array.isArray(event.types) ? event.types.map(asString) : [],
             };
           })
           .filter(Boolean)
@@ -186,6 +188,18 @@
         });
       }
 
+      this.querySelectorAll('[data-type-filter]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          self.typeFilter = btn.getAttribute('data-type-filter') || '';
+          self.querySelectorAll('[data-type-filter]').forEach(function (other) {
+            var active = other === btn;
+            other.classList.toggle('is-active', active);
+            other.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          self.render();
+        });
+      });
+
       this.querySelectorAll('[data-drawer-close]').forEach(function (btn) {
         btn.addEventListener('click', function () {
           self.closeDrawer();
@@ -217,7 +231,9 @@
     filteredEvents() {
       var query = this.searchQuery;
       var game = this.gameFilter;
+      var typeFilter = this.typeFilter;
       return this.events.filter(function (event) {
+        if (typeFilter && (event.types || []).indexOf(typeFilter) === -1) return false;
         if (game && event.game !== game) return false;
         if (!query) return true;
         var haystack = [event.title, event.game]

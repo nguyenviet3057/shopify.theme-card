@@ -83,6 +83,14 @@
     }
   }
 
+  .resource-list--grid.resource-list--mobile-only {
+    grid-template-columns: var(--resource-list-columns-mobile);
+
+    @container resource-list (max-width: 749px) {
+      grid-template-columns: var(--resource-list-columns-mobile);
+    }
+  }
+
   .resource-list__item {
     height: 100%;
     color: var(--color-foreground);

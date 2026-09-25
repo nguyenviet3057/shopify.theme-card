@@ -66,6 +66,14 @@
                     }{%- unless forloop.last -%},{%- endunless -%}
                   {%- endfor -%}
                 {%- endif -%}
+              ],
+              "types": [
+                {%- assign type_list = event.type.value | default: event.type -%}
+                {%- if type_list != blank -%}
+                  {%- for event_type in type_list -%}
+                    {{ event_type.system.handle | json }}{%- unless forloop.last -%},{%- endunless -%}
+                  {%- endfor -%}
+                {%- endif -%}
               ]
             }
           {%- endif -%}
@@ -91,6 +99,26 @@
         <button type="button" class="gl-event-calendar__nav-btn" data-dir="1" aria-label="Next month">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
+      </div>
+      <div class="gl-event-calendar__type-filters" role="group" aria-label="Event type">
+        <button type="button" class="gl-event-calendar__type-filter is-active" data-type-filter="" aria-pressed="true">
+          All
+        </button>
+        {%- assign event_type_entries = shop.metaobjects.upcoming_event_type.values -%}
+        {%- for event_type in event_type_entries -%}
+          {%- assign type_label = event_type.type.value | default: event_type.type | strip -%}
+          {%- assign type_label_key = type_label | downcase -%}
+          {%- if type_label != blank and type_label_key != 'all' -%}
+            <button
+              type="button"
+              class="gl-event-calendar__type-filter"
+              data-type-filter="{{ event_type.system.handle }}"
+              aria-pressed="false"
+            >
+              {{ type_label }}
+            </button>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       <div class="gl-event-calendar__controls-right">
         <label class="gl-event-calendar__search-wrap">
@@ -172,7 +200,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Events are pulled from the Upcoming Event metaobject. Chip colours use each event's tags when present, then the event's own colours. If an event has a ticket_product, a Buy Ticket button links to that product."
+      "content": "Events are pulled from the Upcoming Event metaobject. The type filter lists Upcoming Event Type entries, with All showing every event. Chip colours use each event's tags when present, then the event's own colours. If an event has a ticket_product, a Buy Ticket button links to that product."
     },
     {
       "type": "color",

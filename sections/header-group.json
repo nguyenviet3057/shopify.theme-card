@@ -21,6 +21,7 @@
         }
       },
       "block_order": ["announcement_BxgCk9"],
+      "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
@@ -30,6 +31,135 @@
         "divider_color": "",
         "padding-block-start": 16,
         "padding-block-end": 16
+      }
+    },
+    "header_announcement_v2_KQ9KmV": {
+      "type": "header-announcement-v2",
+      "blocks": {
+        "text_97RTPJ": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Shop with Confidence</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color3 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_pWNCwa": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Use code <strong>CARD10 </strong>for <strong>10% off</strong> your first Booster Box purchase!</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color3 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_4GAcqm": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>🌍 Global Shipping</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color3 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_jVkrfQ": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>✨ ✨ <strong>NEW ARRIVALS:</strong> Rare Pokémon, One Piece & Yu-Gi-Oh cards just landed!</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color3 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_97RTPJ",
+        "text_pWNCwa",
+        "text_4GAcqm",
+        "text_jVkrfQ"
+      ],
+      "name": "t:names.header_announcement_v2",
+      "settings": {
+        "background_color": "#121011",
+        "text_color": "#ffffff",
+        "separator_type": "text",
+        "separator_text": "<p>●</p>",
+        "separator_icon": "star",
+        "separator_html": "",
+        "gap": "clamp(4rem, 8vw, 6rem)",
+        "section_width": "full-width",
+        "movement_direction": "normal",
+        "speed": 32,
+        "padding_block": 10
       }
     },
     "header_section": {
@@ -290,6 +420,7 @@
   },
   "order": [
     "header_announcements_9jGBFp",
+    "header_announcement_v2_KQ9KmV",
     "header_section",
     "custom_header_k3BA7T",
     "custom_cart_drawer"
