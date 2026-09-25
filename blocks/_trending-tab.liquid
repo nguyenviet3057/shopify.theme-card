@@ -1,5 +1,10 @@
 {% liquid
-  assign product_limit = block.settings.product_limit | default: 6
+  assign desktop_limit = block.settings.product_limit | default: 6
+  assign mobile_limit = block.settings.product_limit_mobile | default: 4
+  assign product_limit = desktop_limit
+  if mobile_limit > desktop_limit
+    assign product_limit = mobile_limit
+  endif
   assign tab_label = block.settings.tab_label | default: block.settings.collection.title | default: 'Collection'
   assign carousel_ref = 'trendingCarousel' | append: block.id
 %}
@@ -13,7 +18,7 @@
   {% capture list_items %}
     {% if block.settings.collection != blank %}
       {% for product in block.settings.collection.products limit: product_limit %}
-        <div class="resource-list__item">
+        <div class="resource-list__item{% if forloop.index > desktop_limit %} trending-product--hide-desktop{% endif %}{% if forloop.index > mobile_limit %} trending-product--hide-mobile{% endif %}">
           {% content_for 'block',
             type: '_product-card',
             id: 'static-product-card',
@@ -63,6 +68,22 @@
   {% endif %}
 </div>
 
+{% stylesheet %}
+  @media screen and (max-width: 749px) {
+    .resource-list__item.trending-product--hide-mobile,
+    slideshow-slide:has(.trending-product--hide-mobile) {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .resource-list__item.trending-product--hide-desktop,
+    slideshow-slide:has(.trending-product--hide-desktop) {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "Collection tab",
@@ -81,11 +102,20 @@
     {
       "type": "range",
       "id": "product_limit",
-      "label": "Number of products to show",
+      "label": "t:settings.products_to_show_desktop",
       "min": 2,
       "max": 12,
       "step": 1,
       "default": 6
+    },
+    {
+      "type": "range",
+      "id": "product_limit_mobile",
+      "label": "t:settings.products_to_show_mobile",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
     }
   ]
 }

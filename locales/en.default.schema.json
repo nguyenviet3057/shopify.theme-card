@@ -110,6 +110,7 @@
     "mobile_size": "Mobile size",
     "mobile_width": "Mobile width",
     "padding": "Padding",
+    "separator": "Separator",
     "padding_desktop": "Desktop padding",
     "paragraph": "Paragraph",
     // Footer component section header for legal policy links
@@ -230,7 +231,9 @@
     "carousel_layout_on_mobile": "Carousel is always used on mobile",
     "checkout_buttons": "Allows buyers to check out faster and can improve conversion. [Learn more](https://help.shopify.com/manual/online-store/dynamic-checkout)",
     "custom_heading": "Custom heading",
+    "css_gap": "Any CSS length, such as 24px or clamp(8px, 2vw, 24px).",
     "custom_liquid": "Add app snippets or other code to create advanced customizations. [Learn more](https://shopify.dev/docs/api/liquid)",
+    "marquee_speed": "Higher values scroll more slowly.",
     "store_locations": "Leave empty to hide. Product tags must be formatted as \"Location: Melbourne\" to match.",
     "svg_overrides_icon": "Paste SVG markup. When filled, this overrides Icon and Image icon.",
     "edit_button_style_in_theme_settings": "Edit primary and secondary button styles in [theme settings](/editor?context=theme&category=buttons)",
@@ -327,6 +330,7 @@
     // Layout container block that groups other content
     "group": "Group",
     "header": "Header",
+    "header_announcement_v2": "Announcement bar v2",
     "heading": "Heading",
     "hero": "Hero",
     "hero_bottom_aligned": "Hero: Bottom aligned",
@@ -649,6 +653,7 @@
     // Text animation effect that slides characters into view
     "reveal": "Reveal",
     "reverse": "Reverse",
+    "html": "HTML",
     "rich_text": "Rich text",
     // Positional option for alignment/layout (opposite of left)
     "right": "Right",
@@ -838,6 +843,7 @@
     "default": "Default",
     "default_logo": "Default logo",
     "desktop_height": "Desktop height",
+    "desktop_layout": "Desktop layout",
     "desktop_pagination": "Desktop pagination",
     "direction": "Direction",
     // Button appearance for email signup form
@@ -881,6 +887,9 @@
     "full_width_first_image": "Full width first image",
     "full_width_on_mobile": "Full width on mobile",
     "gap": "Gap",
+    "custom_html": "Custom HTML",
+    "marquee_speed": "Scroll speed",
+    "separator": "Separator",
     // CSS Y-axis transform setting for vertical positioning (legacy/unused)
     "geometric_translate_y": "Geometric translate Y",
     "gift_card_form": "Gift card form",
@@ -962,6 +971,7 @@
     "minimum_height": "Minimum height",
     "mobile_card_size": "Mobile card size",
     "mobile_columns": "Mobile columns",
+    "mobile_layout": "Mobile layout",
     "mobile_height": "Mobile height",
     "mobile_logo_image": "Mobile logo",
     "mobile_pagination": "Mobile pagination",
@@ -1024,6 +1034,8 @@
     "product_type": "Product type",
     "products": "Products",
     "products_per_page": "Products per page",
+    "products_to_show_desktop": "Number of products on desktop",
+    "products_to_show_mobile": "Number of products on mobile",
     "product_custom_property": {
       "heading": "Heading",
       "description": "Description",

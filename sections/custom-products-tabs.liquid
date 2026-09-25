@@ -107,6 +107,10 @@
     min-width: 0;
   }
 
+  .trending .resource-list {
+    --resource-list-mobile-gap-max: 9999px;
+  }
+
   .trending .resource-list__item,
   .trending .resource-list__slide,
   .trending product-card,
@@ -118,6 +122,39 @@
   /* Nested carousel can't use section > .force-full-width; keep scroll usable */
   .trending slideshow-component slideshow-slides {
     overflow-x: auto;
+  }
+
+  /* Card shadow sits outside the slide; don't clip it */
+  .trending .resource-list__carousel,
+  .trending slideshow-component,
+  .trending slideshow-container {
+    overflow: visible;
+  }
+
+  .trending .resource-list__carousel slideshow-slide {
+    overflow: visible;
+  }
+
+  .trending .resource-list__carousel slideshow-slides {
+    padding-block: 8px 16px;
+    margin-block: -8px -16px;
+    padding-inline: 6px;
+    scroll-padding-inline: 6px;
+  }
+
+  .trending .resource-list__carousel .slideshow-control.slideshow-control--shape-circle,
+  .trending .resource-list__carousel .slideshow-control.slideshow-control--shape-square {
+    box-shadow: 0 6px 4px 0 #1d1a1714;
+  }
+
+  @media screen and (min-width: 750px) {
+    .trending .resource-list__carousel .slideshow-control--previous {
+      translate: -50% 0;
+    }
+
+    .trending .resource-list__carousel .slideshow-control--next {
+      translate: 50% 0;
+    }
   }
 </style>
 
@@ -237,7 +274,7 @@
     {
       "type": "select",
       "id": "layout_type",
-      "label": "t:settings.layout_type",
+      "label": "t:settings.desktop_layout",
       "options": [
         {
           "value": "carousel",
@@ -251,11 +288,20 @@
       "default": "carousel"
     },
     {
-      "type": "checkbox",
-      "id": "carousel_on_mobile",
-      "label": "t:settings.carousel_on_mobile",
-      "default": false,
-      "visible_if": "{{ section.settings.layout_type == 'grid' }}"
+      "type": "select",
+      "id": "mobile_layout_type",
+      "label": "t:settings.mobile_layout",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "t:options.carousel"
+        },
+        {
+          "value": "grid",
+          "label": "t:options.grid"
+        }
+      ],
+      "default": "carousel"
     },
     {
       "type": "range",
@@ -281,12 +327,12 @@
         }
       ],
       "default": "2",
-      "visible_if": "{{ section.settings.layout_type == 'grid' and section.settings.carousel_on_mobile == false }}"
+      "visible_if": "{{ section.settings.mobile_layout_type == 'grid' }}"
     },
     {
       "type": "select",
       "id": "mobile_card_size",
-      "label": "t:settings.mobile_columns",
+      "label": "t:settings.mobile_card_size",
       "options": [
         {
           "value": "60cqw",
@@ -298,7 +344,7 @@
         }
       ],
       "default": "60cqw",
-      "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.carousel_on_mobile == true }}"
+      "visible_if": "{{ section.settings.mobile_layout_type == 'carousel' }}"
     },
     {
       "type": "range",
@@ -319,12 +365,12 @@
       "step": 1,
       "unit": "px",
       "default": 16,
-      "visible_if": "{{ section.settings.layout_type == 'grid' }}"
+      "visible_if": "{{ section.settings.layout_type == 'grid' or section.settings.mobile_layout_type == 'grid' }}"
     },
     {
       "type": "header",
       "content": "t:content.carousel_navigation",
-      "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.carousel_on_mobile == true }}"
+      "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.mobile_layout_type == 'carousel' }}"
     },
     {
       "type": "select",
@@ -353,7 +399,7 @@
         }
       ],
       "default": "arrow",
-      "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.carousel_on_mobile == true }}"
+      "visible_if": "{{ section.settings.layout_type == 'carousel' or section.settings.mobile_layout_type == 'carousel' }}"
     },
     {
       "type": "select",
@@ -374,7 +420,7 @@
         }
       ],
       "default": "circle",
-      "visible_if": "{{ section.settings.icons_style != 'none' and section.settings.layout_type == 'carousel' or section.settings.carousel_on_mobile == true }}"
+      "visible_if": "{{ section.settings.icons_style != 'none' and section.settings.layout_type == 'carousel' or section.settings.icons_style != 'none' and section.settings.mobile_layout_type == 'carousel' }}"
     },
     {
       "type": "select",
